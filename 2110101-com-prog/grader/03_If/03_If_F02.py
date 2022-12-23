@@ -1,0 +1,45 @@
+score = {
+    "A": 80,
+    "B": 70,
+    "C": 60,
+    "D": 50,
+    "F": 40,
+}
+
+
+class student:
+    id = ''
+    gpax = 4
+    com = 'A'
+    cal1 = 'A'
+    cal2 = 'A'
+    accept = False
+    hash = 100000000000
+
+
+def choose(student1, student2):
+    a = student()
+    b = student()
+    a.id, a.gpax, a.com, a.cal1, a.cal2 = student1
+    b.id, b.gpax, b.com, b.cal1, b.cal2 = student2
+
+    for i in [a, b]:
+        i.accept = (score[i.com] >= score['A']) & (score[i.cal1] >= score['C']) & (score[i.cal2] >= score['C'])
+        i.hash = float(i.gpax)*100**4 + int(score[i.cal1])*100**3 + int(score[i.cal2])*100**2
+
+    if a.accept & b.accept == True:
+        if a.hash == b.hash:
+            return [a.id, b.id]
+        elif a.hash > b.hash:
+            return [a.id]
+        else:
+            return [b.id]
+    elif a.accept == True:
+        return [a.id]
+    elif b.accept == True:
+        return [b.id]
+    else:
+        return []
+
+
+exec(input())

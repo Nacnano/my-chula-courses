@@ -1,0 +1,8 @@
+3
+computers.pro 0123456789 40000.32
+trading.ups 0094356129 3000
+apple.str 0089553714 0
+computers.pro 0123456789 transfer 0089553714 40
+computers.rop 0123456789 deposit 10
+computers.pro 5555555555 deposit 10
+exit

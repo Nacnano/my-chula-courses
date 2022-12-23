@@ -1,0 +1,8 @@
+Transaction Failed
+papaya.prt (5590289762) 16003
+papaya.prt (5590289762) 12000
+hasara.xqz (0098767865) 4003
+nabara.tre (8899436701) 98.76
+handsome.ric (0158027369) 3000200
+handsome.ric (0158027369) 2750200
+beauty.pal (2299255565) 251000

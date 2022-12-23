@@ -1,0 +1,7 @@
+totellar.pok (2789654121) 9000
+pprte.yul (0987422369) 33004.43
+totellar.pok (2789654121) 8434.81
+computer.pro (0123456789) 40565.51
+lottery1.sql (0000637251) 1809972.49
+papaya.prt (5590289762) 200027.51
+Transaction Failed

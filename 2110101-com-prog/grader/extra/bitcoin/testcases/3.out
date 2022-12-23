@@ -1,0 +1,6 @@
+SELL at 45.91
+BUY at 50.47
+SELL at 48.27
+BUY at 49.12
+SELL at 52.36
+BUY at 57.68

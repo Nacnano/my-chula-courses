@@ -1,0 +1,6 @@
+1
+ppap.ple 0098764531 50000
+ppap.ple 0098764532 deposit 5
+ppap.ple 0098764533 withdraw 5
+ppap.ple 0098764532 transfer 0098764533 5
+exit
