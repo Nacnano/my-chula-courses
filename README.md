@@ -7,8 +7,9 @@ This is a personal repository for storing codes and learning materials from all 
 ## Courses
 
 1.  [2110101 - Computer Programming](https://github.com/Nacnano/my-chula-courses/tree/main/2110101-com-prog) - Solutions for the grader, homeworks, and finalized workshops
-2.  [2110215 - Programming Methodology](https://www.youtube.com/watch?v=dQw4w9WgXcQ) - Lectures, labs, final project (not done yet)
-3.  Add more soon...
+2.  [2110215 - Programming Methodology](https://github.com/Nacnano/my-chula-courses/tree/main/2110215-prog-meth) - Lectures, labs, and final project
+3.  [2110221 - Computer Engineering Essential](https://github.com/Nacnano/my-chula-courses/tree/main/2110221-com-eng-ess) - Mainly courses material and its solutions 
+4.  Add more soon...
 
 ### Author
 
