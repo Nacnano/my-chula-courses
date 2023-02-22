@@ -5,12 +5,12 @@ self.importScripts(
 )
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBhEuyj2kaTuFH39Sjq_Mylno1K0FB2klM',
-  authDomain: 'compengess-6532182521.firebaseapp.com',
-  projectId: 'compengess-6532182521',
-  storageBucket: 'compengess-6532182521.appspot.com',
-  messagingSenderId: '1048395498958',
-  appId: '1:1048395498958:web:2e1b2d95dac699d538979f'
+  apiKey: 'xxx',
+  authDomain: 'xxx.firebaseapp.com',
+  projectId: 'xxx',
+  storageBucket: 'xxx.appspot.com',
+  messagingSenderId: 'xxx',
+  appId: 'xxx'
 }
 
 // Initialize Cloud Firestore through Firebase
