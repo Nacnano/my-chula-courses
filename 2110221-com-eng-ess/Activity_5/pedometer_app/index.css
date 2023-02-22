@@ -1,0 +1,115 @@
+#pageone {
+  width: 100%;
+  height: 100%;
+  background-color: #ececd3;
+}
+.container {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 20px;
+  text-shadow: none !important;
+}
+.data {
+  width: 25%;
+  float: left;
+}
+.data2 {
+  width: 100%;
+  float: left;
+}
+.header {
+  width: 100%;
+  background: #5da6d3;
+  font-size: 1.3em;
+  color: white;
+  text-shadow: none !important;
+  text-align: center;
+  padding: 20px 0 20px 0;
+}
+.title {
+  text-align: center;
+  width: 73%;
+  margin-left: 27%;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.bar {
+  width: 73%;
+  height: 15px;
+  margin-left: 2%;
+  float: left;
+  background-color: #cecece;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: width 2s;
+}
+.bar-val {
+  width: 50%;
+  height: 100%;
+  background-color: #5da6d3;
+}
+.data-val {
+  width: 73%;
+  margin-left: 27%;
+  float: left;
+  overflow: hidden;
+}
+.units {
+  width: 90%;
+  height: 20px;
+  padding: 20px 5% 0 5%;
+  background: #fafafa;
+  display: none;
+  margin-top: 20px;
+}
+.data-val > .val,
+.units > .unit {
+  float: left;
+  width: 33%;
+}
+.units > .left,
+.units > .right {
+  margin-top: 4px;
+}
+.data-val > .left,
+.units > .left {
+  text-align: left;
+}
+.data-val > .center,
+.units > .center {
+  text-align: center;
+}
+.data-val > .right,
+.units > .right {
+  text-align: right;
+}
+.result {
+  font-size: 1.2em;
+  color: #414038;
+}
+.btn {
+  width: 90% !important;
+  margin-left: 5% !important;
+  margin-bottom: 5% !important;
+  color: white !important;
+  text-shadow: none !important;
+  margin-top: 20px !important;
+}
+.btn-start {
+  background: #43a800 !important;
+}
+.btn-stop {
+  background: #bc0000 !important;
+}
+.btn-clear {
+  background: #008fe9 !important;
+}
+.timer {
+  text-align: center;
+  font-size: 2em;
+  color: #414038;
+}
+#analyse-chart {
+  background: #fafafa;
+  padding-bottom: 20px;
+}

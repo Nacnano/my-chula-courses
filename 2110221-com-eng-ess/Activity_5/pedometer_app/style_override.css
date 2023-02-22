@@ -1,0 +1,19 @@
+#pedo-result .modal-content,
+#pedo-result .modal-header,
+#pedo-result .modal-body,
+#pedo-result .modal-footer {
+  background-color: #ececd3;
+  border: none;
+}
+#pedo-result-sent {
+  background: #43a800;
+  border: none;
+}
+#pedo-result-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#pedo-result-display-value {
+  font-size: 80px;
+}

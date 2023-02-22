@@ -1,0 +1,1659 @@
+<!DOCTYPE html5>
+<!-- saved from url=(0124)https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html -->
+<html class="ui-mobile">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--<base href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html">-->
+    <base href="." />
+    <title>COMP ENG ESS PEDO Group # GROUP_NO</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://www.amcharts.com/lib/3/plugins/export/export.css"
+      type="text/css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="style_override.css"
+      type="text/css"
+      media="all"
+    />
+    <link rel="stylesheet" href="index.css" type="text/css" media="all" />
+
+    <script
+      type="text/javascript"
+      src="https://www.amcharts.com/lib/3/plugins/export/libs/fabric.js/fabric.min.js"
+      async=""
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://www.amcharts.com/lib/3/plugins/export/libs/FileSaver.js/FileSaver.min.js"
+      async=""
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://www.amcharts.com/lib/3/plugins/export/libs/jszip/jszip.min.js"
+      async=""
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://www.amcharts.com/lib/3/plugins/export/libs/pdfmake/pdfmake.min.js"
+      async=""
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://www.amcharts.com/lib/3/plugins/export/libs/xlsx/xlsx.min.js"
+      async=""
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://www.amcharts.com/lib/3/plugins/export/libs/pdfmake/vfs_fonts.js"
+      async=""
+    ></script>
+    <script src="requestPermission.js" async></script>
+  </head>
+
+  <body style="background: #ececd3" class="ui-mobile-viewport ui-overlay-a">
+    <div
+      data-role="page"
+      id="pageone"
+      data-url="pageone"
+      tabindex="0"
+      class="ui-page ui-page-theme-a ui-page-active"
+    >
+      <div class="header">
+        COMP ENG ESS <b>PEDO</b> # <span id="pedo-header-groupno"></span>
+      </div>
+      <div class="container">
+        <div class="title"><b>Accelerometer</b> ( m/s² )</div>
+        <div class="data" id="accX"><b>X</b> 0</div>
+        <div class="bar">
+          <div class="bar-val" id="bar-accX" style="width: 50%"></div>
+        </div>
+        <br />
+        <div class="data" id="accY"><b>Y</b> 0</div>
+        <div class="bar">
+          <div class="bar-val" id="bar-accY" style="width: 50%"></div>
+        </div>
+        <br />
+        <div class="data" id="accZ"><b>Z</b> 0</div>
+        <div class="bar">
+          <div class="bar-val" id="bar-accZ" style="width: 50%"></div>
+        </div>
+        <br />
+        <div class="data-val">
+          <div class="val left">-10</div>
+          <div class="val center">0</div>
+          <div class="val right">10</div>
+        </div>
+        <br />
+        <div class="data2" id="accSensor"><b>Sensor Type</b> TBD</div>
+        <br />
+        <div class="title"><b>Gyrometer</b> ( deg )</div>
+        <div class="data" id="gyroX"><b>A</b> 0</div>
+        <div class="bar">
+          <div class="bar-val" id="bar-gyroX" style="width: 50%"></div>
+        </div>
+        <br />
+        <div class="data" id="gyroY"><b>B</b> 0</div>
+        <div class="bar">
+          <div class="bar-val" id="bar-gyroY" style="width: 50%"></div>
+        </div>
+        <br />
+        <div class="data" id="gyroZ"><b>G</b> 0</div>
+        <div class="bar">
+          <div class="bar-val" id="bar-gyroZ" style="width: 50%"></div>
+        </div>
+        <br />
+        <div class="data-val">
+          <div class="val left">-360</div>
+          <div class="val center">0</div>
+          <div class="val right">360</div>
+        </div>
+        <br />
+        <div class="data2" id="gyroSensor"><b>Sensor Type</b> TBD</div>
+      </div>
+
+      <br />
+
+      <div class="units">
+        <div class="unit left">m/s²</div>
+        <div class="unit center result"><b>Result</b></div>
+        <div class="unit right">deg</div>
+      </div>
+
+      <div id="analyse-chart" style="display: none">
+        <div
+          id="chartdiv"
+          style="
+            width: 100%;
+            height: 400px;
+            overflow: visible;
+            text-align: left;
+          "
+        >
+          <div
+            class="amcharts-main-div"
+            style="position: relative; width: 100%; height: 100%"
+          >
+            <div
+              class="amcharts-chart-div"
+              style="
+                overflow: hidden;
+                position: relative;
+                text-align: left;
+                height: 0px;
+              "
+            >
+              <svg
+                version="1.1"
+                style="position: absolute; width: 10px; height: 10px"
+              >
+                <desc>JavaScript chart by amCharts 3.21.6</desc>
+                <g></g>
+                <g>
+                  <g class="amcharts-category-axis" transform="translate(0,40)">
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,5.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.3"
+                        stroke="#000000"
+                        transform="translate(0,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,5.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.3"
+                        stroke="#000000"
+                        transform="translate(0,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,5.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.3"
+                        stroke="#000000"
+                        transform="translate(0,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,5.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.3"
+                        stroke="#000000"
+                        transform="translate(0,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,5.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.3"
+                        stroke="#000000"
+                        transform="translate(0,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,5.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.3"
+                        stroke="#000000"
+                        transform="translate(0,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,5.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.3"
+                        stroke="#000000"
+                        transform="translate(0,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,5.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.3"
+                        stroke="#000000"
+                        transform="translate(0,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    class="amcharts-value-axis value-axis-v1"
+                    transform="translate(0,40)"
+                    visibility="visible"
+                  >
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L6.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="1"
+                        stroke="#FF6600"
+                        transform="translate(-7,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L6.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="1"
+                        stroke="#FF6600"
+                        transform="translate(-7,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L6.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="1"
+                        stroke="#FF6600"
+                        transform="translate(-7,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                  </g>
+                  <g
+                    class="amcharts-value-axis value-axis-v2"
+                    transform="translate(0,40)"
+                    visibility="visible"
+                  >
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L6.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="1"
+                        stroke="#FF0066"
+                        transform="translate(1,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L6.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="1"
+                        stroke="#FF0066"
+                        transform="translate(1,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                    <g>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L6.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="1"
+                        stroke="#FF0066"
+                        transform="translate(1,0)"
+                        class="amcharts-axis-tick"
+                      ></path>
+                      <path
+                        cs="100,100"
+                        d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                        fill="none"
+                        stroke-width="1"
+                        stroke-opacity="0.1"
+                        stroke="#000000"
+                        class="amcharts-axis-grid"
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto0_1504256881872"
+                  >
+                    <g></g>
+                  </g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto1_1504256881873"
+                  >
+                    <g></g>
+                  </g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto2_1504256881873"
+                  >
+                    <g></g>
+                  </g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto3_1504256881873"
+                  >
+                    <g></g>
+                  </g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto4_1504256881874"
+                  >
+                    <g></g>
+                  </g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto5_1504256881874"
+                  >
+                    <g></g>
+                  </g>
+                </g>
+                <g></g>
+                <g>
+                  <path
+                    cs="100,100"
+                    d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                    fill="none"
+                    stroke-width="1"
+                    stroke-opacity="0.2"
+                    stroke="#000000"
+                    transform="translate(0,40)"
+                    class="amcharts-axis-zero-grid-v2 amcharts-axis-zero-grid"
+                  ></path>
+                  <path
+                    cs="100,100"
+                    d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                    fill="none"
+                    stroke-width="1"
+                    stroke-opacity="0.2"
+                    stroke="#000000"
+                    transform="translate(0,40)"
+                    class="amcharts-axis-zero-grid-v1 amcharts-axis-zero-grid"
+                  ></path>
+                  <g class="amcharts-category-axis">
+                    <path
+                      cs="100,100"
+                      d="M0.5,0.5 L0.5,0.5"
+                      fill="none"
+                      stroke-width="1"
+                      stroke-opacity="0.3"
+                      stroke="#000000"
+                      transform="translate(0,40)"
+                      class="amcharts-axis-line"
+                    ></path>
+                  </g>
+                  <g class="amcharts-value-axis value-axis-v1">
+                    <path
+                      cs="100,100"
+                      d="M0.5,0.5 L0.5,0.5"
+                      fill="none"
+                      stroke-width="2"
+                      stroke-opacity="1"
+                      stroke="#FF6600"
+                      transform="translate(-1,40)"
+                      class="amcharts-axis-line"
+                      visibility="visible"
+                    ></path>
+                  </g>
+                  <g class="amcharts-value-axis value-axis-v2">
+                    <path
+                      cs="100,100"
+                      d="M0.5,0.5 L0.5,0.5 L0.5,0.5"
+                      fill="none"
+                      stroke-width="2"
+                      stroke-opacity="1"
+                      stroke="#FF0066"
+                      transform="translate(0,40)"
+                      class="amcharts-axis-line"
+                      visibility="visible"
+                    ></path>
+                  </g>
+                </g>
+                <g></g>
+                <g></g>
+                <g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto0_1504256881872"
+                  >
+                    <circle
+                      r="4"
+                      cx="0"
+                      cy="0"
+                      fill="#ff4c4c"
+                      stroke="#ff4c4c"
+                      fill-opacity="1"
+                      stroke-width="0.5"
+                      stroke-opacity="0"
+                      transform="translate(0,0)"
+                      aria-label="x Jan 01, 2012 0"
+                      class="amcharts-graph-bullet"
+                    ></circle>
+                  </g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto1_1504256881873"
+                  >
+                    <path
+                      cs="100,100"
+                      d="M-3.5,4.5 L4.5,4.5 L4.5,-3.5 L-3.5,-3.5 Z"
+                      fill="#f3ca00"
+                      stroke="#f3ca00"
+                      fill-opacity="1"
+                      stroke-width="0.5"
+                      stroke-opacity="0"
+                      transform="translate(0,0)"
+                      aria-label="y Jan 01, 2012 -2"
+                      class="amcharts-graph-bullet"
+                    ></path>
+                  </g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto2_1504256881873"
+                  >
+                    <path
+                      cs="100,100"
+                      d=" M-4,4 L0,-4 L4,4 Z"
+                      fill="#ff7c3a"
+                      stroke="#ff7c3a"
+                      fill-opacity="1"
+                      stroke-width="0.5"
+                      stroke-opacity="0"
+                      transform="translate(0,0)"
+                      aria-label="z Jan 01, 2012 -9"
+                      class="amcharts-graph-bullet"
+                    ></path>
+                  </g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto3_1504256881873"
+                  >
+                    <circle
+                      r="4"
+                      cx="0"
+                      cy="0"
+                      fill="#008bcc"
+                      stroke="#008bcc"
+                      fill-opacity="1"
+                      stroke-width="0.5"
+                      stroke-opacity="0"
+                      transform="translate(0,0)"
+                      aria-label="alpha Jan 01, 2012 0"
+                      class="amcharts-graph-bullet"
+                    ></circle>
+                  </g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto4_1504256881874"
+                  >
+                    <path
+                      cs="100,100"
+                      d="M-3.5,4.5 L4.5,4.5 L4.5,-3.5 L-3.5,-3.5 Z"
+                      fill="#56b700"
+                      stroke="#56b700"
+                      fill-opacity="1"
+                      stroke-width="0.5"
+                      stroke-opacity="0"
+                      transform="translate(0,0)"
+                      aria-label="beta Jan 01, 2012 0"
+                      class="amcharts-graph-bullet"
+                    ></path>
+                  </g>
+                  <g
+                    transform="translate(0,40)"
+                    class="amcharts-graph-line amcharts-graph-graphAuto5_1504256881874"
+                  >
+                    <path
+                      cs="100,100"
+                      d=" M-4,4 L0,-4 L4,4 Z"
+                      fill="#B0DE09"
+                      stroke="#B0DE09"
+                      fill-opacity="1"
+                      stroke-width="0.5"
+                      stroke-opacity="0"
+                      transform="translate(0,0)"
+                      aria-label="gamma Jan 01, 2012 0"
+                      class="amcharts-graph-bullet"
+                    ></path>
+                  </g>
+                </g>
+                <g></g>
+                <g>
+                  <g
+                    class="amcharts-category-axis"
+                    transform="translate(0,40)"
+                    visibility="visible"
+                  ></g>
+                  <g
+                    class="amcharts-value-axis value-axis-v1"
+                    transform="translate(0,40)"
+                    visibility="visible"
+                  ></g>
+                  <g
+                    class="amcharts-value-axis value-axis-v2"
+                    transform="translate(0,40)"
+                    visibility="visible"
+                  ></g>
+                </g>
+                <g></g>
+                <g transform="translate(0,40)"></g>
+                <g></g>
+                <g></g>
+              </svg>
+            </div>
+            <div
+              class="amChartsLegend amcharts-legend-div"
+              style="
+                overflow: hidden;
+                position: relative;
+                text-align: left;
+                width: 0px;
+                top: 0px;
+                height: 30px;
+              "
+            >
+              <svg
+                version="1.1"
+                style="position: absolute; width: 10px; height: 10px"
+              >
+                <desc>JavaScript chart by amCharts 3.21.6</desc>
+                <g transform="translate(0,0)">
+                  <path
+                    cs="100,100"
+                    d="M0.5,0.5 L-10.5,0.5 L-10.5,19.5 L0.5,19.5 Z"
+                    fill="#FFFFFF"
+                    stroke="#000000"
+                    fill-opacity="0"
+                    stroke-width="1"
+                    stroke-opacity="0"
+                    class="amcharts-legend-bg"
+                  ></path>
+                  <g transform="translate(0,11)">
+                    <g
+                      cursor="pointer"
+                      class="amcharts-legend-item-graphAuto0_1504256881872"
+                      aria-label="x"
+                      transform="translate(0,0)"
+                    >
+                      <g
+                        class="amcharts-graph-line amcharts-graph-graphAuto0_1504256881872 amcharts-legend-marker"
+                      >
+                        <path
+                          cs="100,100"
+                          d="M0.5,8.5 L32.5,8.5"
+                          fill="none"
+                          stroke-width="1"
+                          stroke-opacity="0.9"
+                          stroke="#ff4c4c"
+                          class="amcharts-graph-stroke"
+                        ></path>
+                        <circle
+                          r="4"
+                          cx="0"
+                          cy="0"
+                          fill="#ff4c4c"
+                          stroke="#000000"
+                          fill-opacity="1"
+                          stroke-width="0.5"
+                          stroke-opacity="0"
+                          class="amcharts-graph-bullet"
+                          transform="translate(17,8)"
+                        ></circle>
+                      </g>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="start"
+                        class="amcharts-legend-label"
+                        transform="translate(37,7)"
+                      >
+                        <tspan y="6" x="0">x</tspan>
+                      </text>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="end"
+                        class="amcharts-legend-value"
+                        transform="translate(92,7)"
+                      ></text>
+                      <rect
+                        x="0"
+                        y="0"
+                        width="60"
+                        height="18"
+                        rx="0"
+                        ry="0"
+                        stroke-width="0"
+                        stroke="none"
+                        fill="#fff"
+                        fill-opacity="0.005"
+                      ></rect>
+                    </g>
+                    <g
+                      cursor="pointer"
+                      class="amcharts-legend-item-graphAuto1_1504256881873"
+                      aria-label="y"
+                      transform="translate(0,10)"
+                    >
+                      <g
+                        class="amcharts-graph-line amcharts-graph-graphAuto1_1504256881873 amcharts-legend-marker"
+                      >
+                        <path
+                          cs="100,100"
+                          d="M0.5,8.5 L32.5,8.5"
+                          fill="none"
+                          stroke-width="1"
+                          stroke-opacity="0.9"
+                          stroke="#f3ca00"
+                          class="amcharts-graph-stroke"
+                        ></path>
+                        <path
+                          cs="100,100"
+                          d="M-3.5,4.5 L4.5,4.5 L4.5,-3.5 L-3.5,-3.5 Z"
+                          fill="#f3ca00"
+                          stroke="#f3ca00"
+                          fill-opacity="1"
+                          stroke-width="0.5"
+                          stroke-opacity="0"
+                          class="amcharts-graph-bullet"
+                          transform="translate(17,8)"
+                        ></path>
+                      </g>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="start"
+                        class="amcharts-legend-label"
+                        transform="translate(37,7)"
+                      >
+                        <tspan y="6" x="0">y</tspan>
+                      </text>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="end"
+                        class="amcharts-legend-value"
+                        transform="translate(92,7)"
+                      ></text>
+                      <rect
+                        x="0"
+                        y="0"
+                        width="60"
+                        height="18"
+                        rx="0"
+                        ry="0"
+                        stroke-width="0"
+                        stroke="none"
+                        fill="#fff"
+                        fill-opacity="0.005"
+                      ></rect>
+                    </g>
+                    <g
+                      cursor="pointer"
+                      class="amcharts-legend-item-graphAuto2_1504256881873"
+                      aria-label="z"
+                      transform="translate(0,20)"
+                    >
+                      <g
+                        class="amcharts-graph-line amcharts-graph-graphAuto2_1504256881873 amcharts-legend-marker"
+                      >
+                        <path
+                          cs="100,100"
+                          d="M0.5,8.5 L32.5,8.5"
+                          fill="none"
+                          stroke-width="1"
+                          stroke-opacity="0.9"
+                          stroke="#ff7c3a"
+                          class="amcharts-graph-stroke"
+                        ></path>
+                        <path
+                          cs="100,100"
+                          d=" M-4,4 L0,-4 L4,4 Z"
+                          fill="#ff7c3a"
+                          stroke="#000"
+                          fill-opacity="1"
+                          stroke-width="0.5"
+                          stroke-opacity="0"
+                          class="amcharts-graph-bullet"
+                          transform="translate(17,8)"
+                        ></path>
+                      </g>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="start"
+                        class="amcharts-legend-label"
+                        transform="translate(37,7)"
+                      >
+                        <tspan y="6" x="0">z</tspan>
+                      </text>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="end"
+                        class="amcharts-legend-value"
+                        transform="translate(92,7)"
+                      ></text>
+                      <rect
+                        x="0"
+                        y="0"
+                        width="60"
+                        height="18"
+                        rx="0"
+                        ry="0"
+                        stroke-width="0"
+                        stroke="none"
+                        fill="#fff"
+                        fill-opacity="0.005"
+                      ></rect>
+                    </g>
+                    <g
+                      cursor="pointer"
+                      class="amcharts-legend-item-graphAuto3_1504256881873"
+                      aria-label="alpha"
+                      transform="translate(0,30)"
+                    >
+                      <g
+                        class="amcharts-graph-line amcharts-graph-graphAuto3_1504256881873 amcharts-legend-marker"
+                      >
+                        <path
+                          cs="100,100"
+                          d="M0.5,8.5 L32.5,8.5"
+                          fill="none"
+                          stroke-width="1"
+                          stroke-opacity="0.9"
+                          stroke="#008bcc"
+                          class="amcharts-graph-stroke"
+                        ></path>
+                        <circle
+                          r="4"
+                          cx="0"
+                          cy="0"
+                          fill="#008bcc"
+                          stroke="#000000"
+                          fill-opacity="1"
+                          stroke-width="0.5"
+                          stroke-opacity="0"
+                          class="amcharts-graph-bullet"
+                          transform="translate(17,8)"
+                        ></circle>
+                      </g>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="start"
+                        class="amcharts-legend-label"
+                        transform="translate(37,7)"
+                      >
+                        <tspan y="6" x="0">alpha</tspan>
+                      </text>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="end"
+                        class="amcharts-legend-value"
+                        transform="translate(92,7)"
+                      ></text>
+                      <rect
+                        x="0"
+                        y="0"
+                        width="60"
+                        height="18"
+                        rx="0"
+                        ry="0"
+                        stroke-width="0"
+                        stroke="none"
+                        fill="#fff"
+                        fill-opacity="0.005"
+                      ></rect>
+                    </g>
+                    <g
+                      cursor="pointer"
+                      class="amcharts-legend-item-graphAuto4_1504256881874"
+                      aria-label="beta"
+                      transform="translate(0,40)"
+                    >
+                      <g
+                        class="amcharts-graph-line amcharts-graph-graphAuto4_1504256881874 amcharts-legend-marker"
+                      >
+                        <path
+                          cs="100,100"
+                          d="M0.5,8.5 L32.5,8.5"
+                          fill="none"
+                          stroke-width="1"
+                          stroke-opacity="0.9"
+                          stroke="#56b700"
+                          class="amcharts-graph-stroke"
+                        ></path>
+                        <path
+                          cs="100,100"
+                          d="M-3.5,4.5 L4.5,4.5 L4.5,-3.5 L-3.5,-3.5 Z"
+                          fill="#56b700"
+                          stroke="#56b700"
+                          fill-opacity="1"
+                          stroke-width="0.5"
+                          stroke-opacity="0"
+                          class="amcharts-graph-bullet"
+                          transform="translate(17,8)"
+                        ></path>
+                      </g>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="start"
+                        class="amcharts-legend-label"
+                        transform="translate(37,7)"
+                      >
+                        <tspan y="6" x="0">beta</tspan>
+                      </text>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="end"
+                        class="amcharts-legend-value"
+                        transform="translate(92,7)"
+                      ></text>
+                      <rect
+                        x="0"
+                        y="0"
+                        width="60"
+                        height="18"
+                        rx="0"
+                        ry="0"
+                        stroke-width="0"
+                        stroke="none"
+                        fill="#fff"
+                        fill-opacity="0.005"
+                      ></rect>
+                    </g>
+                    <g
+                      cursor="pointer"
+                      class="amcharts-legend-item-graphAuto5_1504256881874"
+                      aria-label="gamma"
+                      transform="translate(0,50)"
+                    >
+                      <g
+                        class="amcharts-graph-line amcharts-graph-graphAuto5_1504256881874 amcharts-legend-marker"
+                      >
+                        <path
+                          cs="100,100"
+                          d="M0.5,8.5 L32.5,8.5"
+                          fill="none"
+                          stroke-width="1"
+                          stroke-opacity="0.9"
+                          stroke="#B0DE09"
+                          class="amcharts-graph-stroke"
+                        ></path>
+                        <path
+                          cs="100,100"
+                          d=" M-4,4 L0,-4 L4,4 Z"
+                          fill="#B0DE09"
+                          stroke="#000"
+                          fill-opacity="1"
+                          stroke-width="0.5"
+                          stroke-opacity="0"
+                          class="amcharts-graph-bullet"
+                          transform="translate(17,8)"
+                        ></path>
+                      </g>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="start"
+                        class="amcharts-legend-label"
+                        transform="translate(37,7)"
+                      >
+                        <tspan y="6" x="0">gamma</tspan>
+                      </text>
+                      <text
+                        y="6"
+                        fill="#000000"
+                        font-family="Verdana"
+                        font-size="11px"
+                        opacity="1"
+                        text-anchor="end"
+                        class="amcharts-legend-value"
+                        transform="translate(92,7)"
+                      ></text>
+                      <rect
+                        x="0"
+                        y="0"
+                        width="60"
+                        height="18"
+                        rx="0"
+                        ry="0"
+                        stroke-width="0"
+                        stroke="none"
+                        fill="#fff"
+                        fill-opacity="0.005"
+                      ></rect>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div
+              class="amcharts-export-menu amcharts-export-menu-bottom-right amExportButton"
+            >
+              <ul>
+                <li class="export-main">
+                  <a
+                    href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                    ><span>menu.label.undefined</span></a
+                  >
+                  <ul>
+                    <li>
+                      <a
+                        href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                        ><span>Download as ...</span></a
+                      >
+                      <ul>
+                        <li>
+                          <a
+                            href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                            ><span>PNG</span></a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                            ><span>JPG</span></a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                            ><span>SVG</span></a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                            ><span>PDF</span></a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                        ><span>Save as ...</span></a
+                      >
+                      <ul>
+                        <li>
+                          <a
+                            href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                            ><span>CSV</span></a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                            ><span>XLSX</span></a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                            ><span>JSON</span></a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                        ><span>Annotate ...</span></a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.mycourseville.com/sites/all/modules/courseville/files/uploads/2016_1/2110221/materials/sensor3.1.1473559412.html#"
+                        ><span>Print</span></a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 5%">
+        <button
+          id="requestPermissionButton"
+          class="btn btn-clear ui-btn ui-corner-all"
+          onclick="requestPermission();"
+          style="display: none"
+        >
+          Request Permission (For iOS14.5+)
+        </button>
+        <button
+          class="btn btn-start ui-btn ui-shadow ui-corner-all"
+          onclick="record();"
+          id="start-btn"
+        >
+          Start
+        </button>
+        <button
+          class="btn btn-stop ui-btn ui-shadow ui-corner-all"
+          onclick="stopRecord();"
+          style="display: none"
+          id="stop-btn"
+        >
+          Stop
+        </button>
+        <button
+          class="btn btn-clear ui-btn ui-shadow ui-corner-all"
+          onclick="clearData();"
+          style="display: none"
+          id="clear-btn"
+        >
+          Clear
+        </button>
+
+        <div class="timer" id="timer">0:00:00.0</div>
+      </div>
+    </div>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="sensorModule.js"></script>
+    <script type="text/javascript">
+      /*jshint esversion: 6 */
+      var aX = 0,
+        aY = 0,
+        aZ = 0;
+      var gA = 0,
+        gB = 0,
+        gG = 0;
+      var accX = [],
+        accY = [],
+        accZ = [];
+      var gyA = [],
+        gyB = [],
+        gyG = [];
+      var timer = 0;
+
+      var startDate = new Date();
+      var currentTimeAcc = startDate.getTime();
+      var currentTimeGyro = startDate.getTime();
+
+      $(document).bind("mobileinit", function () {
+        $.mobile.pushStateEnabled = false;
+      });
+
+      function updateAcc() {
+        tmpArr = sensorReader.getAcc();
+
+        aX = Math.floor(tmpArr[0] * 100) / 100;
+        aY = Math.floor(tmpArr[1] * 100) / 100;
+        aZ = Math.floor(tmpArr[2] * 100) / 100;
+
+        document.getElementById("accX").innerHTML = "<b>X</b> " + aX;
+        document.getElementById("accY").innerHTML = "<b>Y</b> " + aY;
+        document.getElementById("accZ").innerHTML = "<b>Z</b> " + aZ;
+        document.getElementById("accSensor").innerHTML =
+          "<b>Sensor Type</b>    " + sensorReader.getAccApiStatus();
+
+        var percentX = ((aX + 10) * 100) / 20;
+        var percentY = ((aY + 10) * 100) / 20;
+        var percentZ = ((aZ + 10) * 100) / 20;
+
+        $("#bar-accX").css({ width: percentX + "%" });
+        $("#bar-accY").css({ width: percentY + "%" });
+        $("#bar-accZ").css({ width: percentZ + "%" });
+      }
+
+      function updateGyro() {
+        tmpArr = sensorReader.getGyro();
+        gA = Math.floor(tmpArr[0]);
+        gB = Math.floor(tmpArr[1]);
+        gG = Math.floor(tmpArr[2]);
+        document.getElementById("gyroX").innerHTML = "<b>A</b> " + gA;
+        document.getElementById("gyroY").innerHTML = "<b>B</b> " + gB;
+        document.getElementById("gyroZ").innerHTML = "<b>G</b> " + gG;
+        document.getElementById("gyroSensor").innerHTML =
+          "<b>Sensor Type</b>    " + sensorReader.getGyroApiStatus();
+        var percentX = ((gA + 360) * 100) / 720;
+        var percentY = ((gB + 360) * 100) / 720;
+        var percentZ = ((gG + 360) * 100) / 720;
+
+        $("#bar-gyroX").css({ width: percentX + "%" });
+        $("#bar-gyroY").css({ width: percentY + "%" });
+        $("#bar-gyroZ").css({ width: percentZ + "%" });
+      }
+
+      var chartData;
+      var chart;
+      initChart();
+      function initChart() {
+        chartData = [];
+        generateChartData();
+        chart = AmCharts.makeChart("chartdiv", {
+          type: "serial",
+          theme: "light",
+          legend: {
+            useGraphSettings: true,
+          },
+          dataProvider: chartData,
+          synchronizeGrid: true,
+          valueAxes: [
+            {
+              id: "v1",
+              axisColor: "#FF6600",
+              axisThickness: 2,
+              axisAlpha: 1,
+              position: "left",
+            },
+            {
+              id: "v2",
+              axisColor: "#FF0066",
+              axisThickness: 2,
+              axisAlpha: 1,
+              position: "right",
+            },
+          ],
+          graphs: [
+            {
+              valueAxis: "v1",
+              lineColor: "#ff4c4c",
+              bullet: "round",
+              bulletBorderThickness: 0.5,
+              hideBulletsCount: 1,
+              title: "x",
+              valueField: "xs",
+              fillAlphas: 0,
+            },
+            {
+              valueAxis: "v1",
+              lineColor: "#f3ca00",
+              bullet: "square",
+              bulletBorderThickness: 0.5,
+              hideBulletsCount: 1,
+              title: "y",
+              valueField: "ys",
+              fillAlphas: 0,
+            },
+            {
+              valueAxis: "v1",
+              lineColor: "#ff7c3a",
+              bullet: "triangleUp",
+              bulletBorderThickness: 0.5,
+              hideBulletsCount: 1,
+              title: "z",
+              valueField: "zs",
+              fillAlphas: 0,
+            },
+            {
+              valueAxis: "v2",
+              lineColor: "#008bcc",
+              bullet: "round",
+              bulletBorderThickness: 0.5,
+              hideBulletsCount: 1,
+              title: "alpha",
+              valueField: "as",
+              fillAlphas: 0,
+            },
+            {
+              valueAxis: "v2",
+              lineColor: "#56b700",
+              bullet: "square",
+              bulletBorderThickness: 0.5,
+              hideBulletsCount: 1,
+              title: "beta",
+              valueField: "bs",
+              fillAlphas: 0,
+            },
+            {
+              valueAxis: "v2",
+              lineColor: "#B0DE09",
+              bullet: "triangleUp",
+              bulletBorderThickness: 0.5,
+              hideBulletsCount: 1,
+              title: "gamma",
+              valueField: "gs",
+              fillAlphas: 0,
+            },
+          ],
+          chartScrollbar: {},
+          chartCursor: {
+            cursorPosition: "mouse",
+          },
+          dateFormat: "JJ:NN:SS.KK",
+          categoryField: "date",
+          categoryAxesSettings: {
+            minPeriod: "mm",
+          },
+          periodSelector: {
+            position: "top",
+            dateFormat: "JJ:NN:SS:MM",
+            inputFieldWidth: 150,
+            periods: [
+              {
+                period: "ss",
+                count: 1,
+                label: "1 hour",
+                selected: true,
+              },
+              {
+                period: "ss",
+                count: 60,
+                label: "2 hours",
+              },
+              {
+                period: "ss",
+                count: 300,
+                label: "5 hour",
+              },
+              {
+                period: "ss",
+                count: 3600,
+                label: "12 hours",
+              },
+              {
+                period: "MAX",
+                label: "MAX",
+              },
+            ],
+          },
+          categoryAxis: {
+            minPeriod: "ss",
+            parseDates: true,
+          },
+          export: {
+            enabled: true,
+            position: "bottom-right",
+            dateFormat: "NN:SS",
+          },
+        });
+
+        chart.addListener("dataUpdated", zoomChart);
+        zoomChart();
+      }
+
+      // generate some random data, quite different range
+      var firstDate;
+      function generateChartData() {
+        firstDate = new Date(2012, 0, 1);
+        firstDate.setDate(firstDate.getDate());
+        firstDate.setHours(0, 0, 0);
+
+        var newDate = new Date(firstDate);
+        newDate.setHours(0, 0, 0);
+
+        var x = 0;
+        var y = -2;
+        var z = -9;
+
+        chartData.push({
+          date: newDate,
+          xs: x,
+          ys: y,
+          zs: z,
+          as: 0,
+          bs: 0,
+          gs: 0,
+        });
+      }
+
+      function zoomChart() {
+        chart.zoomToIndexes(
+          chart.dataProvider.length - 40,
+          chart.dataProvider.length - 1
+        );
+      }
+
+      var count = 0;
+      var recorder;
+      function record() {
+        sensorReader.start();
+        recorder = setInterval(updateData, 200);
+        $("#start-btn").hide();
+        $("#stop-btn").show();
+        $("#clear-btn").hide();
+      }
+      function updateData() {
+        updateAcc();
+        updateGyro();
+        timer += 0.2;
+        count += 12;
+        var newDate = new Date(firstDate);
+        newDate.setHours(0, 0, count);
+
+        chartData.push({
+          date: newDate,
+          xs: aX,
+          ys: aY,
+          zs: aZ,
+          as: gA,
+          bs: gB,
+          gs: gG,
+        });
+        chart.validateData();
+        setTimer();
+      }
+
+      function stopRecord() {
+        sensorReader.stop();
+        clearInterval(recorder);
+        recorder = null;
+        $("#start-btn").hide();
+        $("#stop-btn").hide();
+        $("#clear-btn").show();
+        $("#analyse-chart").show();
+        $(".units").show();
+        $("#timer").hide();
+        chart.validateData();
+        extras_countStepsAndShowModal();
+      }
+
+      function clearData() {
+        if (recorder !== null) {
+          clearInterval(recorder);
+          recorder = null;
+        }
+        aX = 0;
+        aY = 0;
+        aZ = 0;
+        gA = 0;
+        gB = 0;
+        gG = 0;
+        chart.clear();
+        chart = null;
+        count = 0;
+        timer = 0;
+        initChart();
+        setTimer();
+
+        $("#start-btn").show();
+        $("#stop-btn").hide();
+        $("#clear-btn").hide();
+        $("#analyse-chart").hide();
+        $(".units").hide();
+        $("#timer").show();
+      }
+
+      function setTimer() {
+        //minute
+        var t = Math.floor(timer * 10) / 10;
+        var h = Math.floor(t / 3600);
+        var m = Math.floor((t - h * 3600) / 60);
+        var s = Math.floor((t - h * 3600 - m * 60) * 10) / 10;
+
+        if ((s * 10) % 10 == 0) s = s + ".0";
+
+        if (m < 10) m = "0" + m;
+        if (h < 10) h = "0" + h;
+        if (s < 10) s = "0" + s;
+        document.getElementById("timer").innerHTML = h + ":" + m + ":" + s;
+      }
+
+      function hideAddressBar() {
+        if (!window.location.hash) {
+          if (document.height < window.outerHeight)
+            document.body.style.height = window.outerHeight + 50 + "px";
+          setTimeout(function () {
+            window.scrollTo(0, 1);
+            document.body.style.height = "auto";
+          }, 50);
+        }
+      }
+    </script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <div class="ui-loader ui-corner-all ui-body-a ui-loader-default">
+      <span class="ui-icon-loading"></span>
+      <h1>loading</h1>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="pedo-result">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Number of Steps</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="pedo-result-display">
+              <div id="pedo-result-display-value">--</div>
+              <div id="pedo-result-display-label">Steps</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="pedo-result-sent" type="button" class="btn btn-primary">
+              Send data
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="extras.js"></script>
+    <script src="mywork.js"></script>
+  </body>
+</html>
