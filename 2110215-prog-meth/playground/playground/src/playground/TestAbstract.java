@@ -13,7 +13,6 @@ public class TestAbstract {
 		
 		Shape square = new Square(1);
 		System.out.println(square.perimeter());
-		
 	}
 }
 
