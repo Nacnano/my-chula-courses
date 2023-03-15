@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Mitr:wght@200;400;600&display=swap");
+
+body {
+  font-family: "Mitr", sans-serif;
+}
+
+#app-name {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+section {
+  margin: 20px 0;
+}
+
+.section-title {
+  font-size: 1.2em;
+  font-weight: lighter;
+  margin: 0;
+}
+
+.section-subtitle {
+  font-size: 0.8em;
+  font-weight: lighter;
+  line-height: 80%;
+}
+
+#member-list {
+  margin: 0;
+  font-size: 0.8em;
+}
+
+#main-table {
+  padding: 0;
+  width: 100%;
+  background: #eee;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+#main-table > thead {
+  background: #555;
+  color: white;
+}
+
+#main-table > thead > tr > th {
+  font-weight: lighter;
+  text-align: left;
+}
+
+#main-table td,
+#main-table th {
+  padding: 5px 10px;
+  font-weight: lighter;
+}
+
+#item-to-add,
+#name-to-add,
+#price-to-add {
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+}
+
+.delete-row,
+#add-newrow {
+  border-radius: 8px;
+  padding: 5px 10px;
+  border: 1px solid #aaa;
+  background: white;
+  width: 60px;
+  cursor: pointer;
+}
+
+.delete-row:hover,
+#add-newrow:hover {
+  background: rgb(255, 200, 105);
+  color: white;
+}

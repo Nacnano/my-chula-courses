@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" initial-scale="1.0" />
+    <title>Document title</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <h1 id="app-name">ฝากซื้อด้วย</h1>
+    <h1 class="section-title">รายการฝากซื้อ</h1>
+    <ul id="name-list"></ul>
+    <table id="main-table" border="soild black" width="30%">
+      <thead>
+        <th>ของที่ฝากซื้อ</th>
+        <th>ชื่อผู้ฝากซื้อ</th>
+        <th>ราคาบาท (บาท)</th>
+        <th>ดำเนินการ</th>
+      </thead>
+      <tr>
+        <td>
+          <input type="text" id="item-to-add" />
+        </td>
+        <td>
+          <select id="name-to-add"></select>
+        </td>
+        <td>
+          <input type="number" id="price-to-add" />
+        </td>
+        <td>
+          <button id="button-add" class="delete-row" onclick="addRow()">
+            เพิ่ม
+          </button>
+        </td>
+      </tr>
+    </table>
+    <p id="info">Sum: 0</p>
+  </body>
+</html>
+
+<script src="script.js"></script>
