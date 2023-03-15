@@ -65,8 +65,7 @@ public class ShoppingCart {
 				weightCount += 1;
 			}
 		}
-		
-		if (unitCount > this.requiredUnitItems && weightCount >)
+				if (unitCount > this.requiredUnitItems && weightCount >)
 		
 		return false;
 	}
