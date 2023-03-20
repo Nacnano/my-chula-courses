@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap");
+
+:root {
+    --standard-border-radius: 8px;
+}
+
+body {
+    margin: 20px 20px 0 20px;
+    font-family: "Roboto", sans-serif;
+}
+
+#main-table {
+    padding: 0;
+    width: 100%;
+    background: #eee;
+    border-radius: var(--standard-border-radius);
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+#main-table * {
+    font-size: 14px;
+}
+
+#main-table > thead {
+    background: #555;
+    color: white;
+}
+
+#main-table > thead > tr > th {
+    text-align: left;
+    font-weight: bold;
+}
+
+#student-id-toggle {
+    margin-left: 5px;
+}
+
+#student-id-toggle:hover {
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+#main-table td,
+#main-table th {
+    padding: 5px 15px;
+    font-weight: lighter;
+}
+
+#main-table input,
+#main-table select {
+    padding: 5px 5px;
+    border-radius: var(--standard-border-radius);
+    border: 1px solid #aaa;
+    width: 100%;
+}
+
+#main-table button {
+    border-radius: var(--standard-border-radius);
+    padding: 5px 10px;
+    border: 1px solid #aaa;
+    background: white;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#main-table #fav-food {
+    display: flex;
+    gap: 10px;
+}
+
+#main-table #fav-food input {
+    width: 85%;
+}
+
+#main-table button:hover {
+    background: rgb(237, 158, 21);
+    color: white;
+}
+
+#main-table button.operate-button {
+    width: 100%;
+    color: white;
+}
+
+#main-table button.add-button {
+    background: #234f1e;
+}
+
+#main-table button.add-button:hover {
+    background: #3cb043;
+}
+
+#main-table button.delete-button {
+    background: #60100b;
+}
+
+#main-table button.delete-button:hover {
+    background: #d0312d;
+}
+
+#credit {
+    margin-top: 30px;
+    color: gray;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+}

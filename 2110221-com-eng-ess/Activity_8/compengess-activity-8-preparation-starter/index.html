@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script src="script.js" defer></script>
+        <!-- Import bundled modules from aws-sdk-js-v3 -->
+        <script src="aws_sdk_v3.js"></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <h1>Group <span id="group-no"></span> Member Management System</h1>
+        <p>
+            There are currently <b id="member-count"></b> members in your group.
+        </p>
+        <table id="main-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%">
+                        Student ID<span id="student-id-toggle">&#9651;</span>
+                    </th>
+                    <th style="width: 25%">Full Name</th>
+                    <th style="width: 15%">Nickname</th>
+                    <th style="width: 5%">Favorite <br />Number</th>
+                    <th style="width: 30%">Favorite Food</th>
+                    <th style="width: 5%">Add/Delete</th>
+                </tr>
+            </thead>
+            <tbody id="main-table-body"></tbody>
+            <tfoot>
+                <tr id="newrow-form">
+                    <td>
+                        <input
+                            id="student-id-to-add"
+                            type="text"
+                            maxlength="10"
+                        />
+                    </td>
+                    <td><input id="fullname-to-add" type="text" /></td>
+                    <td><input id="nickname-to-add" type="text" /></td>
+                    <td>
+                        <select id="number-to-add">
+                            <option value=""></option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div id="fav-food">
+                            <input id="food-to-add" type="text" disabled />
+                            <button id="food-random-button">Random</button>
+                        </div>
+                    </td>
+                    <td>
+                        <button
+                            id="add-newrow"
+                            class="operate-button add-button"
+                        >
+                            Add
+                        </button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <section id="credit">
+            &#169; 2110221 Computer Engineering Essentials (2022/2) &#169;
+        </section>
+    </body>
+</html>
