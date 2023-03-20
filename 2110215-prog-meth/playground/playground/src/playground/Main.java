@@ -16,6 +16,13 @@ public class Main {
 		if (A instanceof Cat cat) {
 			cat.speak();
 		}
+		
+		System.out.println("###################");
+		
+		Bird C = new Bird("TWIN");
+		
+		C.speak();
+		C.fly();
 	}
 }
  

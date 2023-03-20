@@ -6,6 +6,11 @@ public abstract class Animal implements Cloneable{
 	public Animal () {
 		setName("Unnamed");
 	}
+	
+	public Animal (String name) {
+		setName(name);
+	}
+	
 	public abstract void speak();
 	
 	protected Object clone() {
