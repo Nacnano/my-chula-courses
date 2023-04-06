@@ -7,3 +7,6 @@
 [submodule "2110215-prog-meth/project/2110215-prog-meth/project/project-2022-2-team-name"]
 	path = 2110215-prog-meth/project/2110215-prog-meth/project/project-2022-2-team-name
 	url = https://github.com/2110215-ProgMeth/project-2022-2-team-name
+[submodule "2110215-prog-meth/labs/2110215-prog-meth/labs/lab-5-2022-2-Nacnano"]
+	path = 2110215-prog-meth/labs/2110215-prog-meth/labs/lab-5-2022-2-Nacnano
+	url = https://github.com/2110215-ProgMeth/lab-5-2022-2-Nacnano
