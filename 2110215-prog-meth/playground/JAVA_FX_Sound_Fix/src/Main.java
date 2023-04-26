@@ -33,14 +33,13 @@ public class Main extends Application {
 		System.out.println(ClassLoader.getSystemResource("audio/Meow.wav").toString());
 		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("audio/Meow.wav").toString());
 		
-		scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent event) {
+		scene.setOnMouseClicked((MouseEvent e) -> {
 				createCat(gc);
 				createCat(gc);
 				createCat(gc);
 				sound.play();
 			}
-		});
+		);
 		
 		stage.show();
 	}
