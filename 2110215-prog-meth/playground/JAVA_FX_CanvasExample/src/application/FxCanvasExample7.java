@@ -36,10 +36,11 @@ public class FxCanvasExample7 extends Application {
 			double width = 0;
 			double height = 0;
 
+			double TIME_LOOP = 3;
 			public void handle(long currentNanoTime) {
-				double t = ((currentNanoTime - startNanoTime) / 1000000000.0) % 3;
-				width = gc.getCanvas().getWidth() * t / 3;
-				height = gc.getCanvas().getHeight() * t / 3;
+				double t = ((currentNanoTime - startNanoTime) / 1000000000.0) % TIME_LOOP;
+				width = gc.getCanvas().getWidth() * t / TIME_LOOP;
+				height = gc.getCanvas().getHeight() * t / TIME_LOOP;
 
 				gc.setFill(Color.LIGHTBLUE);
 				gc.setStroke(Color.BLUEVIOLET);

@@ -44,7 +44,7 @@ public class FxCanvasExample8 extends Application {
 		
 		
 		int total_angle = 0;
-		int angle = 30;
+		int angle = 20;
 		while (total_angle < 360) {
 			total_angle += angle;
 			

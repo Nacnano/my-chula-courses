@@ -2,11 +2,6 @@ package application;
 
 
 
-
-import java.awt.Toolkit;
-
-import javafx.FontLoader;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;

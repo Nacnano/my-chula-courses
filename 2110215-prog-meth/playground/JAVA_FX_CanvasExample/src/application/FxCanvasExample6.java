@@ -30,12 +30,13 @@ public class FxCanvasExample6 extends Application {
 	}
 
 	public void drawPixel(GraphicsContext gc) {
+		gc.translate(gc.getCanvas().getWidth() / 2, gc.getCanvas().getHeight() / 2);
 		gc.setFill(Color.LIGHTBLUE);
 		gc.setLineWidth(2.0);
 		
-		for(int i = 0; i< 5; i++){
-			gc.fillRoundRect(500, 100, 50, 50, 10, 10);
-//			gc.strokeRoundRect(400 + i * 50, 100, 50, 50, 10, 10);
+		for(int i = 0; i< 8; i++){
+//			gc.fillRoundRect(500, 100, 50, 50, 10, 10);
+			gc.strokeRoundRect(0, 0, 50, 50, 10, 10);
 			gc.rotate(45);	
 		}
 		
