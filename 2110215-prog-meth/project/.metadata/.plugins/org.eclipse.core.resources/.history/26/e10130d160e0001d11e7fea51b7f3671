@@ -1,0 +1,5 @@
+package unit.copy;
+
+public interface Attackable {
+
+}

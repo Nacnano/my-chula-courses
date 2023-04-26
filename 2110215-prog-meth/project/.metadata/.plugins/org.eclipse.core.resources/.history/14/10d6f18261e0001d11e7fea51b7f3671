@@ -1,0 +1,13 @@
+package entity.unit;
+
+public class BaseUnit implements Attackable, Movable{
+	private int people;
+	private int attackRange;
+	private int moveRange;
+	private boolean isMoved;
+	
+	public BaseUnit(int people, int attackRange, int moveRange, boolean isMoved ) {
+		
+	}
+	
+}

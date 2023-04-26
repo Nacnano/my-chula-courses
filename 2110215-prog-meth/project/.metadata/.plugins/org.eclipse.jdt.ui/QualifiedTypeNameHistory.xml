@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="entity.building.BaseBuilding"/>
+    <fullyQualifiedTypeName name="entity.unit.BaseUnit"/>
+    <fullyQualifiedTypeName name="game.Position"/>
+    <fullyQualifiedTypeName name="controller.GUIController"/>
+    <fullyQualifiedTypeName name="controller.BoardGrid"/>
+    <fullyQualifiedTypeName name="javafx.scene.layout.AnchorPane"/>
+    <fullyQualifiedTypeName name="javafx.scene.layout.HBox"/>
+    <fullyQualifiedTypeName name="javafx.geometry.Insets"/>
+</qualifiedTypeNameHistroy>

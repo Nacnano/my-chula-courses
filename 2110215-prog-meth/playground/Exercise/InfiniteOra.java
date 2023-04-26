@@ -62,16 +62,17 @@ public class InfiniteOra extends Application {
 				Thread thread = new Thread (() -> {
 					for (int i=1;i<=100;i++) {
 						
+						Platform.runLater(new Runnable() {
+							
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								area.setText(area.getText() + "Ora! ");
+							}
+						});
+						
 						try {
-							Thread.sleep(1000);
-							Platform.runLater(new Runnable() {
-								
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									area.setText(area.getText() + "Ora! ");
-								}
-							});
+							Thread.sleep(1000);	
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
