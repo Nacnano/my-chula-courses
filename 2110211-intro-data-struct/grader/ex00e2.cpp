@@ -29,7 +29,6 @@ int main(){
             }
             cout << max_number << "\n";
         }
-
     }
 
     return 0;
