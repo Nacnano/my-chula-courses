@@ -1,0 +1,61 @@
+package game;
+
+/**
+ * The DispatchAction is the list of action that {@link Player} can do.
+ */
+public enum ControlAction {
+
+
+
+
+		/**
+		 * Represent the use or equip item action.
+		 */
+		USE_ITEM,
+
+		/**
+		 * Represent the unequip item action.
+		 */
+		UNEQUIP,
+
+		/**
+		 * Represent the switch equipment item action.
+		 */
+		SWITCH_EQUIP,
+
+		/**
+		 * Represent the entity attack action.
+		 */
+		ATTACK,
+
+		/**
+		 * Represent the entity moving to left direction.
+		 */
+		MOVE_LEFT,
+
+		/**
+		 * Represent the entity moving to right direction.
+		 */
+		MOVE_RIGHT,
+
+		/**
+		 * Represent the entity moving to up direction.
+		 */
+		MOVE_UP,
+
+		/**
+		 * Represent the entity moving to down direction.
+		 */
+		MOVE_DOWN,
+
+		/**
+		 * Represent the entity staying still action.
+		 */
+		STAY_STILL,
+
+		/**
+		 * Represent the item removing from inventory action.
+		 */
+		DELETE_ITEM,
+	}
+}

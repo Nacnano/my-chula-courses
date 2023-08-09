@@ -1,0 +1,49 @@
+package utils;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class TextFileUtil {
+	/**
+	 * Represent the base path URL for CSV file path.
+	 */
+	private static final String baseUrl = "csv/";
+
+	/**
+	 * Reading a CSV file by path.
+	 * 
+	 * @param filename the CSV filename
+	 * @return the result as array of String
+	 */
+	public static String[][] readCSV(String filename) {
+		try {
+			InputStream inputStream = ClassLoader.getSystemResourceAsStream(filename);
+
+			assert inputStream != null;
+
+			InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+			BufferedReader in = new BufferedReader(streamReader);
+
+			ArrayList<String[]> output = new ArrayList<>();
+			String row = null;
+
+			while ((row = in.readLine()) != null) {
+				String[] data = row.split(",");
+				output.add(data);
+			}
+
+			in.close();
+			output.remove(output.size() - 1);
+			return output.toArray(new String[output.size()][]);
+		} catch (Exception e) {
+			System.out.println("Failed to read %s".formatted(filename));
+			return new String[0][0];
+		}
+	}
+}
+
+

@@ -1,0 +1,8 @@
+package entity.unit;
+
+public class SwordMan extends BaseUnit implements Movable, Attackable{
+
+	public SwordMan (int people, int attackRange, int moveRange, boolean isMoved) {
+		super(people, attackRange, moveRangem, isMoved);
+	}
+}

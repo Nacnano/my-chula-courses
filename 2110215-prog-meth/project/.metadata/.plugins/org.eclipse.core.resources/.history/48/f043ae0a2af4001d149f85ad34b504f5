@@ -1,0 +1,6 @@
+package entity.unit;
+
+public class ForestSwordMan extends SwordMan implements Attackable, Movable{
+
+	
+}

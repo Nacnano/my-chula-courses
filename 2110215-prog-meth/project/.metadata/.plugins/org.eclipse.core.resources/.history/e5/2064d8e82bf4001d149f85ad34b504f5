@@ -1,0 +1,21 @@
+package entity.unit;
+
+import config.Config;
+
+public class FieldSwordMan extends SwordMan implements Attackable, Movable{
+	
+	public FieldSwordMan() {
+		super(Config.MILITARY_SIZE, Config.FIELDSWORDMAN_ATTACK_RANGE, Config.FIELDSWORDMAN_MOVE_RANGE, Config.FIELDSWORDMAN_ATTACK_MULTIPLIER, false);
+
+	}
+	
+	public void attack() {
+		// some logic to check terrain
+		// if(GameLogic.)
+	}
+	
+	public void move() {
+		// some logic to check terrain
+		// if(GameLogic.)
+	}
+}

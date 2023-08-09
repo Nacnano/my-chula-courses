@@ -1,0 +1,19 @@
+package entity.unit;
+
+import entity.building.BaseBuilding;
+
+/**
+ * This interface defines methods for {@link BaseUnit} that can attack another
+ * unit.
+ */
+public interface Attackable {
+
+	/**
+	 * This method is called when this entity attack target.
+	 * 
+	 * @param target the target which this entity attack to
+	 * 
+	 */
+	public void attack(BaseUnit u);
+	public void destroy(BaseBuilding b);
+}

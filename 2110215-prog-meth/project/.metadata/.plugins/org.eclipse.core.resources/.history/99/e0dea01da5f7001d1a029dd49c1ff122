@@ -1,0 +1,13 @@
+package game;
+
+/**
+ * This Material enum 
+ * @author nacnano
+ *
+ */
+public enum Material {
+	FOOD,
+	WOOD,
+	STONE,
+	IRON;
+}

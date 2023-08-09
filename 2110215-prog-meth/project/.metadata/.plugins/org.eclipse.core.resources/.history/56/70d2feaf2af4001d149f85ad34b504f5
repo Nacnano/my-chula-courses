@@ -1,0 +1,9 @@
+package entity.unit;
+
+public class Archer extends BaseUnit implements Movable, Attackable{
+
+	public Archer(int people, int attackRange, int moveRange, float attackMultiplier, boolean isMoved) {
+		super(people, attackRange, moveRange, attackMultiplier, isMoved);
+	}
+
+}

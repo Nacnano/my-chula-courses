@@ -10,5 +10,7 @@
 		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
 	</section>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
+		<item key="moveWizard.updateQualifiedNames" value="false"/>
+		<item key="patterns" value="*"/>
 	</section>
 </section>

@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author waris
- *
- */
-module project {
-}

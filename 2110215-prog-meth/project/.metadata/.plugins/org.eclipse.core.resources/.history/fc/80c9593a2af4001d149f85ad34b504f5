@@ -1,0 +1,12 @@
+package entity.unit;
+
+public class ForestSwordMan extends SwordMan implements Attackable, Movable{
+
+	public void attack() {
+		if(GameLogic.)
+	}
+	
+	public void move() {
+		
+	}
+}

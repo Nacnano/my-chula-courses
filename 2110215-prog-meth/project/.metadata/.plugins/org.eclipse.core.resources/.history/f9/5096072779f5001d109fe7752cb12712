@@ -1,0 +1,53 @@
+package utils;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class TextFileUtil {
+
+	public static String[][] ReadTextFile(String filePath) {
+
+        try {
+        	 // Obtain the URL of the text file
+            InputStream inputStream = ClassLoader.getSystemResourceAsStream(filePath);
+            if (inputStream == null) {
+                System.out.println("File not found: " + filePath);
+                return null;
+            }
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            // Count the number of rows in the 2D structure
+            int rows = 0;
+            String line;
+            while ((line = reader.readLine()) != null) {
+            	System.out.println(rows + line.getClass());
+                rows++;
+            }
+            reader.close();
+
+            // Create a 2D String array with the appropriate dimensions
+            String[][] data = new String[rows][];
+
+            // Read the file again and populate the 2D array
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+            int row = 0;
+            while ((line = reader.readLine()) != null) {
+                data[row] = new String[] {line};
+                row++;
+            }
+            reader.close();
+
+            return data;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		return null;
+    }
+}
+
+

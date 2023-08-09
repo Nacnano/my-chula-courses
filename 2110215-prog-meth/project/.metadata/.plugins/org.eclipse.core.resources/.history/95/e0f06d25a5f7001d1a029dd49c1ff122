@@ -1,0 +1,11 @@
+package game;
+
+/**
+ * The Material is the list of material needed in game.
+ */
+public enum Material {
+	FOOD,
+	WOOD,
+	STONE,
+	IRON;
+}

@@ -1,0 +1,11 @@
+package game;
+
+/**
+ * The Terrain is the list of terrain need for making the map
+ */
+public enum Terrain {
+	PLAIN,
+	WATER,
+	MOUNTAIN,
+	FOREST
+}

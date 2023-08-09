@@ -1,0 +1,12 @@
+package entity.building;
+
+import game.Terrain;
+
+/**
+ * This interface defines methods for {@link BaseBuilding} that can 
+ * build on a {@link Terrain}
+ */
+public interface Buildable {
+
+	public boolean canBuildOn(Terrain t);
+}

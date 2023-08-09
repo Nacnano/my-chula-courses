@@ -1,0 +1,63 @@
+package game;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import controller.GameController;
+import entity.unit.Movable;
+import javafx.util.Pair;
+import game.Cell;
+import scene.GameScene;
+import utils.GameConfig;
+import utils.MessageTextUtil;
+
+/**
+ * The Player class is used to represent the player. It stores status, equipped
+ * armor, equipped weapon, and items that the player has.
+ *
+ */
+public class Camera implements Movable {
+
+	
+	
+	private Position position;
+	private int lineOfSight;
+
+	/**
+	 * The constructor for this class.
+	 */
+	public Camera() {
+		setLineOfSight(GameConfig.V);
+	}
+	
+	public void move(Position destination) {
+		setPosition(destination);
+	}
+
+	/**
+	 * Getter for line of sight.
+	 * 
+	 * @return The player's line of sight
+	 */
+	public int getLineOfSight() {
+		return lineOfSight;
+	}
+
+	/**
+	 * Setter for line of sight.
+	 * 
+	 * @param lineOfSight The line of sight to be set
+	 */
+	public void setLineOfSight(int lineOfSight) {
+		this.lineOfSight = Math.max(1, lineOfSight);
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		// TODO: add logic to control the camera to be only in the map
+		this.position = position;
+	}
+}

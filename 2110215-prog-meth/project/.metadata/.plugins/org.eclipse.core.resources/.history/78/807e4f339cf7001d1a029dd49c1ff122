@@ -1,0 +1,12 @@
+package entity.unit;
+
+import game.Position;
+
+/**
+ * This interface defines methods for {@link BaseUnit} that can move to another
+ * {@link Position}.
+ */
+public interface Movable {
+
+	public void move(Position p);
+}

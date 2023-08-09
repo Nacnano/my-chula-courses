@@ -1,0 +1,7 @@
+package entity.unit;
+
+public interface Attackable {
+
+	public void attack(BaseUnit u);
+	public void destroy(BaseUnit b);
+}

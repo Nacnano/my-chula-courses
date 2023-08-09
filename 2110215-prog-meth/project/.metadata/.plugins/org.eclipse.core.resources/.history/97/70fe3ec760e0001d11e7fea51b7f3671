@@ -1,5 +1,0 @@
-package unit1;
-
-public interface Attackable {
-
-}

@@ -1,0 +1,18 @@
+package entity.unit;
+
+import config.Config;
+
+public class SwordMan extends BaseUnit implements Movable, Attackable{
+
+	public SwordMan () {
+		super(Config.MILITARY_SIZE, Config.SWORDMAN_ATTACK_RANGE, Config.SWORDMAN_MOVE_RANGE, false);
+	}
+	
+	public void attack (BaseUnit enemy) {
+		
+	}
+	
+	public void move(Position p) {
+		
+	}
+}

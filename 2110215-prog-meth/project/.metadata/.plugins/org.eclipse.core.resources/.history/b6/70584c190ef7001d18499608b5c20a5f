@@ -1,0 +1,56 @@
+package game;
+
+public class Position {
+	private int row;
+	private int column;
+	
+	public Position(int row, int column) {
+		setRow(row);
+		setColumn(column);
+	}
+	
+	public void setRow(int row) {
+		this.row = row;
+	}
+	
+	public void setColumn(int column) {
+		this.column = column;
+	}
+	
+	public int getRow() {
+		return this.row;
+	}
+	
+	public int getColumn() {
+		return this.column;
+	}
+	
+	// Manhattan distance?
+	public int getDistanceFrom(Position p) {
+		return Math.abs(this.row-p.row) + Math.abs(this.column - p.column);
+	}
+	
+	public Position moveUp() {
+		return new Position(getRow()-1, getColumn());
+	}
+	
+	public Position moveDown() {
+		return new Position(getRow()+1, getColumn());
+	}
+	
+	public Position moveLeft() {
+		return new Position(getRow(), getColumn()-1);
+	}
+	
+	public Position moveRight() {
+		return new Position(getRow(), getColumn()+1);
+	}
+	
+	public Position directionFrom(Position p) {
+		return new Position(getRow()-p.getColumn(),getColumn() - p.getColumn());
+	}
+	
+	public String toString() {
+		return String.format("Position: %d %d", getrow(), getColumn());
+	}
+}

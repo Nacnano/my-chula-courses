@@ -1,0 +1,65 @@
+package entity.building;
+
+import game.Position;
+
+public abstract class BaseBuilding implements Buildable {
+
+	/**
+	 * Durability of this building
+	 */
+	private int durability;
+	
+	/**
+	 * Attacked state of this building
+	 */
+	private boolean isAttacked;
+	
+	/**
+	 * Position of this building
+	 */
+	private Position position;
+	
+	/**
+	 * The constructor of this class.
+	 * 
+	 * @param durability 	Durability of this building
+	 */
+	public BaseBuilding(int durability) {
+		setDurability(durability);
+	}
+
+	/**
+	 * Getter for {@link #durability}
+	 * 
+	 * @return {@link #durability}
+	 */
+	public int getDurability() {
+		return durability;
+	}
+
+	public void setDurability(int durability) {
+		// TODO: also remove building for GUI
+		if(getDurability() <= 0) {
+//			GameLogic.removeBuilding(this);
+		}
+		this.durability = Math.max(0, durability);
+	}
+
+	public boolean isAttacked() {
+		return isAttacked;
+	}
+
+	public void setAttacked(boolean isAttacked) {
+		this.isAttacked = isAttacked;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+	
+
+}

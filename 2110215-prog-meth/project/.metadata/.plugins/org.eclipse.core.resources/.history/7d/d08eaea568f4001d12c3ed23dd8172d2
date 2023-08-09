@@ -1,0 +1,26 @@
+package gui;
+
+import javafx.scene.layout.GridPane;
+
+/**
+ * The BoardGrid class represents the grid of {@link BoardCell BoardCells} in the {@link GamePane}.
+ */
+public class BoardGrid extends GridPane {
+
+    /**
+     * Creates a new {@link BoardCell} with the given parameters
+     * @param bgSprite The sprite that represents the cell.
+     * @param row The row of the cell.
+     * @param col The column of the cell.
+     * @param buildable Indicates whether of not a {@link entity.tower.base.Tower Tower} can be built on the cell.
+     * @return The newly created {@link BoardCell}.
+     */
+    public BoardCell addCell(int bgSprite, int row, int col, boolean buildable) {
+        BoardCell boardCell = new BoardCell(bgSprite, row, col, buildable);
+        this.getChildren().add(boardCell);
+        BoardGrid.setColumnIndex(boardCell, col);
+        BoardGrid.setRowIndex(boardCell, row);
+        return boardCell;
+    }
+
+}

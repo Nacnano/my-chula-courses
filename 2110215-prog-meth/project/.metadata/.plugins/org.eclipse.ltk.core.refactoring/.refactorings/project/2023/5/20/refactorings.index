@@ -1,0 +1,49 @@
+1684296410169	Move compilation unit
+1684296421348	Move compilation unit
+1684296427891	Delete element
+1684308186961	Move compilation unit
+1684308191635	Move compilation unit
+1684308937418	Delete element
+1684312950166	Move compilation unit
+1684312956810	Delete element
+1684312966701	Rename type 'Config'
+1684314611789	Rename type 'TransitionUtils'
+1684314789580	Rename compilation unit 'DrawUtils.java'
+1684314793735	Rename type 'AudioUtils'
+1684315639621	Rename field 'bgmVolume'
+1684315652895	Rename field 'effectVolume'
+1684316077102	Rename compilation unit 'InteruptController.java'
+1684316785754	Encapsulate field 'screenWidth'
+1684316802249	Encapsulate field 'screenHeight'
+1684316808201	Encapsulate field 'scale'
+1684316842822	Encapsulate field 'isSkipMoveAnimation'
+1684316849459	Encapsulate field 'mapSize'
+1684316875937	Encapsulate field 'enemyWaveNumber'
+1684316879554	Encapsulate field 'dayPerWave'
+1684316887178	Encapsulate field 'preparationWaveNumber'
+1684316950448	Encapsulate field 'bgmVolume'
+1684316957928	Encapsulate field 'effectVolume'
+1684317876219	Rename compilation unit 'TextUtil.java'
+1684319271164	Delete element
+1684319274959	Delete element
+1684319403030	Delete element
+1684321669964	Encapsulate field 'isAttacked'
+1684381273501	Rename compilation unit 'GameOVerScene.java'
+1684388927956	Encapsulate field 'position'
+1684403316413	Delete element
+1684404062146	Rename type 'TextFileUti'
+1684406382777	Encapsulate field 'position'
+1684415410016	Convert local variable 'gameMap' to field
+1684418097786	Encapsulate field 'isAttacked'
+1684418162095	Encapsulate field 'isAttacked'
+1684522294399	Encapsulate field 'isMoving'
+1684556279246	Encapsulate field 'enemyUnits'
+1684557219614	Encapsulate field 'isMoved'
+1684571865206	Encapsulate field 'direction'
+1684590945505	Encapsulate field 'isTerritory'
+1684593581804	Encapsulate field 'position'
+1684610120231	Encapsulate field 'selectedUnit'
+1684610575803	Encapsulate field 'attackTerritory'
+1684612035230	Rename method 'textWhenCannotAttack'
+1684613428133	Encapsulate field 'position'
+1684613913602	Encapsulate field 'moveTerritory'
