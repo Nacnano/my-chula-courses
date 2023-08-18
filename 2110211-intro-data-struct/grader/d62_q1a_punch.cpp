@@ -8,20 +8,12 @@ vector<string> punch(vector<string> &v, vector<string>::iterator it,int k)
     //don’t forget to return something
 
     // int j = distance(v.begin(), it);
-    int j = it - v.begin();
-    for(int i = 0; i < k && it != v.end(); i++){
-        it++;
-    }
+    vector<string>::iterator st = it, ed = it;
+    for(int i=0;i<k && st!=v.begin();i++) st--;
+    for(int i=0;i<k && ed!=v.end();i++) ed++;
 
-    int del = min((int)v.size() - 1, j + k) - j + k + 1;
-
-    while(del-- && !v.empty()){
-        v.erase(it);
-        if(it == v.begin()){
-            break;
-        }
-        it--;
-    }
+    if(ed == v.end()) v.erase(st, ed);
+    else v.erase(st, ed + 1);
 
     return v;
 }
