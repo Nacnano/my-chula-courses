@@ -1,0 +1,9 @@
+package logic;
+
+public abstract class Item {
+	protected String name;
+	protected double unitPrice;
+	
+	public abstract double cost();
+	getters & setters
+}

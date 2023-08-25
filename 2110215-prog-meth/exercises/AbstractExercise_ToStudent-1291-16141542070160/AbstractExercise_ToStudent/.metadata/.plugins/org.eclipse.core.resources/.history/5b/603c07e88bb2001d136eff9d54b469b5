@@ -1,0 +1,26 @@
+package logic;
+
+public class UnitItem extends Item {
+	private int amount;
+	
+	public UnitItem(String name, double unitPrice, int amount) {
+		super(name,unitPrice, amount);
+	}
+	
+	public double cost () {
+		return this.getUnitPrice() * this.getAmount();
+	}
+	
+	public String toString () {
+		return String.format("UnitItem   : %s\t%d\t$%.2f\t$%.2f", this.name,this.amount,this.unitPrice,this.cost());
+	}
+	
+	// getters and setters
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
+	public int getAmount() {
+		return this.amount;
+	}
+}

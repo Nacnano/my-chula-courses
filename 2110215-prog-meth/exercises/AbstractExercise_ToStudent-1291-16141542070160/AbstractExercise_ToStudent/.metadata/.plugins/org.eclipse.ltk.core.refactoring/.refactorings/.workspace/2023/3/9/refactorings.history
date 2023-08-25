@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;Lab3-2022-2_toStudent_63fe20c0922de&apos; to &apos;2110215_Lab3_2022_2_6531313221_Chotpisit&apos;&#x0A;- Original element: &apos;Lab3-2022-2_toStudent_63fe20c0922de&apos;&#x0A;- Renamed element: &apos;Lab3-2022-2_toStudent_63fe20c0922de&apos;&#x0A;- Update references to refactored element" description="Rename Java project &apos;Lab3-2022-2_toStudent_63fe20c0922de&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=Lab3-2022-2_toStudent_63fe20c0922de" name="2110215_Lab3_2022_2_6531313221_Chotpisit" references="true" stamp="1677651624311" version="1.0"/>
+</session>

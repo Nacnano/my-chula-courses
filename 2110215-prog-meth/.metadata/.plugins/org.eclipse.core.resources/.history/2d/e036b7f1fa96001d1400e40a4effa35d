@@ -1,0 +1,5 @@
+package eclipse;
+
+public class Car {
+	string name = "Hi";
+}

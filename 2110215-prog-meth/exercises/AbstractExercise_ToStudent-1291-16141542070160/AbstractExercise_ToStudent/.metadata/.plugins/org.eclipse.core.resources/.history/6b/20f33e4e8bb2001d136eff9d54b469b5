@@ -1,0 +1,9 @@
+package logic;
+
+public class UnitItem {
+	private int amount;
+	
+	public UnitItem(String name, double unitPrice, int amount) {
+		
+	}
+}

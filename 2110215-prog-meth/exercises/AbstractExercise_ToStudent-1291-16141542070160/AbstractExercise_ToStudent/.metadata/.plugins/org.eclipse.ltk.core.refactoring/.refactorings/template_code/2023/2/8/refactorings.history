@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;logic.WeightedItem&apos; to &apos;WeightItem&apos;&#x0A;- Original project: &apos;template_code&apos;&#x0A;- Original element: &apos;logic.WeightedItem&apos;&#x0A;- Renamed element: &apos;logic.WeightItem&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;WeightedItem&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/&lt;logic{WeightedItem.java[WeightedItem" matchStrategy="1" name="WeightItem" qualified="false" references="true" similarDeclarations="false" stamp="1677055096804" textual="false" version="1.0"/>
+</session>

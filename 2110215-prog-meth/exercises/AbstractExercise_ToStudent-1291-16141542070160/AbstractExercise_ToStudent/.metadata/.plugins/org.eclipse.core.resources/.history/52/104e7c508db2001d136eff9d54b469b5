@@ -1,0 +1,19 @@
+package logic;
+
+public class WeightItem extends Item{
+	private double weight;
+	
+	public WeightItem (String name, double unitPrice) {
+		this.name = name;
+		this.unitPrice = unitPrice;
+	}
+	
+	public double cost() {
+		return this.unitPrice * this.weight;
+	}
+	
+	public double scale() {
+		return Math.random()*3.99+0.01;
+	}
+	
+}

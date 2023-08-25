@@ -1,0 +1,6 @@
+package logic;
+
+public class UnitItem {
+	private int amount;
+	
+}

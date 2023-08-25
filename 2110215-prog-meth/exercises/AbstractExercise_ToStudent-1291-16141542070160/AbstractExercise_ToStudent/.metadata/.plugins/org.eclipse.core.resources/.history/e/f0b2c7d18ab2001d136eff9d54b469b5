@@ -1,0 +1,8 @@
+package logic;
+
+public class Item {
+	protected String name;
+	protected double unitPrice;
+	
+	
+}

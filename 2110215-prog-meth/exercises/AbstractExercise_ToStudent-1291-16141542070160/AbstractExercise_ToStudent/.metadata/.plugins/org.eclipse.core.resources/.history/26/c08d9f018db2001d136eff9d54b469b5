@@ -1,0 +1,14 @@
+package logic;
+
+public class WeightItem extends Item{
+	private double weight;
+	
+	public WeightItem (String name, double unitPrice) {
+		this.name = name;
+		this.unitPrice = unitPrice;
+	}
+	
+	public double cost() {
+		return 
+	}
+}

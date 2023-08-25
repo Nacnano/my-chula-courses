@@ -1,0 +1,13 @@
+package logic;
+
+public class UnitItem extends Item {
+	private int amount;
+	
+	public UnitItem(String name, double unitPrice, int amount) {
+		
+	}
+	
+	public double cost () {
+		
+	}
+}

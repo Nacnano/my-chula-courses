@@ -1,0 +1,7 @@
+package logic;
+
+public class WeightItem {
+	private double weight;
+	
+	public 
+}
