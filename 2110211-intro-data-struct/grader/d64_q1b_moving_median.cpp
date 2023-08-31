@@ -23,7 +23,7 @@ int main(){
 		l.insert(v[i]);
 	}
 
-	for(int i=0;i<n-w;i++){
+	for(int i=w+1;i<n+1;i++){
 		while(l.size() > r.size()){
 			r.insert(*last(l));
 			l.erase(last(l));
@@ -32,14 +32,16 @@ int main(){
 			l.insert(*r.begin());
 			r.erase(r.begin());
 		}
+
 		cout << *(last(l)) << " ";
 
-		if(l.find(v[i])!=l.end()) l.erase(l.find(v[i]));
-		if(r.find(v[i])!=r.end()) r.erase(r.find(v[i]));
+		if(l.find(v[i-w-1])!=l.end()) l.erase(l.find(v[i-w-1]));
+		else if(r.find(v[i-w-1])!=r.end()) r.erase(r.find(v[i-w-1]));
 
-		if(i+1 < n-w){
-			l.insert(v[i+w+1]);
-		}
+		l.insert(v[i]);
 	}
+
+
+	return 0;
 }
 
