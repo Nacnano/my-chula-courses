@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>In</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>3</int>
+        </entry>
+      </elementAttributes>
+      <pos x="340" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Z</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Terminal</elementName>
+      <elementAttributes/>
+      <pos x="820" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes>
+        <entry>
+          <string>runRealTime</string>
+          <boolean>true</boolean>
+        </entry>
+      </elementAttributes>
+      <pos x="780" y="300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>VDD</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+      </elementAttributes>
+      <pos x="780" y="340"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="800" y="320"/>
+      <p2 x="820" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="780" y="340"/>
+      <p2 x="800" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="200"/>
+      <p2 x="780" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="780" y="200"/>
+      <p2 x="820" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="780" y="280"/>
+      <p2 x="820" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="780" y="300"/>
+      <p2 x="820" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="800" y="320"/>
+      <p2 x="800" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="780" y="200"/>
+      <p2 x="780" y="280"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>
