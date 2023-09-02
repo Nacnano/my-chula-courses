@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- '4'
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.9
+    - g++-4.9
+before_install:
+- export CC="gcc-4.9" CXX="g++-4.9"
+deploy:
+  provider: npm
+  email: seb.cottinet@gmail.com
+  api_key:
+    secure: nX8I/CUpjtHv3snTy+GlncOwCdM/vQQm68S+lgPkjOxFzG3XlehPIQbpQjbKfGtkI/l/MT4DbRyhRsRFy1nkAGWqS9ufSB6VzFPstXKgYwyAs15ufXtXF6Zf2qQRA+n6SmnJKMa5wPBKJWIzY29/ud7X9X35DPXbxVqLTBkFxGmpstLkwJx4h7sB/0vU86/lFFWTD+0/oqpxfQtIn9pYRSyFTUwEnUvJAhAcJL/56g3ynn4g/qUMgbGFy7IgYCiLrM7MZItT2FhExQnc32ZKtERdUjYsQH18XD/rEbrcIDJRQHBE9MJQUmyRbF4MBXRokWG8VffIgQMFmauPIW1uu+zuan/fZLXZPp5JHBlAPktT7Ia5XOOnqLtINCwIT6RCeJASLuz0jL/CPVZ3T1z6tVp8owYVVJ8kEj8B14T01yvz3oGd7A6sNRFMLadQ/4q9rjS+GAs59iFdOv/L4WVjsxoX7v+c/SzInkwJRj+tpM/gqYas7+pEUujGJGUwd70sqFBhr4iuCuOY3zdF4CV4RhPgiPFtj5+Vn8JcCZTF/Vx8n8FDJ8RhvwSy8RWy6Ymt6tbOomxrqIdKdxCJBCjtvEPO+pIniz9nrIgnes+HquWbuXks3u0zauno5pohV/WZqSdlpYTudm2Xe0YCMUkQx2suveBIxpjXdwyZaFO28P4=
+  on:
+    repo: scottinet/espresso-logic-minimizer
+    branch: master

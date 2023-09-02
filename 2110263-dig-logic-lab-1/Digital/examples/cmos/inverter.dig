@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes>
+    <entry>
+      <string>shapeType</string>
+      <shapeType>CUSTOM</shapeType>
+    </entry>
+    <entry>
+      <string>romContent</string>
+      <romList>
+        <roms/>
+      </romList>
+    </entry>
+    <entry>
+      <string>customShape</string>
+      <shape>
+        <pins>
+          <entry>
+            <string>A</string>
+            <pin>
+              <pos x="0" y="0"/>
+              <showLabel>false</showLabel>
+            </pin>
+          </entry>
+          <entry>
+            <string>Y</string>
+            <pin>
+              <pos x="40" y="0"/>
+              <showLabel>false</showLabel>
+            </pin>
+          </entry>
+        </pins>
+        <drawables>
+          <poly>
+            <poly path="M 0.86987305,-11.803154 L 18.574585,0 L 0.86987305,11.803146 Z" evenOdd="false"/>
+            <thickness>4</thickness>
+            <filled>false</filled>
+            <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+              <alpha>255</alpha>
+            </color>
+          </poly>
+          <circle>
+            <p1 x="21" y="-9"/>
+            <p2 x="38" y="9"/>
+            <thickness>4</thickness>
+            <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+              <alpha>255</alpha>
+            </color>
+            <filled>false</filled>
+          </circle>
+        </drawables>
+        <label>
+          <p1 x="22" y="-21"/>
+          <p2 x="23" y="-21"/>
+          <text></text>
+          <orientation>CENTERBOTTOM</orientation>
+          <size>24</size>
+          <color>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+            <alpha>255</alpha>
+          </color>
+        </label>
+      </shape>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>VDD</elementName>
+      <elementAttributes/>
+      <pos x="220" y="300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+        <entry>
+          <string>isHighZ</string>
+          <boolean>true</boolean>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Y</string>
+        </entry>
+      </elementAttributes>
+      <pos x="260" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NFET</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>T2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="200" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PFET</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>T1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="200" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Ground</elementName>
+      <elementAttributes/>
+      <pos x="220" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>A Y
+0 1
+1 0
+Z Z</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="300" y="460"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="220" y="400"/>
+      <p2 x="260" y="400"/>
+    </wire>
+    <wire>
+      <p1 x="140" y="400"/>
+      <p2 x="180" y="400"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="320"/>
+      <p2 x="200" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="480"/>
+      <p2 x="200" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="320"/>
+      <p2 x="180" y="400"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="400"/>
+      <p2 x="180" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="480"/>
+      <p2 x="220" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="360"/>
+      <p2 x="220" y="400"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="300"/>
+      <p2 x="220" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="400"/>
+      <p2 x="220" y="440"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

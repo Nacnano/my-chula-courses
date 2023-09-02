@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes>
+    <entry>
+      <string>shapeType</string>
+      <shapeType>CUSTOM</shapeType>
+    </entry>
+    <entry>
+      <string>romContent</string>
+      <romList>
+        <roms/>
+      </romList>
+    </entry>
+    <entry>
+      <string>customShape</string>
+      <shape>
+        <pins>
+          <entry>
+            <string>A</string>
+            <pin>
+              <pos x="0" y="0"/>
+              <showLabel>false</showLabel>
+            </pin>
+          </entry>
+          <entry>
+            <string>B</string>
+            <pin>
+              <pos x="0" y="40"/>
+              <showLabel>false</showLabel>
+            </pin>
+          </entry>
+          <entry>
+            <string>C</string>
+            <pin>
+              <pos x="0" y="20"/>
+              <showLabel>false</showLabel>
+            </pin>
+          </entry>
+          <entry>
+            <string>Y</string>
+            <pin>
+              <pos x="100" y="20"/>
+              <showLabel>false</showLabel>
+            </pin>
+          </entry>
+        </pins>
+        <drawables>
+          <poly>
+            <poly path="M 0.37655,0.13039 L 4.37655,0.13039" evenOdd="false"/>
+            <thickness>4</thickness>
+            <filled>false</filled>
+            <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+              <alpha>255</alpha>
+            </color>
+          </poly>
+          <poly>
+            <poly path="M 0.37655,40.13039 L 4.37655,40.13039" evenOdd="false"/>
+            <thickness>4</thickness>
+            <filled>false</filled>
+            <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+              <alpha>255</alpha>
+            </color>
+          </poly>
+          <poly>
+            <poly path="M 30.376556,50.130386 L 0.3765564,50.130386 C 10.376556,34.130386 10.376556,6.1303864 0.3765564,-9.869614 L 20.376556,-9.869614 C 50.376556,-9.869614 70.37656,0.13038635 80.37656,20.130386 C 70.37656,40.130386 50.376556,50.130386 30.376556,50.130386 Z" evenOdd="false"/>
+            <thickness>4</thickness>
+            <filled>false</filled>
+            <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+              <alpha>255</alpha>
+            </color>
+          </poly>
+          <circle>
+            <p1 x="81" y="11"/>
+            <p2 x="99" y="29"/>
+            <thickness>4</thickness>
+            <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+              <alpha>255</alpha>
+            </color>
+            <filled>false</filled>
+          </circle>
+          <poly>
+            <poly path="M 0.37655,19.925423 L 4.37655,19.925423" evenOdd="false"/>
+            <thickness>4</thickness>
+            <filled>false</filled>
+            <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+              <alpha>255</alpha>
+            </color>
+          </poly>
+        </drawables>
+        <label>
+          <p1 x="30" y="-20"/>
+          <p2 x="31" y="-20"/>
+          <text></text>
+          <orientation>CENTERBOTTOM</orientation>
+          <size>24</size>
+          <color>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+            <alpha>255</alpha>
+          </color>
+        </label>
+      </shape>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>VDD</elementName>
+      <elementAttributes/>
+      <pos x="220" y="220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="100" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Y</string>
+        </entry>
+      </elementAttributes>
+      <pos x="340" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NFET</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>T5</string>
+        </entry>
+      </elementAttributes>
+      <pos x="240" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PFET</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>T1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="200" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Ground</elementName>
+      <elementAttributes/>
+      <pos x="220" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>trans</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>A B C Y
+0 0 0 1 
+0 0 1 0 
+0 1 0 0 
+0 1 1 0
+1 0 0 0 
+1 0 1 0 
+1 1 0 0 
+1 1 1 0
+
+
+
+# transitions
+0 0 0 1
+0 0 1 0
+0 0 0 1
+0 1 0 0
+0 0 0 1
+0 1 1 0
+0 0 0 1
+1 0 0 0
+0 0 0 1
+1 0 1 0
+0 0 0 1
+1 1 0 0
+0 0 0 1
+1 1 1 0
+0 0 0 1
+0 0 1 0
+0 1 0 0
+0 0 1 0
+0 1 1 0
+0 0 1 0
+1 0 0 0
+0 0 1 0
+1 0 1 0
+0 0 1 0
+1 1 0 0
+0 0 1 0
+1 1 1 0
+0 0 1 0
+0 1 0 0
+0 1 1 0
+0 1 0 0
+1 0 0 0
+0 1 0 0
+1 0 1 0
+0 1 0 0
+1 1 0 0
+0 1 0 0
+1 1 1 0
+0 1 0 0
+0 1 1 0
+1 0 0 0
+0 1 1 0
+1 0 1 0
+0 1 1 0
+1 1 0 0
+0 1 1 0
+1 1 1 0
+0 1 1 0
+1 0 0 0
+1 0 1 0
+1 0 0 0
+1 1 0 0
+1 0 0 0
+1 1 1 0
+1 0 0 0
+1 0 1 0
+1 1 0 0
+1 0 1 0
+1 1 1 0
+1 0 1 0
+1 1 0 0
+1 1 1 0
+1 1 0 0
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="460" y="600"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>C</string>
+        </entry>
+      </elementAttributes>
+      <pos x="100" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NFET</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>T6</string>
+        </entry>
+      </elementAttributes>
+      <pos x="280" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PFET</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>T2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="200" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PFET</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>T3</string>
+        </entry>
+      </elementAttributes>
+      <pos x="200" y="380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NFET</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>T4</string>
+        </entry>
+      </elementAttributes>
+      <pos x="200" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="100" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>simple</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>A B C Y
+0 0 0 1 
+0 0 1 0 
+0 1 0 0 
+0 1 1 0
+1 0 0 0 
+1 0 1 0 
+1 1 0 0 
+1 1 1 0
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="460" y="520"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="120" y="320"/>
+      <p2 x="180" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="120" y="560"/>
+      <p2 x="180" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="160" y="320"/>
+      <p2 x="120" y="400"/>
+    </wire>
+    <wire>
+      <p1 x="120" y="480"/>
+      <p2 x="160" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="100" y="320"/>
+      <p2 x="120" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="160" y="320"/>
+      <p2 x="200" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="160" y="560"/>
+      <p2 x="240" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="100" y="560"/>
+      <p2 x="120" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="640"/>
+      <p2 x="260" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="260" y="640"/>
+      <p2 x="300" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="120" y="260"/>
+      <p2 x="200" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="500"/>
+      <p2 x="200" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="100" y="440"/>
+      <p2 x="120" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="440"/>
+      <p2 x="260" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="300" y="440"/>
+      <p2 x="340" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="260" y="440"/>
+      <p2 x="300" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="120" y="620"/>
+      <p2 x="280" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="380"/>
+      <p2 x="200" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="260" y="560"/>
+      <p2 x="260" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="260" y="440"/>
+      <p2 x="260" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="120" y="260"/>
+      <p2 x="120" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="120" y="560"/>
+      <p2 x="120" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="120" y="400"/>
+      <p2 x="120" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="120" y="440"/>
+      <p2 x="120" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="500"/>
+      <p2 x="220" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="220"/>
+      <p2 x="220" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="420"/>
+      <p2 x="220" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="300"/>
+      <p2 x="220" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="360"/>
+      <p2 x="220" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="440"/>
+      <p2 x="220" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="640"/>
+      <p2 x="220" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="300" y="620"/>
+      <p2 x="300" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="300" y="440"/>
+      <p2 x="300" y="580"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>
