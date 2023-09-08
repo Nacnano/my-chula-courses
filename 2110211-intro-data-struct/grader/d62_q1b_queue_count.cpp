@@ -4,6 +4,12 @@
 using namespace std;
 size_t qcount(queue<int> q, int k) {
  //write your code here
+	size_t ans = 0;
+	while(!q.empty()){
+		ans += (q.front() == k);
+		q.pop();
+	}
+	return ans;
 }
 int main() {
  // for faster cin, cout
