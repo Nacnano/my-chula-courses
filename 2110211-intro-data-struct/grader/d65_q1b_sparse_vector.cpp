@@ -4,9 +4,16 @@
 using namespace std;
 void insert_into_sv(map<int,int> &v, int pos, int value) {
  //your code here
-	map<int, int>::iterator it = v.upper_bound(pos);
-	v.insert(it, {pos, value});
-	// eh, not N^2? how
+	auto it = v.lower_bound(pos);
+
+	vector<pair<int, int> > tmp;
+	for(auto i = it;i != v.end();i++){
+		tmp.push_back({(*i).first + 1, (*i).second});
+	}
+
+	v.erase(it, v.end());
+	v[pos] = value;
+	v.insert(tmp.begin(), tmp.end());
 }
 int main() {
  ios_base::sync_with_stdio(false);cin.tie(0);
