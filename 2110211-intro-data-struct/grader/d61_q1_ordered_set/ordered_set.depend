@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1538127322 source:/home/nacnano/github/my-chula-courses/2110211-intro-data-struct/grader/d61_q1_ordered_set/main.cpp
+	<iostream>
+	"student.h"
+
+1694931711 /home/nacnano/github/my-chula-courses/2110211-intro-data-struct/grader/d61_q1_ordered_set/student.h
+	<vector>
+	<set>
+
