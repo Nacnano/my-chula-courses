@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1695046427 source:/home/nacnano/github/my-chula-courses/2110211-intro-data-struct/grader/d57_q1_sbv2/test_stack.cpp
+	<iostream>
+	<stack>
+	<assert.h>
+	"stack.h"
+	"student.h"
+
+1424795576 /home/nacnano/github/my-chula-courses/2110211-intro-data-struct/grader/d57_q1_sbv2/stack.h
+	<stdexcept>
+	<iostream>
+	<vector>
+
+1695047151 /home/nacnano/github/my-chula-courses/2110211-intro-data-struct/grader/d57_q1_sbv2/student.h
+	"stack.h"
+	<iostream>
+
