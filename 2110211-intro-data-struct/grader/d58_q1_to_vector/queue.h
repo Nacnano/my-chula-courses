@@ -1,56 +1,73 @@
-#ifndef _CP_STACK_INCLUDED_
-#define _CP_STACK_INCLUDED_
+#ifndef _CP_QUEUE_INCLUDED_
+#define _CP_QUEUE_INCLUDED_
 
 #include <stdexcept>
 #include <iostream>
-#include <set>
+#include <vector>
+//#pragma once
 
 namespace CP {
 
 template <typename T>
-class stack
+class queue
 {
   protected:
     T *mData;
     size_t mCap;
     size_t mSize;
+    size_t mFront;
+
+    typedef typename std::vector<T>::iterator iterator;
+
 
     void expand(size_t capacity) {
       T *arr = new T[capacity]();
       for (size_t i = 0;i < mSize;i++) {
-        arr[i] = mData[i];
+        arr[i] = mData[(mFront + i) % mCap];
       }
       delete [] mData;
       mData = arr;
       mCap = capacity;
+      mFront = 0;
     }
+
+    void ensureCapacity(size_t capacity) {
+      if (capacity > mCap) {
+        size_t s = (capacity > 2 * mCap) ? capacity : 2 * mCap;
+        expand(s);
+      }
+    }
+
 
   public:
     //-------------- constructor ----------
 
     // copy constructor
-    stack(const stack<T>& a) {
+    queue(const queue<T>& a) {
       this->mData = new T[a.mCap]();
       this->mCap = a.mCap;
-      this->mSize = a.size();
-      for (size_t i = 0;i < a.size();i++) {
+      this->mSize = a.mSize;
+      for (size_t i = 0; i < a.mCap;i++) {
         mData[i] = a.mData[i];
       }
+      this->mFront = a.mFront;
     }
 
     // default constructor
-    stack() {
+    queue() {
       int cap = 1;
       mData = new T[cap]();
       mCap = cap;
       mSize = 0;
+      mFront = 0;
     }
 
-    stack(typename std::set<T>::iterator first, typename std::set<T>::iterator last);
-    stack(bool b);
+    queue(iterator from, iterator to);
+    queue(int x);
+
 
     // copy assignment operator
-    stack<T>& operator=(stack<T> other) {
+    queue<T>& operator=(queue<T> other) {
       using std::swap;
       swap(mSize,other.mSize);
       swap(mCap,other.mCap);
@@ -58,7 +75,7 @@ class stack
       return *this;
     }
 
-    ~stack() {
+    ~queue() {
       delete [] mData;
     }
 
@@ -72,21 +89,27 @@ class stack
     }
 
     //----------------- access -----------------
-    const T& top() {
+    const T& front() const {
       if (size() == 0) throw std::out_of_range("index of out range") ;
-      return mData[mSize-1];
+      return mData[mFront];
+    }
+    const T& back() const {
+      if (size() == 0) throw std::out_of_range("index of out range") ;
+      return mData[(mFront + mSize - 1) % mCap];
     }
 
+    std::vector<T> to_vector(int k) const;
+
     //----------------- modifier -------------
-    void push(const T& element) {  // Theta(n)
-      if (mSize + 1 > mCap)
-        expand(mCap * 2);
-      mData[mSize] = element;
+    void push(const T& element) {
+      ensureCapacity(mSize+1);
+      mData[(mFront + mSize) % mCap] = element;
       mSize++;
     }
 
     void pop() {
       if (size() == 0) throw std::out_of_range("index of out range") ;
+      mFront = (mFront + 1) % mCap;
       mSize--;
     }
 

@@ -3,9 +3,9 @@
 
 #include <stdexcept>
 #include <iostream>
-#include <set>
+#include <vector>
 
-namespace CP {
+namespace CP { 
 
 template <typename T>
 class stack
@@ -46,9 +46,6 @@ class stack
       mSize = 0;
     }
 
-    stack(typename std::set<T>::iterator first, typename std::set<T>::iterator last);
-    stack(bool b);
-
     // copy assignment operator
     stack<T>& operator=(stack<T> other) {
       using std::swap;
@@ -79,7 +76,7 @@ class stack
 
     //----------------- modifier -------------
     void push(const T& element) {  // Theta(n)
-      if (mSize + 1 > mCap)
+      if (mSize + 1 > mCap) 
         expand(mCap * 2);
       mData[mSize] = element;
       mSize++;
@@ -89,6 +86,8 @@ class stack
       if (size() == 0) throw std::out_of_range("index of out range") ;
       mSize--;
     }
+
+    std::vector<std::vector<T>> distribute(size_t k) const;
 
 
 };
