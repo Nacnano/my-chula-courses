@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1668999854 source:/home/nacnano/github/my-chula-courses/2110211-intro-data-struct/grader/d65_q3b_heap_check/student/main.cpp
+	"priority_queue.h"
+	"student.h"
+	<iostream>
+
+1668677184 /home/nacnano/github/my-chula-courses/2110211-intro-data-struct/grader/d65_q3b_heap_check/student/priority_queue.h
+	<iostream>
+	<stdexcept>
+
+1697427904 /home/nacnano/github/my-chula-courses/2110211-intro-data-struct/grader/d65_q3b_heap_check/student/student.h
+	"priority_queue.h"
+
