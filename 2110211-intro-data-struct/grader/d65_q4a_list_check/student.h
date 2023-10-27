@@ -5,19 +5,14 @@
 template <typename T>
 bool CP::list<T>::check() {
   //your code here
-  iterator it = begin();
-  for(int i = 0; i < mSize; i++){
-	it++;
-	if(it == NULL) return false;
+  node *it = mHeader;
+  for(int i = 0; i <= mSize; i++){
+	if(it->next == NULL || it->prev == NULL) return false;
+	if(it->next->prev != it || it->prev->next != it) return false;
+	// std::cout << it->data << " ";
+	it = it->next;
   }
-  if(it != end()) return false;
-
-  it = end();
-  for(int i = 0; i < mSize; i++){
-	it--;
-	if(it == NULL) return false;
-  }
-  if(it != begin()) return false;
+  if(it != mHeader) return false;
   return true;
 }
 
