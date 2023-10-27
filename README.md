@@ -1,6 +1,6 @@
 # My Chula Courses
 
-Why creating a new repository when taking new course? Just make one for all of them instead
+Why creating a new repository when taking new courses? Just make one for all of them instead
 
 This is a personal repository for storing codes and learning materials from all tech-related courses from Computer Programming Class of 2026, Bachelor of Engineering, Chulalongkorn University
 
