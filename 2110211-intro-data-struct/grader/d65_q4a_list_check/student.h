@@ -9,7 +9,6 @@ bool CP::list<T>::check() {
   for(int i = 0; i <= mSize; i++){
 	if(it->next == NULL || it->prev == NULL) return false;
 	if(it->next->prev != it || it->prev->next != it) return false;
-	// std::cout << it->data << " ";
 	it = it->next;
   }
   if(it != mHeader) return false;
