@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1511597974 source:c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d60_q3_same_tree\main.cpp
+	<iostream>
+	"tree.h"
+
+1698997189 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d60_q3_same_tree\tree.h
+
