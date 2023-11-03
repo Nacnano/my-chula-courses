@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1698999369 source:c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d63_q4a_leaves_count\main.cpp
+	<stdexcept>
+	<iostream>
+	"map_bst.h"
+	"student.h"
+	<vector>
+
+1698999369 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d63_q4a_leaves_count\map_bst.h
+	<iostream>
+
+1698999550 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d63_q4a_leaves_count\student.h
+	<algorithm>
+	<iostream>
+
