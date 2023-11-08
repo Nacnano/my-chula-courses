@@ -154,7 +154,8 @@ class map_bst
         delete r;
     }
 
-    size_t leaves_count(node* n);
+    void my_recur(node* n,size_t level,size_t tmp,std::vector<KeyT> &v);
+
   public:
     //-------------- constructor & copy operator ----------
 
@@ -302,7 +303,7 @@ class map_bst
         return checkInorder(r->right);
     }
 
-    size_t leaves_count();
+    std::vector<KeyT> at_level(size_t level);
 };
 
 }
