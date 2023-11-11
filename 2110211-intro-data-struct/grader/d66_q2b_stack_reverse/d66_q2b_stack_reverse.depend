@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1699461286 source:c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d66_q2b_stack_reverse\main.cpp
+	"stack.h"
+	"student.h"
+	<iostream>
+
+1699461286 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d66_q2b_stack_reverse\stack.h
+	<stdexcept>
+	<iostream>
+
+1699673891 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d66_q2b_stack_reverse\student.h
+	"stack.h"
+
