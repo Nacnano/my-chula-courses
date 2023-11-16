@@ -12,7 +12,8 @@ size_t CP::map_bst<KeyT,MappedT,CompareT>::process(node* n) {
 }
 
 template <typename KeyT,typename MappedT, typename CompareT >
-std::pair<KeyT,MappedT> CP::map_bst<KeyT,MappedT,CompareT>::subtree(map_bst<KeyT,MappedT,CompareT> &left, map_bst<KeyT,MappedT,CompareT> &right) {
+std::pair<KeyT,MappedT> CP::map_bst<KeyT,MappedT,CompareT>::subtree(map_bst<KeyT,MappedT,CompareT> &left,
+                                                                    map_bst<KeyT,MappedT,CompareT> &right) {
   //write your code here
   return std::pair<KeyT,MappedT>();
 }

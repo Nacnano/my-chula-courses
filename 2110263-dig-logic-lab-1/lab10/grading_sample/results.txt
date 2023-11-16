@@ -1,0 +1,59 @@
+An error has occurred during the execution of the tests.
+..\01.dig (The system cannot find the file specified)
+
+java -cp Digital.jar CLI
+  test -circ [String] [-tests [String]] [-allowMissingInputs] [-verbose]:
+      The first file name specifies the circuit to be tested. If a second
+      file name is specified, the test cases are executed from this file.
+      If no second file name is specified, the tests are executed from the
+      first file.
+    Options:
+      -circ [String(def: ../01.dig)]
+        Name of the file to be tested.
+      [-tests [String(def: t.dig)]]
+        Name of a file with test cases.
+      [-allowMissingInputs(def: false)]
+        Allows the lack of inputs in the circuit which are defined in the
+        test case. This can be useful if there are several possible solutions
+        which may depend on different inputs.
+      [-verbose(def: true)]
+        If set, the value table is output in case of an error.
+  svg -dig [String] [-svg [String]] [-ieee] [-LaTeX] [-pinsInMathMode]
+        [-hideTest] [-noShapeFilling] [-smallIO] [-noPinMarker] [-thinnerLines]
+        [-highContrast] [-monochrome]:
+      Can be used to create an SVG file from a circuit.
+    Options:
+      -dig [String(def: )]
+        The file name of the circuit.
+      [-svg [String(def: )]]
+        The name of the SVG file to be written.
+      [-ieee(def: false)]
+        Use the IEEE symbols.
+      [-LaTeX(def: false)]
+        Text is inserted in LaTeX notation. Inkscape is required for further
+        processing.
+      [-pinsInMathMode(def: false)]
+        For pin labels, use math mode even if no indexes are contained.
+      [-hideTest(def: false)]
+        Hide Test Cases
+      [-noShapeFilling(def: false)]
+        Polygons are not filled.
+      [-smallIO(def: false)]
+        Inputs and outputs are represented as small circles.
+      [-noPinMarker(def: false)]
+        The blue and red pin markers on the symbols are omitted.
+      [-thinnerLines(def: false)]
+        If set, the lines are drawn slightly thinner.
+      [-highContrast(def: false)]
+        The wires and the text of the pins are displayed in black.
+      [-monochrome(def: false)]
+        Only gray colors are used.
+  stats -dig [String] [-csv [String]]:
+      Creates a CSV file which contains the circuit statistics. All components
+      used are listed in the CSV file.
+    Options:
+      -dig [String(def: )]
+        File name of the circuit.
+      [-csv [String(def: )]]
+        Name of the CSV file to be created. If this option is missing, the
+        table is written to stdout.
