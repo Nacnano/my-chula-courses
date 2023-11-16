@@ -15,13 +15,13 @@ void readtxtfile( const char *filename,std::vector<int> &testvec) {
     };
     fclose(fi);
 };
-    
+
 int tokentoint( char * token){
-    // Assuming that it is in hex 
+    // Assuming that it is in hex
     int x = 0;
     if (strlen(token) > 2 && (token[0]=='0' && token[1] == 'x')){
         sscanf( token+2, "%x", &x);
-    } else 
+    } else
         sscanf( token, "%x", &x);
     return x;
 }
@@ -60,6 +60,9 @@ int main(int argc, const char **argv) {
                 printf("mismatch %d %d %d\n", idx, numbers[idx], numret);
                 mismatch  =1;
             }
+            else {
+                printf("correct %d %d %d\n",  idx, numbers[idx], numret);
+            }
             idx++;
         }
         clkcnt+= hasstart;
@@ -71,7 +74,7 @@ int main(int argc, const char **argv) {
         if (idx > N){
             printf("Something is wrong !!\n");
         }
-    }   
+    }
     if (ret_clkcnt<0 || (idx < N)) {
         printf("Program has not finished, increase maxCLK in testgenerator.cpp or \"repeat\" in .dig test case file \n");
     } else {
@@ -81,6 +84,6 @@ int main(int argc, const char **argv) {
     }
 
     fclose(fi);
-    
+
     return 0;
 }
