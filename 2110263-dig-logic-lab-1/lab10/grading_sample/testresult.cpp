@@ -58,10 +58,9 @@ int main(int argc, const char **argv) {
         if (valid) {
             if (numret != numbers[idx]){
                 printf("mismatch %d %d %d\n", idx, numbers[idx], numret);
-                mismatch  =1;
+                mismatch  = 1;
             }
             else {
-                printf("correct %d %d %d\n",  idx, numbers[idx], numret);
             }
             idx++;
         }

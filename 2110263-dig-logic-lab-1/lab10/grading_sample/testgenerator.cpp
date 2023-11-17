@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-const char *header = 
+const char *header =
 "<?xml version=\"1.0\" encoding=\"utf-8\"?>\
 <circuit>\
   <version>2</version>\
@@ -24,7 +24,7 @@ const char *header =
             <dataString>clock N reset start valid displayout done clockcount\n\
             ";
 
-const char *tail = 
+const char *tail =
 "</dataString>\
           </testData>\
         </entry>\
@@ -47,7 +47,7 @@ void readtxtfile( const char *filename,std::vector<int> &testvec) {
     };
     fclose(fi);
 };
-    
+
 int main(int argc, const char **argv) {
     int N;
     int maxCLK = 40000;
@@ -58,7 +58,7 @@ int main(int argc, const char **argv) {
     }
     readtxtfile(argv[1], numbers);
     N = numbers.size();
-    
+
     // printf("%s", header);
     FILE *fo=fopen(argv[2], "w");
     fwrite( header, strlen(header), 1, fo);
