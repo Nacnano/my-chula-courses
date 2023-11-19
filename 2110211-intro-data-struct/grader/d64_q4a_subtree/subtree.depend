@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1699461286 source:c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d64_q4a_subtree\main.cpp
+	<iostream>
+	"map_bst.h"
+	"student.h"
+	<set>
+
+1699461286 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d64_q4a_subtree\map_bst.h
+	<iostream>
+
+1700370903 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d64_q4a_subtree\student.h
+	<algorithm>
+	<vector>
+	"map_bst.h"
+
