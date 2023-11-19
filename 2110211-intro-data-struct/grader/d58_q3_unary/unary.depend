@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1699461286 source:c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d58_q3_unary\main.cpp
+	<vector>
+	<iostream>
+	"map_bst.h"
+	"student.h"
+
+1699461286 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d58_q3_unary\map_bst.h
+	<iostream>
+
+1700371447 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d58_q3_unary\student.h
+
