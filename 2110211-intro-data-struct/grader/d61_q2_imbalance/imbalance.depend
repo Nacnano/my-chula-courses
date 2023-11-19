@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1699461286 source:c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d61_q2_imbalance\main.cpp
+	<iostream>
+	"map_bst.h"
+
+1699461286 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d61_q2_imbalance\map_bst.h
+	<iostream>
+	"student.h"
+
+1700406191 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d61_q2_imbalance\student.h
+
