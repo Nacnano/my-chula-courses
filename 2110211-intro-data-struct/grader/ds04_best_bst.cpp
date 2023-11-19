@@ -332,15 +332,22 @@ class map_bst
 
 //you can add other function as well BUT CANNOT MODIFY MAIN nor map_bst class
 
+void process(int st, int ed, CP::map_bst<int, int> &bst){
+    if(st > ed) return;
+    int mid = st + (ed - st) / 2;
+    bst[mid] = mid;
+
+    process(st, mid - 1, bst);
+    process(mid + 1, ed, bst);
+}
+
 void gen_best_bst(int n,CP::map_bst<int,int> &bst) {
   //write your code here
   //you can create additional function
   //but you cannot modify main or the map_bst class
 
   // this is the example code of adding 1..n to the bst in ascending order
-  for (int i = 1;i <= n;i++) {
-    bst[i] = 100;
-  }
+  process(1, n, bst);
 }
 
 int main() {
