@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1699461286 source:c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d59_q3_bst_split\main.cpp
+	<stdexcept>
+	<vector>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	"map_bst.h"
+	"student.h"
+	<algorithm>
+
+1699461286 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d59_q3_bst_split\map_bst.h
+	<iostream>
+
+1700410278 c:\users\vivobook\github\my-chula-courses\2110211-intro-data-struct\grader\d59_q3_bst_split\student.h
+
