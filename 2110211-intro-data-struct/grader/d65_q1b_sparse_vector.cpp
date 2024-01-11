@@ -8,12 +8,14 @@ void insert_into_sv(map<int,int> &v, int pos, int value) {
 
 	vector<pair<int, int> > tmp;
 	for(auto i = it;i != v.end();i++){
-		tmp.push_back({(*i).first + 1, (*i).second});
+		tmp.push_back({i->first + 1, i->second});
 	}
 
 	v.erase(it, v.end());
 	v[pos] = value;
-	v.insert(tmp.begin(), tmp.end());
+	for(auto it2: tmp){
+        v.insert(v.end(), it2);
+	}
 }
 int main() {
  ios_base::sync_with_stdio(false);cin.tie(0);
