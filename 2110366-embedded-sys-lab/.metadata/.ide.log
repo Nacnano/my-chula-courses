@@ -1158,3 +1158,8 @@
 2024-01-17 15:46:19,196 [INFO] ProjectBuilder:4747 - Time for Generating toolchain IDE Files: 1440mS.
 2024-01-17 15:46:19,196 [INFO] ProjectBuilder:2947 - Time for Copy CMSIS : 0mS.
 2024-01-17 15:46:19,197 [INFO] ProjectBuilder:2947 - Time for Copy CMSIS : 0mS.
+2024-01-17 16:47:03,564 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2024-01-17 16:47:03,564 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2024-01-17 16:47:03,567 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2024-01-17 16:47:05,028 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
+2024-01-17 16:47:05,030 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
