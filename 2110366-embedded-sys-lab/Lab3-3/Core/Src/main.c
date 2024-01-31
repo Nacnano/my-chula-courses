@@ -103,7 +103,7 @@ int main(void)
   void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim) {
 	  if(htim == &htim3){
 		  // 500
-		  HAL_GPIO_TogglePin(GPIO, GPIO_Pin)
+		  HAL_GPIO_TogglePin(GPIO, GPIO_Pin);
 	  }
 	  else if(htim == &htim2){
 		  // 490.5
