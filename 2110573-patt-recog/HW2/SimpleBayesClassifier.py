@@ -19,10 +19,10 @@ class SimpleBayesClassifier:
         None: This method does not return anything as it is a constructor.
         """
 
-        self.n_pos =
-        self.n_neg =
-        self.prior_pos = 
-        self.prior_neg =
+        self.n_pos = n_pos
+        self.n_neg = n_neg
+        self.prior_pos = n_pos / (n_pos+n_neg)
+        self.prior_neg = n_neg / (n_pos+n_neg)
 
     def fit_params(self, x, y, n_bins = 10):
 
@@ -44,6 +44,25 @@ class SimpleBayesClassifier:
         self.leave_params = [(None, None) for _ in range(x.shape[1])]
 
         # INSERT CODE HERE
+
+        for idx in range(x.shape[1]):
+            stay_x = np.where(y == 0, x[:, idx], np.nan)
+            stay_x = stay_x[~np.isnan(stay_x)]
+            leave_x = np.where(y == 1, x[:, idx], np.nan)
+            leave_x = leave_x[~np.isnan(leave_x)]
+
+            bins, edges = np.histogram(stay_x, bins=n_bins)
+            edges[0] = float('-inf')
+            edges[-1] = float('inf')
+            bins = bins / np.sum(bins)
+            self.stay_params[idx] = (bins, edges)
+
+            bins, edges = np.histogram(leave_x, bins=n_bins)
+            edges[0] = float('-inf')
+            edges[-1] = float('inf')
+            bins = bins / np.sum(bins)
+            self.leave_params[idx] = (bins, edges)
+            
         
         return self.stay_params, self.leave_params
 
@@ -64,7 +83,23 @@ class SimpleBayesClassifier:
 
         # INSERT CODE HERE
 
-        return y_pred
+        for i in range(x.shape[0]):
+            h = np.log(self.prior_pos) - np.log(self.prior_neg)
+            for j in range(x.shape[1]):
+                if x[i, j] is np.nan:
+                    continue
+                stay_bin_idx = np.digitize(x[i, j], self.stay_params[j][1]) - 1
+                leave_bin_idx = np.digitize(x[i, j], self.leave_params[j][1]) - 1
+                h -= np.log(self.stay_params[j][0][stay_bin_idx])
+                h += np.log(self.leave_params[j][0][leave_bin_idx])
+            
+            if h > thresh:
+                y_pred.append(1)
+            else:
+                y_pred.append(0)
+    
+        return np.array(y_pred)
+
     
     def fit_gaussian_params(self, x, y):
 
@@ -85,8 +120,18 @@ class SimpleBayesClassifier:
         self.gaussian_leave_params = [(0, 0) for _ in range(x.shape[1])]
 
         # INSERT CODE HERE
+        for idx in range(x.shape[1]):
+            stay_x = np.where(y == 0, x[:, idx], np.nan)
+            stay_x = stay_x[~np.isnan(stay_x)]
+            leave_x = np.where(y == 1, x[:, idx], np.nan)
+            leave_x = leave_x[~np.isnan(leave_x)]
+
+            self.gaussian_stay_params[idx] = (np.mean(stay_x), np.std(stay_x))
+            self.gaussian_leave_params[idx] = (np.mean(leave_x), np.std(leave_x))
+
         
         return self.gaussian_stay_params, self.gaussian_leave_params
+    
     
     def gaussian_predict(self, x, thresh = 0):
 
@@ -105,4 +150,20 @@ class SimpleBayesClassifier:
 
         # INSERT CODE HERE
 
-        return y_pred
+        for idx in range(x.shape[0]):
+            h = np.log(self.prior_pos) - np.log(self.prior_neg)
+            for j in range(x.shape[1]):
+                if x[idx, j] is np.nan:
+                    continue
+                stay_mean, stay_std = self.gaussian_stay_params[j]
+                leave_mean, leave_std = self.gaussian_leave_params[j]
+
+                h -= np.log(stats.norm(stay_mean, stay_std).pdf(x[idx, j]))
+                h += np.log(stats.norm(leave_mean, leave_std).pdf(x[idx, j]))
+            
+            if h > thresh:
+                y_pred.append(1)
+            else:
+                y_pred.append(0)
+
+        return np.array(y_pred)
