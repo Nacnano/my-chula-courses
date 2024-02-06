@@ -82,7 +82,6 @@ class SimpleBayesClassifier:
         y_pred = []
 
         # INSERT CODE HERE
-
         for i in range(x.shape[0]):
             h = np.log(self.prior_pos) - np.log(self.prior_neg)
             for j in range(x.shape[1]):
