@@ -99,12 +99,27 @@ int main(void)
   // For all intent purpose, you can access the pulse parameter here
   TIM2->CCR1 = 50;
 
+	  int up = 1;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  if(up ==1){
+		  for(int i=0;i<100;i++) {
+			  TIM2->CCR1 = i;
+			  HAL_Delay(10);
+		  }
+		  up=0;
+	  }
+	  else {
+		  for(int i=99;i>=0;i--) {
+			  TIM2->CCR1 = i;
+			  HAL_Delay(10);
+		 }
+		 up=1;
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
