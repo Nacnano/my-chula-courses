@@ -100,20 +100,24 @@ int main(void)
   MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
 
-  void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim) {
-	  if(htim == &htim3){
-		  // 500
-		  HAL_GPIO_TogglePin(GPIO, GPIO_Pin);
-	  }
-	  else if(htim == &htim2){
-		  // 490.5
-	  }
-	  else if(htim == &htim5){
-		  // 999.9
-	  }
-  }
+  int internalCount = 0;
+  int externalCount = 0;
 
-  HAL_TIME_BASE_START(&htim3);
+  void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  	if (htim == &htim3) {
+  		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+  		internalCount += 1;
+  	} else if (htim == &htim2) {
+  		externalCount += 1;
+  	} else if (htim == &htim5) {
+  		int currentTime = HAL_GetTick();
+  		char *message = (char*) malloc(sizeof(char) * 100);
+  		sprintf(message, "Time: %d, Internal LED: %d, External LED: %d\n", currentTime, internalCount / 2, externalCount);
+  		HAL_UART_Transmit(&huart2, message, strlen(message), 100);
+  		free(message);
+
+  	}
+  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -185,6 +189,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 0 */
 
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
   TIM_OC_InitTypeDef sConfigOC = {0};
 
@@ -197,6 +202,15 @@ static void MX_TIM2_Init(void)
   htim2.Init.Period = 4905;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
   if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
   {
     Error_Handler();
@@ -293,6 +307,7 @@ static void MX_TIM5_Init(void)
 
   /* USER CODE END TIM5_Init 0 */
 
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
   TIM_OC_InitTypeDef sConfigOC = {0};
 
@@ -305,6 +320,15 @@ static void MX_TIM5_Init(void)
   htim5.Init.Period = 9999;
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim5.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim5) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim5, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
   if (HAL_TIM_PWM_Init(&htim5) != HAL_OK)
   {
     Error_Handler();
