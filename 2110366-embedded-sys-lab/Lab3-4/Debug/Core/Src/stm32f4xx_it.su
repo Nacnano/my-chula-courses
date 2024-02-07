@@ -7,3 +7,4 @@
 ../Core/Src/stm32f4xx_it.c:157:6:DebugMon_Handler	4	static
 ../Core/Src/stm32f4xx_it.c:170:6:PendSV_Handler	4	static
 ../Core/Src/stm32f4xx_it.c:183:6:SysTick_Handler	8	static
+../Core/Src/stm32f4xx_it.c:204:6:USART2_IRQHandler	8	static

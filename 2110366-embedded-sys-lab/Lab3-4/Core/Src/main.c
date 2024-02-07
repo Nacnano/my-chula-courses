@@ -56,18 +56,11 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-char buffer[10];
+char c[1];
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	char c = "H";
-	HAL_UART_Transmit(&huart2, &c, 1, 100);
-	buffer[1] = '\0';
-	HAL_UART_Transmit(&huart2, buffer, 1, 100);
-
-	if (buffer[0] == '\r') {
-		HAL_UART_Transmit(&huart2, "\n", 1, 100);
-	}
+	HAL_UART_Transmit(&huart2, c, 1, 100);
 }
 /* USER CODE END 0 */
 
@@ -108,12 +101,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  HAL_UART_Receive_IT(&huart2, buffer, 1);
+	  HAL_UART_Receive_IT(&huart2, c, 1);
 
-//	  	  char buffer;
-//	  	  if(HAL_UART_Receive(&huart2, &buffer, 1, 1000) == HAL_OK){
-//	  		  HAL_UART_Transmit(&huart2, &buffer, 1, 1000);
-//	  	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
