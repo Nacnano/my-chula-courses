@@ -9,8 +9,7 @@ int recur(int st, int ed){
         return a[st];
     }
 
-    int md = (st+ed)/2;
-
+    int md = (st+ed)/2
     int left = recur(st, md), right = recur(md+1, ed);
 
     int mx_left=INT_MIN, mx_right=INT_MIN;
