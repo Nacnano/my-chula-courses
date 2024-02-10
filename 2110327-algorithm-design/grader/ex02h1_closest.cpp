@@ -10,20 +10,20 @@ int dist(pair<int,int> a, pair<int, int> b){
 }
 
 int solve(vector<pair<int,int>> &vx, vector<pair<int, int>> &vy){
-    if(vx.size()==1) return INT_MAX;
+    if(vx.size()==1) return 2e9;
     if(vx.size()==2) return dist(vx[0], vx[1]);
 
-    int md = vx.size()/2;
+    int md = (vx.size()-1)/2;
 
     vector<pair<int, int> > nxl, nyl, nxr, nyr;
-    for (int i=0;i<md;i++){
+    for (int i=0;i<=md;i++){
         nxl.push_back(vx[i]);
     }
-    for(int i=md;i<vx.size();i++){
+    for(int i=md+1;i<vx.size();i++){
         nxr.push_back(vx[i]);
     }
     for(auto p: vy){
-        if(p.second <= nxl.back().second){
+        if(p.first <= nxl.back().first){
             nyl.push_back(p);
         }
         else {
@@ -35,13 +35,14 @@ int solve(vector<pair<int,int>> &vx, vector<pair<int, int>> &vy){
 
     vector<pair<int, int> > gap;
     for(auto p:vy){
-        if((p.first-nxr.front().first)*(p.first-nxr.front().first) < ret){
+        if((p.first-nxl.back().first)*(p.first-nxl.back().first) < ret){
             gap.push_back(p);
         }
     }
 
     for(int i=0;i<gap.size();i++){
         for(int j=i+1;j<gap.size();j++){
+            if ((gap[i].second - gap[j].second) * (gap[i].second - gap[j].second) >= ret) break;
             ret = min(ret, dist(gap[i], gap[j]));
         }
     }
@@ -50,7 +51,7 @@ int solve(vector<pair<int,int>> &vx, vector<pair<int, int>> &vy){
 }
 
 int main(){
-
+    ios_base::sync_with_stdio(0), cin.tie(NULL);
     int n;
     cin >> n;
     for(int i=0;i<n;i++){
