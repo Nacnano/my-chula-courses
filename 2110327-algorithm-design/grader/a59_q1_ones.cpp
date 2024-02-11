@@ -1,35 +1,22 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int n, del=1, ans;
+int n, del=1, ans, len=1;
 
-void solve(int x){
-    cout << del << " " << x <<"\n";
-    if(del >= x){
-        ans += x/del;
-        x%=del;
-        del/=10;
-        solve(x);
+int solve(int x, int del, int len){
+    if(x < 11){
+        return min(13-x, x);
     }
-    else{
-        if(del == 1){
-            ans += x;
-        }
-        else {
-            del/=10;
-            solve(x);
-        }
-    }
+
+    return min(solve(x%del, del/10, len-1) + x/del*len, solve(del-x%del, del/10, len-1) + (x/del+1)*len );
 }
 
-
 int main(){
-
     cin >> n;
     while(del < n){
         del*=10;
         del+=1;
+        len++;
     }
-    solve(n);
-    cout << ans;
+    cout << min(solve(n, del, len), solve(del-n, del, len) + len);
 }
