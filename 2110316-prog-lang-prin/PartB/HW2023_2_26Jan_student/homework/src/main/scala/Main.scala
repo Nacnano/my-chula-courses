@@ -1,19 +1,27 @@
 object Main {
-  def checkInList(x: Any, l: List[Any]):Boolean = {
-    if(l.isEmpty)  false
-    else if(x == l.head) true
-    else checkInList(x, l.tail)
+  def calc(f: (Int)=> Int, op: (Int, Int)=> Int, startValue: Int)(a: Int, b:Int): Int = {
+    if(a > b) return startValue
+    else op(f(a), calc(f, op, startValue)(a+1, b))
   }
 
-  def subList(l1: List[Any], l2:List[Any]): Boolean ={
-    if (l1.isEmpty)  true
-    else if(checkInList(l1.head, l2)) subList(l1.tail, l2)
-    else false
+  def id(a: Int):Int = {
+    a
+  }
+
+  def square(a: Int): Int = {
+    a*a
+  }
+
+  def product(a:Int, b: Int): Int = {
+    a * b
+  }
+
+  def add(a:Int, b: Int): Int = {
+    a + b
   }
 
   def main(args: Array[String]): Unit = {
-    var l1 = List(1, 2)
-    var l2 = List(1, 2, 3, 4)
-    println(subList(l1, l2))
+    println(calc(id, product, 1)(1, 5))
+    println(calc(square, add, 0)(1, 3))
   }
 }
