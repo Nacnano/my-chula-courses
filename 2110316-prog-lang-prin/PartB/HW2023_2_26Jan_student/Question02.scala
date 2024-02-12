@@ -5,8 +5,8 @@ object Question02 {
 
   }
 
-  def main(args: Array[String]) = {
-    var l = List(1, 2, 3, 4, 5, 6);
+  def main(args: Array[String]): Unit = {
+    var l = List(1, 2, 3, 4, 5, 6)
     println(insertInOrder(4, l))
   }
 }

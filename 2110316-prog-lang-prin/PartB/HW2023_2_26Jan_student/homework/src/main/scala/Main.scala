@@ -1,12 +1,19 @@
 object Main {
-  def insertInOrder(x: Int, l:List[Int]): List[Int] ={
-    if(l.isEmpty || x < l.head)  x :: l
-    else l.head :: insertInOrder(x, l.tail)
-
+  def checkInList(x: Any, l: List[Any]):Boolean = {
+    if(l.isEmpty)  false
+    else if(x == l.head) true
+    else checkInList(x, l.tail)
   }
 
-  def main(args: Array[String]) = {
-    var l = List(1, 2, 3, 4, 5, 6);
-    println(insertInOrder(4, l))
+  def subList(l1: List[Any], l2:List[Any]): Boolean ={
+    if (l1.isEmpty)  true
+    else if(checkInList(l1.head, l2)) subList(l1.tail, l2)
+    else false
+  }
+
+  def main(args: Array[String]): Unit = {
+    var l1 = List(1, 2)
+    var l2 = List(1, 2, 3, 4)
+    println(subList(l1, l2))
   }
 }
