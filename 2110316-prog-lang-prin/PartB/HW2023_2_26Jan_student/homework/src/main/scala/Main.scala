@@ -1,4 +1,4 @@
-object Question02 {
+object Main {
   def insertInOrder(x: Int, l:List[Int]): List[Int] ={
     if(l.isEmpty || x < l.head)  x :: l
     else l.head :: insertInOrder(x, l.tail)
