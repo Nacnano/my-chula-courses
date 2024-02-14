@@ -5,44 +5,29 @@ const int mxN=1e5+5;
 
 int n, m;
 int ans=1e9;
-bool used[25], must[25];
+int total[mxN];
 vector<int> t[25];
-int hsh[1005];
-int hsh_keep[1005];
 
-void solve(int step){
+void solve(int step, int cnt, int now){
     if(step == m){
-        bitset<1005> check;
 
-        int cnt = 0;
-        for(int i=0;i<m;i++){
-            if(used[i]){
-                cnt++;
-                for(auto &val:t[i]){
-                    check[val] = 1;
-                }
-            }
-        }
-
-        for(int i=1;i<=n;i++){
-            if(!check[i]) return;
-        }
-
-        ans = min(ans, cnt);
+        if(cnt==n) ans = min(ans, now);
         return;
     }
 
-    if(must[step] == 1){
-        used[step] = 1;
-        solve(step+1);
-        return;
+    solve(step+1, cnt, now);
+    for(auto x: t[step]){
+        if(!total[x]) cnt++;
+        total[x]++;
     }
 
-    used[step] = 1;
-    solve(step+1);
 
-    used[step] = 0;
-    solve(step+1);
+    solve(step+1, cnt, now+1);
+    for(auto x: t[step]){
+        if(total[x]==1) cnt--;
+        total[x]--;
+    }
+
 }
 
 int main(){
@@ -56,18 +41,10 @@ int main(){
             int x;
             cin >> x;
             t[i].push_back(x);
-            hsh[x]++;
-            hsh_keep[x] = i;
         }
     }
 
-    for(int i=1;i<=n;i++){
-        if(hsh[i]==1){
-            must[hsh_keep[i]] = 1;
-        }
-    }
-
-    solve(0);
+    solve(0, 0, 0);
     cout << ans;
 
     return 0;
