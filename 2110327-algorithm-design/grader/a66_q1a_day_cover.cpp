@@ -10,7 +10,6 @@ vector<int> t[25];
 
 void solve(int step, int cnt, int now){
     if(step == m){
-
         if(cnt==n) ans = min(ans, now);
         return;
     }
@@ -20,7 +19,6 @@ void solve(int step, int cnt, int now){
         if(!total[x]) cnt++;
         total[x]++;
     }
-
 
     solve(step+1, cnt, now+1);
     for(auto x: t[step]){
