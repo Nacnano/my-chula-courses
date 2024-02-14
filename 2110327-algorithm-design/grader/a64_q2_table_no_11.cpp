@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int pr=1e7+7, mxN=1e7+5;
+const int pr=1e8+7, mxN=1e7+5;
 
 int dp[2][mxN];
 
@@ -12,10 +12,6 @@ int main(){
     for(int i=2;i<=n;i++){
         dp[0][i] = (dp[0][i-1] + 2*dp[1][i-1]) % pr;
         dp[1][i] = (dp[0][i-1] + dp[1][i-1]) % pr;
-    }
-
-    for(int i=1;i<=n;i++){
-        cout << dp[0][i] << " " << dp[1][i] << endl;
     }
 
     cout << (dp[0][n] + 2*dp[1][n]) % pr;
