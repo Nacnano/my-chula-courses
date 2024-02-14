@@ -10,4 +10,3 @@ int main(){
         k[h]>0?:k[h]=0;
     }
     std::cout<<b;
-}
