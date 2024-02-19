@@ -56,5 +56,7 @@ object Main {
     println("REVERSE ", myReverse(List(1, 2, 3)))
     println("DOT ", dot(List(1, 2, 3), List(1, 2, 3)))
     println("MAX ", max(List(1, 2, 3)))
+
+    printf("%d", 1)
   }
 }
