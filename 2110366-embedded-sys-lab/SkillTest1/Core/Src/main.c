@@ -56,6 +56,7 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 /* USER CODE END 0 */
 
 /**
@@ -89,21 +90,47 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  char c[10] = "6531313221 ";
-  int idx=0;
+  int state = 1;
+  char c = 'D';
+  int cnt = 0;
+  int pressed = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET){
-		  	 HAL_Delay(100);
-		  	 HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-		  	 HAL_UART_Transmit(&huart2, c+idx, 1, 1000);
-		  	 idx += 1;
-		  	 idx %= 12;
-		  	 while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET);
+	  if(HAL_UART_Receive(&huart2, &c, 1, 50) == HAL_OK){
+		  if(c == 'S'){
+			  HAL_UART_Transmit(&huart2, &c, 1, 100);
+			  state = 2;
+		  }
+		  else if(c == 'R'){
+			  	  char buffer[4];
+			  	  sprintf(buffer, "%d", cnt);
+			  	  HAL_UART_Transmit(&huart2, buffer, 4, 100);
+
+				  char buffer2 = 'R';
+				  HAL_UART_Transmit(&huart2, &buffer2, 1, 100);
+			  cnt = 0;
+			  state = 1;
+		  }
+	  }
+
+	  if(state == 1){
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
+		  HAL_Delay(20);
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
+		  HAL_Delay(80);
+	  }
+	  else if(state == 2){
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
+		  if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET){
+		  		  cnt += 1;
+		  //		  c = 'X';
+		  //		  HAL_UART_Transmit(&huart2, &c, 1, 1000);
+		  		  while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET){}
+		  }
 	  }
     /* USER CODE END WHILE */
 
