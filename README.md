@@ -18,6 +18,7 @@ This is a personal repository for storing codes and learning materials from all 
 2.  [2110263 - Digital Computer Logic Laboratory I](https://github.com/Nacnano/my-chula-courses/tree/main/2110263-dig-logic-lab-1) : Laboratories
 3.  [2110327 - Algorithm Design](https://github.com/Nacnano/my-chula-courses/tree/main/2110327-algorithm-design) : Solution for graders and quizzes
 4.  [2110316 - Programming Languages Principles](https://github.com/Nacnano/my-chula-courses/tree/main/2110316-prog-lang-prin) : Learning materials and exercises
+5.  [2110366 - Embedded System Laboratory](https://github.com/Nacnano/my-chula-courses/tree/main/2110366-embedded-sys-lab) : Laboratories and Skill Tests
 
 ### Elective Courses
 
