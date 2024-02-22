@@ -26,10 +26,7 @@ int main(){
                 dp[i][j] = s[i][j];
             }
             ans = max(ans, dp[i][j]);
-            // cout << dp[i][j] << " ";
         }
-        // cout << endl;
     }
-
     cout << ans;
 }
