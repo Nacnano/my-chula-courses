@@ -35,7 +35,6 @@ void small_n(){
 }
 
 
-
 void big_n(){
 
     while(n){
