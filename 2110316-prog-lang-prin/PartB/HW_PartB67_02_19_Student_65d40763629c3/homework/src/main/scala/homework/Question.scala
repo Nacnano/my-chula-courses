@@ -1,4 +1,6 @@
-object Question05 {
+package homework
+
+object Question {
 
   def L(LL:List[Any]):List[Any] = {
     if(LL.isEmpty) Nil
