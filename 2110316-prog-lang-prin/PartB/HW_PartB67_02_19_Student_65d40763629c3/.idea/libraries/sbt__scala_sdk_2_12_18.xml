@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="sbt: scala-sdk-2.12.18" type="Scala">
+    <properties>
+      <language-level>Scala_2_12</language-level>
+      <compiler-classpath>
+        <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.18/lib/scala-library.jar" />
+        <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.18/lib/scala-compiler.jar" />
+        <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.18/lib/scala-reflect.jar" />
+        <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.18/lib/scala-xml_2.12-2.1.0.jar" />
+      </compiler-classpath>
+    </properties>
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
