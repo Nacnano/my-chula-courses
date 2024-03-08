@@ -1,12 +1,13 @@
 object Main {
-  def sum(list: List[Int]): Int = {
-    if(list.isEmpty) return 0
-    else return list.head + sum(list.tail)
-  }
   def sumAll(lists:List[List[Int]]) :List[Int] = {
-    if(lists.isEmpty) return Nil
-    if(lists.head.isEmpty) return sumAll(lists.tail)
-    else return sum(lists.head) :: sumAll(lists.tail)
+    if(lists.isEmpty) Nil
+    else if(lists.length == 1) lists.head
+    else {
+      var g = sumAll(lists.tail)
+      if(lists.head.isEmpty) g
+      else if(g.isEmpty) lists.head
+      else  (lists.head.head+g.head) :: sumAll(List(lists.head.tail, g.tail))
+    }
   }
   def main(args: Array[String]): Unit = {
     println(sumAll(List()))
