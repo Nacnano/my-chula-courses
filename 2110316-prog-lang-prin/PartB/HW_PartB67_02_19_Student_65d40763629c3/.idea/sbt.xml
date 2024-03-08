@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaSbtSettings">
+    <option name="linkedExternalProjectsSettings">
+      <SbtProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/homework" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/homework" />
+            <option value="$PROJECT_DIR$/homework/project" />
+          </set>
+        </option>
+        <option name="sbtVersion" value="1.9.9" />
+      </SbtProjectSettings>
+      <SbtProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/untitled" />
+      </SbtProjectSettings>
+    </option>
+  </component>
+</project>
