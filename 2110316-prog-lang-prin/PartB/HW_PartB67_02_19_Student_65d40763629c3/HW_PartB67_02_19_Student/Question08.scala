@@ -1,4 +1,5 @@
 object Question08 {
+
   def sumAll(lists:List[List[Int]]) :List[Int] = {
     if(lists.isEmpty) Nil
     else if(lists.length == 1) lists.head
