@@ -1,13 +1,10 @@
 object Question05 {
-
-  def L(LL:List[Any]):List[Any] = {
-    if(LL.isEmpty) Nil
-    else L(LL.tail) ++ List(LL.head)
+  def reverse(list:List[Any]):List[Any] = {
+    if(list.isEmpty) Nil
+    else reverse(list.tail) ++ List(list.head)
   }
   def palindrome(l :List[Any]): Boolean = {
     if(l.length <= 1) true
-    else l.head == L(l).head && palindrome(L(l.tail).tail)
+    else l.head == reverse(l).head && palindrome(reverse(l.tail).tail)
   }
-
-
 }
