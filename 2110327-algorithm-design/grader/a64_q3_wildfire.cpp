@@ -38,4 +38,5 @@ int main(){
         }
         cout << sum << " ";
     }
+
 }
