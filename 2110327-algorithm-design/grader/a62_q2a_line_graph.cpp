@@ -5,7 +5,7 @@ const int maxN=1e5+5;
 bool visited[maxN];
 vector<int> g[maxN];
 
-bool dfs(int u){
+bool dfs(int u, int prev){
     if(visited[u]){
         return false;
     }
@@ -19,9 +19,10 @@ bool dfs(int u){
 
     bool ret = true;
     for(auto v: g[u]){
-        if(!dfs(v)) ret = false;
+        if(v == prev) continue;
+        if(!dfs(v, u) || g[v].size() > 2) ret = false;
     }
-    return ret;
+    return ret && g[u].size() <= 2;
 }
 
 int main(){
@@ -38,7 +39,7 @@ int main(){
     int ans=0;
     for(int i=0;i<n;i++){
         if(!visited[i]){
-            ans += dfs(i);
+            ans += dfs(i, -1);
         }
     }
     cout << ans;
