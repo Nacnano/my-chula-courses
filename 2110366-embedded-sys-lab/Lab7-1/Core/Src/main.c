@@ -66,6 +66,7 @@ int current_buffer_idx = 0;
 int sz = 256;
 char buffer[2][256];
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+	// a magic line from TA
 	huart2.gState = HAL_UART_STATE_READY;
 	HAL_UART_Transmit_DMA(&huart2, buffer[current_buffer_idx], sz);
 	current_buffer_idx = !current_buffer_idx;
