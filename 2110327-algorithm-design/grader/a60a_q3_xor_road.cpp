@@ -7,7 +7,7 @@ priority_queue<pair<long long, pair<int, int> > > pq;
 
 int _find(int x){
     if(p[x] == x) return x;
-    else p[x] = _find(p[x]);
+    return p[x] = _find(p[x]);
 }
 
 int main(){
