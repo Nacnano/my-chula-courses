@@ -22,8 +22,6 @@ int main(){
     }
     for(int i=start+1;i<=n;i++){
         if(has[i] == 0) continue;
-        cout << start << " " << i << endl;
-
         if(start + 2*w >= i) continue;
         ans++;
         start = i;
