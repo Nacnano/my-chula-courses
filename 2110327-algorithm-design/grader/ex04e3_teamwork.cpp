@@ -19,7 +19,6 @@ int main(){
     while(i < m){
         sum += a[i++];
         if((i)%n == m%n) ans += sum;
-        cout << ans << endl;
     }
     cout << fixed << setprecision(3) << ans / m;
 }
