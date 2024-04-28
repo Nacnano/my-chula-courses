@@ -5,6 +5,10 @@ const int MAX = 1e9;
 int n, m, k;
 int a[105], bound[105], ans = MAX;
 
+bool comp(int a, int b){
+    return a < b;
+}
+
 void solve(int lv, int val, int use){
     if(use == m) {
         ans = min(ans, abs(k-val));
@@ -12,6 +16,7 @@ void solve(int lv, int val, int use){
     }
 
     if(lv == n+1) return;
+    if(n-lv < m-use) return;
     if(val - k > ans) return;
     if(k - val - bound[lv] > ans) return;
 
@@ -32,7 +37,7 @@ int main(){
         bound[i] = bound[i+1] + a[i];
     }
 
-    sort(a+1, a+n+1);
+    sort(a+1, a+n+1, comp);
 
     solve(1, 0, 0);
     cout << ans;
