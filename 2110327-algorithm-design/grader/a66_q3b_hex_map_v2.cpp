@@ -33,7 +33,6 @@ int main(){
 
         int c = t.second.first;
         int r = t.second.second;
-        cout << pq.size() << " " << dist[r][c] << endl;
 
         for(int i=0;i<6;i++){
             int nc, nr;
