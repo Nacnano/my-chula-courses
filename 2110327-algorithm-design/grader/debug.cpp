@@ -1,53 +1,58 @@
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-int m,n,ans=0;
-vector<int> power;
-vector<int> patt;
 
-bool check(vector<bool> &get,int len){
-    if(len<m-1){
-        return true;
+struct GRAPH {
+    int i, j, w;
+    bool operator < (const GRAPH &o) const {
+        return w > o.w;
     }
-    for(int i=0;i<m;i++){
-        if(!(get[len-i]==patt[m-i-1])){
-            return true;
+};
+
+const int di[6] = {-1, 0, 1, 1, 0, -1};
+const int dj[2][6] = {{0, 1, 0, -1, -1, -1}, {1, 1, 1, 0, -1, 0}};
+int dis[310][310];
+
+priority_queue <GRAPH> pq;
+
+int a[310][310];
+
+int main() {
+    cin.tie(nullptr)->sync_with_stdio(false);
+
+    int r, c;
+    cin >> r >> c;
+    int sti, stj, eni, enj;
+    cin >> sti >> stj >> eni >> enj;
+    for(int i = 1; i <= r; i++) {
+        for(int j = 1; j <= c; j++) {
+            cin >> a[i][j];
+            dis[i][j] = 1e9;
         }
     }
-    return false;
-}
-
-void letsgo(int len,vector<bool> &get,int sum,int last){
-    if(len<n){
-        get[len]=1;
-        if(check(get,len) && last!=1){
-            letsgo(len+1,get,sum+power[len],1);
+    dis[sti][stj] = a[sti][stj];
+    pq.push({sti, stj});
+    while(!pq.empty()) {
+        int i = pq.top().i;
+        int j = pq.top().j;
+        int w = pq.top().w;
+        pq.pop();
+        cout << pq.size() << " " << w << endl;
+        if(i == eni && j == enj) {
+            cout << dis[i][j];
+            return 0;
         }
-        get[len]=0;
-        if(check(get,len)){
-            letsgo(len+1,get,sum,0);
+        for(int k = 0; k < 6; k++) {
+            int ii = i + di[k];
+            int jj = j + dj[i % 2][k];
+            if(ii < 1 || jj < 1 || ii > r || jj > c) {
+                continue;
+            }
+            if(dis[ii][jj] <= dis[i][j] + a[ii][jj]) {
+                continue;
+            }
+            dis[ii][jj] = dis[i][j] + a[ii][jj];
+            pq.push({ii, jj, dis[ii][jj]});
         }
     }
-    else{
-        if(check(get,n-1)) ans=max(ans,sum);
-    }
-}
-
-int main(){
-    ios_base::sync_with_stdio(false);cin.tie(0);
-    cin>>n>>m;
-    power.resize(n);
-    for(int i=0;i<n;i++){
-        cin>>power[i];
-    }
-    patt.resize(m);
-    for(int i=0;i<m;i++){
-        cin>>patt[i];
-    }
-    vector<bool> get(n);
-    letsgo(0,get,0,-1);
-    cout<<ans;
     return 0;
 }
-
-
