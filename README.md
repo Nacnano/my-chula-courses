@@ -22,10 +22,12 @@ This is a personal repository for storing codes and learning materials from all 
 4.  [2110316 - Programming Languages Principles](https://github.com/Nacnano/my-chula-courses/tree/main/2110316-prog-lang-prin) : Learning materials and exercises
 5.  [2110356 - Embedded System](https://github.com/Nacnano/my-chula-courses/tree/main/2110356-embedded-sys) : Laboratories and Skill Tests
 6.  [2110366 - Embedded System Laboratory](https://github.com/Nacnano/my-chula-courses/tree/main/2110366-embedded-sys-lab) : Laboratories and Skill Tests
+    -
 
 ### Elective Courses
 
 1. [2110573 - Pattern Recognition](https://github.com/Nacnano/my-chula-courses/tree/main/2110573-patt-recog) : Solution for homeworks and projects
+   - Final Project : [Stock Return Prediction](https://github.com/Nacnano/stock-machine-learning-project/)
 
 ## Author
 
