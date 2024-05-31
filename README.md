@@ -10,6 +10,7 @@ This is a personal repository for storing codes and learning materials from all 
 
 1.  [2110101 - Computer Programming](https://github.com/Nacnano/my-chula-courses/tree/main/2110101-com-prog) : Solutions for the grader, homeworks, and finalized workshops
 2.  [2110215 - Programming Methodology](https://github.com/Nacnano/my-chula-courses/tree/main/2110215-prog-meth) : Lectures, labs, and final project
+    - Final Project : [Veeliw vs Nac](https://github.com/Nacnano/veeliwvsnac)
 3.  [2110221 - Computer Engineering Essential](https://github.com/Nacnano/my-chula-courses/tree/main/2110221-com-eng-ess) : Mainly courses material and its solutions
     - Final Project : [Mycourseville Calendar](https://github.com/Nacnano/cee-34-final-project)
 
