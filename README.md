@@ -4,6 +4,10 @@ Why creating a new repository when taking new courses? Just make one for all of 
 
 This is a personal repository for storing codes and learning materials from all tech-related courses from Computer Programming Class of 2026, Bachelor of Engineering, Chulalongkorn University
 
+## Guidance
+
+1. พี่แนะแนวน้อง CP49: [Slide](), [Video](https://youtu.be/tEwQvjD-tuU)
+
 ## Courses
 
 ### Year 1
