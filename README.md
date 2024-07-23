@@ -24,6 +24,10 @@ This is a personal repository for storing codes and learning materials from all 
 6.  [2110366 - Embedded System Laboratory](https://github.com/Nacnano/my-chula-courses/tree/main/2110366-embedded-sys-lab) : Laboratories and Skill Tests
     - Final Project : [Let There Be Light](https://github.com/nacnano/embbed-lab-final-project)
 
+### Year 3
+
+- Coming Soon...
+
 ### Elective Courses
 
 1. [2110573 - Pattern Recognition](https://github.com/Nacnano/my-chula-courses/tree/main/2110573-patt-recog) : Solution for homeworks and projects
