@@ -37,6 +37,22 @@ This is a personal repository for storing codes and learning materials from all 
 1. [2110573 - Pattern Recognition](https://github.com/Nacnano/my-chula-courses/tree/main/2110573-patt-recog) : Solution for homeworks and projects
    - Final Project : [Stock Return Prediction](https://github.com/Nacnano/stock-machine-learning-project/)
 
+### General Education (GenEd)
+
+- Coming Soon... Too lazy lol. There are just loads and loads of huge pdf files (MORE THAN 1 GB FOR SURE)
+
+1. Tax Law in Daily Life
+
+2. Physics in Films
+
+3. Digital Photography
+
+4. Thai Architecture Heritage
+
+## Other Resources
+
+- [CP46-archive](https://github.com/raviporna/CP46-archive)
+
 ## Author
 
 - [Nacnano](https://github.com/Nacnano) : Chotpisit Adunsehawat (CP 49)
