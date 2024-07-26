@@ -51,7 +51,8 @@ This is a personal repository for storing codes and learning materials from all 
 
 ## Other Resources
 
-- [CP46-archive](https://github.com/raviporna/CP46-archive)
+- [raviporna's CP46-archive](https://github.com/raviporna/CP46-archive)
+- [JomnoiZ's Ultimate Algorithm Solutions](https://github.com/JomnoiZ/AlgorithmDesign)
 
 ## Author
 
