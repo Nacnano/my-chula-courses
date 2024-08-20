@@ -1,0 +1,5 @@
+*.xpr
+*.ip_user_files
+*.hw
+*.cache
+*.sim
