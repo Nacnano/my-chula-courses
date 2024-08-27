@@ -3,3 +3,4 @@
 *.hw
 *.cache
 *.sim
+*.runs
