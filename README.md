@@ -10,6 +10,8 @@ This is a personal repository for storing codes and learning materials from all 
 
 ## Courses
 
+### You can view the all courses' slides, lectures, exercises, quizzes, exams in the [Onedrive](https://chula-my.sharepoint.com/:f:/g/personal/6531313221_student_chula_ac_th/Eh6t27fwE_VBky4hGBT67ygBo3h8n7EWyle22TjCA94aaQ?e=sDsXLV) here. The rest is the codes.
+
 ### Year 1
 
 1.  [2110101 - Computer Programming](https://github.com/Nacnano/my-chula-courses/tree/main/2110101-com-prog) : Solutions for the grader, homeworks, and finalized workshops
@@ -31,19 +33,15 @@ This is a personal repository for storing codes and learning materials from all 
 ### Year 3
 
 1. [2110322 - Database Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110211-db-sys) : Exercises
-
 2. [2110363 - Hardware Synthesis Laboratory I](https://github.com/Nacnano/my-chula-courses/tree/main/2110363-hw-syn-lab-1) : Laboratories and Skill Tests
-
 3. [2110352 - Computer System Architectures](https://github.com/Nacnano/my-chula-courses/tree/main/2110352-comp-sys-arch) : Assignments
 
-### Elective Courses
+### Electives
 
 1. [2110573 - Pattern Recognition](https://github.com/Nacnano/my-chula-courses/tree/main/2110573-patt-recog) : Solution for homeworks and projects
    - Final Project : [Stock Return Prediction](https://github.com/Nacnano/stock-machine-learning-project/)
 
-### General Education (GenEd)
-
-- Coming Soon... Too lazy lol. There are just loads and loads of huge pdf files (MORE THAN 1 GB FOR SURE)
+### General Electives (see the files in Onedrive)
 
 1. Tax Law in Daily Life
 
@@ -53,10 +51,13 @@ This is a personal repository for storing codes and learning materials from all 
 
 4. Thai Architecture Heritage
 
+5. Agro Wastes Money
+
 ## Other Resources
 
 - [raviporna's CP46-archive](https://github.com/raviporna/CP46-archive)
 - [JomnoiZ's Ultimate Algorithm Solutions](https://github.com/JomnoiZ/AlgorithmDesign)
+- and many more (There are so many to be added)
 
 ## Author
 
