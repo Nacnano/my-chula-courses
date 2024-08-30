@@ -32,7 +32,9 @@ This is a personal repository for storing codes and learning materials from all 
 
 1. [2110322 - Database Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110211-db-sys) : Exercises
 
-2. [2110363 - Hardware Synthesis Laboratory I](https://github.com/Nacnano/my-chula-courses/tree/main/2110363-hw-syn-lab-1) : Laboratories and Tests
+2. [2110363 - Hardware Synthesis Laboratory I](https://github.com/Nacnano/my-chula-courses/tree/main/2110363-hw-syn-lab-1) : Laboratories and Skill Tests
+
+3. [2110352 - Computer System Architectures](https://github.com/Nacnano/my-chula-courses/tree/main/2110352-comp-sys-arch) : Assignments
 
 ### Elective Courses
 
