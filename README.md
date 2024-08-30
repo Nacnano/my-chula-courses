@@ -41,7 +41,7 @@ This is a personal repository for storing codes and learning materials from all 
 1. [2110573 - Pattern Recognition](https://github.com/Nacnano/my-chula-courses/tree/main/2110573-patt-recog) : Solution for homeworks and projects
    - Final Project : [Stock Return Prediction](https://github.com/Nacnano/stock-machine-learning-project/)
 
-### General Electives (see the files in Onedrive)
+### General Electives (see the files in [Onedrive](#courses))
 
 1. Tax Law in Daily Life
 
