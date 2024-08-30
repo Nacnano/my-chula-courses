@@ -44,13 +44,9 @@ This is a personal repository for storing codes and learning materials from all 
 ### General Electives (see the files in [Onedrive](https://chula-my.sharepoint.com/:f:/g/personal/6531313221_student_chula_ac_th/Eh6t27fwE_VBky4hGBT67ygBo3h8n7EWyle22TjCA94aaQ?e=sDsXLV))
 
 1. 3401102 - Tax Law in Daily Life (2nd year)
-
 2. 2398131 - Physics in Films (1st year)
-
 3. 2313213 - Digital Photography (2nd year)
-
 4. 2501296 - Thai Architecture Heritage (3rd year)
-
 5. 0295102 - Agro Wastes Money (3rd year)
 
 ## Other Resources
