@@ -205,7 +205,7 @@ L6:
 
   Answer:
 
-#### Assembly Code (level 2)
+#### Assembly Code (max level 2)
 
 ```
 	.file	"max.c"
@@ -298,7 +298,7 @@ printf("fibo of %ld is %ld\n",i,f);
   (Depending on your version of the compiler, the result may
   vary.)
 
-#### Assembly Code (level 0)
+#### Assembly Code (fibo level 0)
 
 ```
 	.file	"fibo.c"
@@ -367,7 +367,7 @@ L4:
 	.def	_printf;	.scl	2;	.type	32;	.endef
 ```
 
-#### Assembly Code (level 1)
+#### Assembly Code (fibo level 1 and level 2 have the same code)
 
 ```
 	.file	"fibo.c"
@@ -430,16 +430,68 @@ _main:
 	.def	_printf;	.scl	2;	.type	32;	.endef
 ```
 
-#### Assembly Code (level 2)
+#### Assembly Code (fibo level 3)
 
 ```
-
-```
-
-#### Assembly Code (level 3)
-
-```
-
+	.file	"fibo.c"
+gcc2_compiled.:
+___gnu_compiled_c:
+	.def	___main;	.scl	2;	.type	32;	.endef
+.text
+LC0:
+	.ascii "fibo of %ld is %ld\12\0"
+	.align 4
+.globl _fibo
+	.def	_fibo;	.scl	2;	.type	32;	.endef
+_fibo:
+	pushl %ebp
+	movl %esp,%ebp
+	pushl %esi
+	pushl %ebx
+	movl 8(%ebp),%ebx
+	testl %ebx,%ebx
+	jg L2
+	xorl %eax,%eax
+	jmp L1
+	.p2align 4,,7
+L2:
+	cmpl $1,%ebx
+	je L3
+	leal -1(%ebx),%eax
+	pushl %eax
+	call _fibo
+	movl %eax,%esi
+	leal -2(%ebx),%eax
+	pushl %eax
+	call _fibo
+	addl %esi,%eax
+	jmp L6
+	.p2align 4,,7
+L3:
+	movl $1,%eax
+L6:
+L1:
+	leal -8(%ebp),%esp
+	popl %ebx
+	popl %esi
+	movl %ebp,%esp
+	popl %ebp
+	ret
+	.align 4
+.globl _main
+	.def	_main;	.scl	2;	.type	32;	.endef
+_main:
+	pushl %ebp
+	movl %esp,%ebp
+	call ___main
+	pushl $0
+	pushl $0
+	pushl $LC0
+	call _printf
+	movl %ebp,%esp
+	popl %ebp
+	ret
+	.def	_printf;	.scl	2;	.type	32;	.endef
 ```
 
 Answer:

@@ -1,7 +1,10 @@
 	.file	"fibo.c"
 gcc2_compiled.:
 ___gnu_compiled_c:
+	.def	___main;	.scl	2;	.type	32;	.endef
 .text
+LC0:
+	.ascii "fibo of %ld is %ld\12\0"
 	.align 4
 .globl _fibo
 	.def	_fibo;	.scl	2;	.type	32;	.endef
@@ -14,7 +17,7 @@ _fibo:
 	testl %ebx,%ebx
 	jg L2
 	xorl %eax,%eax
-	jmp L4
+	jmp L1
 	.p2align 4,,7
 L2:
 	cmpl $1,%ebx
@@ -27,20 +30,18 @@ L2:
 	pushl %eax
 	call _fibo
 	addl %esi,%eax
-	jmp L4
+	jmp L6
 	.p2align 4,,7
 L3:
 	movl $1,%eax
-L4:
+L6:
+L1:
 	leal -8(%ebp),%esp
 	popl %ebx
 	popl %esi
 	movl %ebp,%esp
 	popl %ebp
 	ret
-	.def	___main;	.scl	2;	.type	32;	.endef
-LC0:
-	.ascii "fibo of %ld is %ld\12\0"
 	.align 4
 .globl _main
 	.def	_main;	.scl	2;	.type	32;	.endef
