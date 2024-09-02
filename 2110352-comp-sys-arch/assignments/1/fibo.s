@@ -8,37 +8,33 @@ ___gnu_compiled_c:
 _fibo:
 	pushl %ebp
 	movl %esp,%ebp
+	pushl %esi
 	pushl %ebx
-	cmpl $0,8(%ebp)
+	movl 8(%ebp),%ebx
+	testl %ebx,%ebx
 	jg L2
 	xorl %eax,%eax
-	jmp L1
+	jmp L4
 	.p2align 4,,7
 L2:
-	cmpl $1,8(%ebp)
-	jne L3
-	movl $1,%eax
-	jmp L1
+	cmpl $1,%ebx
+	je L3
+	leal -1(%ebx),%eax
+	pushl %eax
+	call _fibo
+	movl %eax,%esi
+	leal -2(%ebx),%eax
+	pushl %eax
+	call _fibo
+	addl %esi,%eax
+	jmp L4
 	.p2align 4,,7
 L3:
-	movl 8(%ebp),%eax
-	decl %eax
-	pushl %eax
-	call _fibo
-	addl $4,%esp
-	movl %eax,%ebx
-	movl 8(%ebp),%eax
-	addl $-2,%eax
-	pushl %eax
-	call _fibo
-	addl $4,%esp
-	movl %eax,%eax
-	leal (%eax,%ebx),%edx
-	movl %edx,%eax
-	jmp L1
-	.p2align 4,,7
-L1:
-	movl -4(%ebp),%ebx
+	movl $1,%eax
+L4:
+	leal -8(%ebp),%esp
+	popl %ebx
+	popl %esi
 	movl %ebp,%esp
 	popl %ebp
 	ret
@@ -56,8 +52,6 @@ _main:
 	pushl $0
 	pushl $LC0
 	call _printf
-	addl $12,%esp
-L4:
 	movl %ebp,%esp
 	popl %ebp
 	ret

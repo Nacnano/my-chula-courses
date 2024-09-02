@@ -2,6 +2,8 @@
 
 ## 1. Instruction Analysis
 
+### C code (max)
+
 ```
 int max1(int a, int b) { return (a>b)?a:b;
 }
@@ -16,36 +18,245 @@ return max;
 }
 ```
 
+### Assembly code (max)
+
+```
+	.file	"max.c"
+gcc2_compiled.:
+___gnu_compiled_c:
+.text
+	.align 4
+.globl _max1
+	.def	_max1;	.scl	2;	.type	32;	.endef
+_max1:
+	pushl %ebp
+	movl %esp,%ebp
+	movl 12(%ebp),%eax
+	cmpl 8(%ebp),%eax
+	jge L2
+	movl 8(%ebp),%eax
+L2:
+	movl %eax,%eax
+	jmp L1
+	.p2align 4,,7
+L1:
+	movl %ebp,%esp
+	popl %ebp
+	ret
+	.align 4
+.globl _max2
+	.def	_max2;	.scl	2;	.type	32;	.endef
+_max2:
+	pushl %ebp
+	movl %esp,%ebp
+	subl $16,%esp
+	movl 8(%ebp),%eax
+	cmpl 12(%ebp),%eax
+	setg %al
+	xorl %edx,%edx
+	movb %al,%dl
+	movl %edx,-4(%ebp)
+	cmpl $0,-4(%ebp)
+	je L4
+	movl 8(%ebp),%eax
+	movl %eax,-8(%ebp)
+	jmp L5
+	.p2align 4,,7
+L4:
+	movl 12(%ebp),%eax
+	movl %eax,-8(%ebp)
+L5:
+	movl -8(%ebp),%edx
+	movl %edx,%eax
+	jmp L3
+	.p2align 4,,7
+L3:
+	movl %ebp,%esp
+	popl %ebp
+	ret
+```
+
 - What does the code hint about the kind of instruction set?
   (e.g. Accumulator, Register Memory, Memory Memory,
   Register Register) Please justify your answer.
+
+  Answer:
 
 - Can you tell whether the architecture is either Restricted
   Alignment or Unrestricted Alignment? Please explain
   how you come up with your answer.
 
+  Answer:
+
 - Create a new function (e.g. testMax) to call max1.
   Generate new assembly code. What does the result
-  suggest regarding the register saving (caller save vs.
-  callee save)? Please provide your analysis.
+  suggest regarding the register saving (caller save vs. callee save)? Please provide your analysis.
+
+  Answer:
+
+#### C Code (testMax)
+
+```
+int max1(int a, int b) { return (a>b)?a:b;
+}
+int max2(int a, int b) {
+int isaGTb=a>b;
+int max;
+if (isaGTb)
+max=a;
+else
+max=b;
+return max;
+}
+int testMax(int a, int b){
+    return max1(a, b);
+}
+```
+
+#### Assembly code (testMax)
+
+```
+	.file	"testmax.c"
+gcc2_compiled.:
+___gnu_compiled_c:
+.text
+	.align 4
+.globl _max1
+	.def	_max1;	.scl	2;	.type	32;	.endef
+_max1:
+	pushl %ebp
+	movl %esp,%ebp
+	movl 12(%ebp),%eax
+	cmpl 8(%ebp),%eax
+	jge L2
+	movl 8(%ebp),%eax
+L2:
+	movl %eax,%eax
+	jmp L1
+	.p2align 4,,7
+L1:
+	movl %ebp,%esp
+	popl %ebp
+	ret
+	.align 4
+.globl _max2
+	.def	_max2;	.scl	2;	.type	32;	.endef
+_max2:
+	pushl %ebp
+	movl %esp,%ebp
+	subl $16,%esp
+	movl 8(%ebp),%eax
+	cmpl 12(%ebp),%eax
+	setg %al
+	xorl %edx,%edx
+	movb %al,%dl
+	movl %edx,-4(%ebp)
+	cmpl $0,-4(%ebp)
+	je L4
+	movl 8(%ebp),%eax
+	movl %eax,-8(%ebp)
+	jmp L5
+	.p2align 4,,7
+L4:
+	movl 12(%ebp),%eax
+	movl %eax,-8(%ebp)
+L5:
+	movl -8(%ebp),%edx
+	movl %edx,%eax
+	jmp L3
+	.p2align 4,,7
+L3:
+	movl %ebp,%esp
+	popl %ebp
+	ret
+	.align 4
+.globl _testMax
+	.def	_testMax;	.scl	2;	.type	32;	.endef
+_testMax:
+	pushl %ebp
+	movl %esp,%ebp
+	movl 12(%ebp),%eax
+	pushl %eax
+	movl 8(%ebp),%eax
+	pushl %eax
+	call _max1
+	addl $8,%esp
+	movl %eax,%edx
+	movl %edx,%eax
+	jmp L6
+	.p2align 4,,7
+L6:
+	movl %ebp,%esp
+	popl %ebp
+	ret
+```
+
 - How do the arguments be passed and the return value
   returned from a function? Please explain the code.
   Find the part of code (snippet) that does comparison and
   conditional branch. Explain how it works.
 
+  Answer:
+
 - If max.c is compiled with optimization turned on (using
   “gcc -O2 -S max.c”), what are the differences that you
   may observe from the result (as compared to that without
   optimization). Please provide your analysis
+
+  Answer:
+
+#### Assembly Code (level 2)
+
+```
+	.file	"max.c"
+gcc2_compiled.:
+___gnu_compiled_c:
+.text
+	.align 4
+.globl _max1
+	.def	_max1;	.scl	2;	.type	32;	.endef
+_max1:
+	pushl %ebp
+	movl %esp,%ebp
+	movl 8(%ebp),%edx
+	movl 12(%ebp),%eax
+	cmpl %edx,%eax
+	jge L2
+	movl %edx,%eax
+L2:
+	movl %ebp,%esp
+	popl %ebp
+	ret
+	.align 4
+.globl _max2
+	.def	_max2;	.scl	2;	.type	32;	.endef
+_max2:
+	pushl %ebp
+	movl %esp,%ebp
+	movl 8(%ebp),%edx
+	movl 12(%ebp),%eax
+	cmpl %eax,%edx
+	jle L4
+	movl %edx,%eax
+L4:
+	movl %ebp,%esp
+	popl %ebp
+	ret
+```
+
 - Please estimate the CPU Time required by the max1
   function (using the equation CPI=ICxCPIxTc). If possible,
   create a main function to call max1 and use the time
   command to measure the performance. Compare the
   measure to your estimation.
-- What do you think are the factors that cause the difference? Please provide your
-  analysis.
+
+  Answer:
+
+- What do you think are the factors that cause the difference? Please provide your analysis.
   (You may find references online regarding the CPI of
   each instruction.)
+
+  Answer:
 
 ## 2. Optimization
 
@@ -75,6 +286,8 @@ printf("fibo of %ld is %ld\n",i,f);
   difference after level 1.) You may want to run each program a
   few times and use the average value as a result.
 
+  Answer:
+
 ## 3. Analysis
 
 - As suggested by the results in Exercise 2, what kinds of optimization are used by the compiler in each level in
@@ -84,3 +297,149 @@ printf("fibo of %ld is %ld\n",i,f);
   analysis.
   (Depending on your version of the compiler, the result may
   vary.)
+
+#### Assembly Code (level 0)
+
+```
+	.file	"fibo.c"
+gcc2_compiled.:
+___gnu_compiled_c:
+.text
+	.align 4
+.globl _fibo
+	.def	_fibo;	.scl	2;	.type	32;	.endef
+_fibo:
+	pushl %ebp
+	movl %esp,%ebp
+	pushl %ebx
+	cmpl $0,8(%ebp)
+	jg L2
+	xorl %eax,%eax
+	jmp L1
+	.p2align 4,,7
+L2:
+	cmpl $1,8(%ebp)
+	jne L3
+	movl $1,%eax
+	jmp L1
+	.p2align 4,,7
+L3:
+	movl 8(%ebp),%eax
+	decl %eax
+	pushl %eax
+	call _fibo
+	addl $4,%esp
+	movl %eax,%ebx
+	movl 8(%ebp),%eax
+	addl $-2,%eax
+	pushl %eax
+	call _fibo
+	addl $4,%esp
+	movl %eax,%eax
+	leal (%eax,%ebx),%edx
+	movl %edx,%eax
+	jmp L1
+	.p2align 4,,7
+L1:
+	movl -4(%ebp),%ebx
+	movl %ebp,%esp
+	popl %ebp
+	ret
+	.def	___main;	.scl	2;	.type	32;	.endef
+LC0:
+	.ascii "fibo of %ld is %ld\12\0"
+	.align 4
+.globl _main
+	.def	_main;	.scl	2;	.type	32;	.endef
+_main:
+	pushl %ebp
+	movl %esp,%ebp
+	call ___main
+	pushl $0
+	pushl $0
+	pushl $LC0
+	call _printf
+	addl $12,%esp
+L4:
+	movl %ebp,%esp
+	popl %ebp
+	ret
+	.def	_printf;	.scl	2;	.type	32;	.endef
+```
+
+#### Assembly Code (level 1)
+
+```
+	.file	"fibo.c"
+gcc2_compiled.:
+___gnu_compiled_c:
+.text
+	.align 4
+.globl _fibo
+	.def	_fibo;	.scl	2;	.type	32;	.endef
+_fibo:
+	pushl %ebp
+	movl %esp,%ebp
+	pushl %esi
+	pushl %ebx
+	movl 8(%ebp),%ebx
+	testl %ebx,%ebx
+	jg L2
+	xorl %eax,%eax
+	jmp L4
+	.p2align 4,,7
+L2:
+	cmpl $1,%ebx
+	je L3
+	leal -1(%ebx),%eax
+	pushl %eax
+	call _fibo
+	movl %eax,%esi
+	leal -2(%ebx),%eax
+	pushl %eax
+	call _fibo
+	addl %esi,%eax
+	jmp L4
+	.p2align 4,,7
+L3:
+	movl $1,%eax
+L4:
+	leal -8(%ebp),%esp
+	popl %ebx
+	popl %esi
+	movl %ebp,%esp
+	popl %ebp
+	ret
+	.def	___main;	.scl	2;	.type	32;	.endef
+LC0:
+	.ascii "fibo of %ld is %ld\12\0"
+	.align 4
+.globl _main
+	.def	_main;	.scl	2;	.type	32;	.endef
+_main:
+	pushl %ebp
+	movl %esp,%ebp
+	call ___main
+	pushl $0
+	pushl $0
+	pushl $LC0
+	call _printf
+	movl %ebp,%esp
+	popl %ebp
+	ret
+	.def	_printf;	.scl	2;	.type	32;	.endef
+```
+
+#### Assembly Code (level 2)
+
+```
+
+```
+
+#### Assembly Code (level 3)
+
+```
+
+```
+
+Answer:
