@@ -4,7 +4,7 @@
 
 ### C code (max)
 
-```
+```c
 int max1(int a, int b) { return (a>b)?a:b;
 }
 int max2(int a, int b) {
@@ -20,7 +20,7 @@ return max;
 
 ### Assembly code (max)
 
-```
+```x86asm
 	.file	"max.c"
 gcc2_compiled.:
 ___gnu_compiled_c:
@@ -96,7 +96,7 @@ L3:
 
 #### C Code (testMax)
 
-```
+```c
 int max1(int a, int b) { return (a>b)?a:b;
 }
 int max2(int a, int b) {
@@ -115,7 +115,7 @@ int testMax(int a, int b){
 
 #### Assembly code (testMax)
 
-```
+```x86asm
 	.file	"testmax.c"
 gcc2_compiled.:
 ___gnu_compiled_c:
@@ -207,7 +207,7 @@ L6:
 
 #### Assembly Code (max level 2)
 
-```
+```x86asm
 	.file	"max.c"
 gcc2_compiled.:
 ___gnu_compiled_c:
@@ -260,7 +260,7 @@ L4:
 
 ## 2. Optimization
 
-```
+```c
 #include <stdio.h>
 long fibo(long a) {
 if (a<=0L) {
@@ -300,7 +300,7 @@ printf("fibo of %ld is %ld\n",i,f);
 
 #### Assembly Code (fibo level 0)
 
-```
+```x86asm
 	.file	"fibo.c"
 gcc2_compiled.:
 ___gnu_compiled_c:
@@ -369,7 +369,7 @@ L4:
 
 #### Assembly Code (fibo level 1 and level 2 have the same code)
 
-```
+```x86asm
 	.file	"fibo.c"
 gcc2_compiled.:
 ___gnu_compiled_c:
@@ -432,7 +432,7 @@ _main:
 
 #### Assembly Code (fibo level 3)
 
-```
+```x86asm
 	.file	"fibo.c"
 gcc2_compiled.:
 ___gnu_compiled_c:
