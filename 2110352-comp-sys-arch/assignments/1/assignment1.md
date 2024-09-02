@@ -317,9 +317,7 @@ printf("fibo of %ld is %ld\n",i,f);
   difference after level 1.) You may want to run each program a
   few times and use the average value as a result.
 
-  Answer:
-
-  #### Average Time (Ran 3 times)
+  Answer: Here is the Average Time from running 3 times
 
   - level 0 : 9.62s
   - level 1 : 8.98s
@@ -340,6 +338,8 @@ printf("fibo of %ld is %ld\n",i,f);
 
   - level 0 : Normal
   - level 1 : Simplifies comparation logics, stores value more efficiently in registers
+  - level 2 : Same code as level 1
+  - level 3 : Handle printings and minimize redundances when calling the function
 
 #### Assembly Code (fibo level 0)
 
