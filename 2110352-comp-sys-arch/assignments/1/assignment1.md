@@ -80,19 +80,19 @@ L3:
   (e.g. Accumulator, Register Memory, Memory Memory,
   Register Register) Please justify your answer.
 
-  Answer:
+  Answer: Memory-Register Model because it use 'movl' to move value from memory to register
 
 - Can you tell whether the architecture is either Restricted
   Alignment or Unrestricted Alignment? Please explain
   how you come up with your answer.
 
-  Answer:
+  Answer: Restricted because the values are multiples of 4 (4, 8, 12, 16, etc.) 4 bits
 
 - Create a new function (e.g. testMax) to call max1.
   Generate new assembly code. What does the result
   suggest regarding the register saving (caller save vs. callee save)? Please provide your analysis.
 
-  Answer:
+  Answer: Callee save because it push base stack pointer meaning creating a new stack frame after getting called
 
 #### C Code (testMax)
 
@@ -193,17 +193,39 @@ L6:
 
 - How do the arguments be passed and the return value
   returned from a function? Please explain the code.
-  Find the part of code (snippet) that does comparison and
+
+  Answer: base stack pointer for passing and %eax for returning depends on the conditions
+
+- Find the part of code (snippet) that does comparison and
   conditional branch. Explain how it works.
 
-  Answer:
+  Answer: The condition compares the two arguments passed to the max1 function. If the first argument (at [ebp + 8]) is greater than the second argument (at [ebp + 12]), the code inside the conditional block is executed to set %eax to the first argument. Otherwise, %eax already contains the second argument, which is the maximum value.
+
+```x86asm
+  _max1:
+  	pushl %ebp
+  	movl %esp,%ebp
+  	movl 12(%ebp),%eax
+  	cmpl 8(%ebp),%eax
+  	jge L2
+  	movl 8(%ebp),%eax
+  L2:
+  	movl %eax,%eax
+  	jmp L1
+  	.p2align 4,,7
+  L1:
+  	movl %ebp,%esp
+  	popl %ebp
+  	ret
+  	.align 4
+```
 
 - If max.c is compiled with optimization turned on (using
   “gcc -O2 -S max.c”), what are the differences that you
   may observe from the result (as compared to that without
   optimization). Please provide your analysis
 
-  Answer:
+  Answer: Both max1 and max2 codes are the same. It removes the unnecessary return part (L1)
 
 #### Assembly Code (max level 2)
 
@@ -250,13 +272,22 @@ L4:
   command to measure the performance. Compare the
   measure to your estimation.
 
-  Answer:
+  Answer: For the optimized version, IC = 10. CPI is around 1 cycle for most instructions. I use 2.6 GHz CPU. So Tc = 1/2.6 GHz
+
+  So CPU Time = 10 \* 1 \* 1/2.6\*10^9 = 3.846 ns
+
+  #### Time (Calling max1 function 100,000,000 times)
+
+  - 0.030s
+  - 0.029s
+  - 0.032s
 
 - What do you think are the factors that cause the difference? Please provide your analysis.
   (You may find references online regarding the CPI of
   each instruction.)
 
   Answer:
+  The differences were caused by the CPU handling other tasks (system, user, etc).
 
 ## 2. Optimization
 
@@ -288,6 +319,13 @@ printf("fibo of %ld is %ld\n",i,f);
 
   Answer:
 
+  #### Average Time (Ran 3 times)
+
+  - level 0 : 9.62s
+  - level 1 : 8.98s
+  - level 2 : 8.94s
+  - level 3 : 8.95s
+
 ## 3. Analysis
 
 - As suggested by the results in Exercise 2, what kinds of optimization are used by the compiler in each level in
@@ -297,6 +335,11 @@ printf("fibo of %ld is %ld\n",i,f);
   analysis.
   (Depending on your version of the compiler, the result may
   vary.)
+
+  Answer:
+
+  - level 0 : Normal
+  - level 1 :
 
 #### Assembly Code (fibo level 0)
 
@@ -493,5 +536,3 @@ _main:
 	ret
 	.def	_printf;	.scl	2;	.type	32;	.endef
 ```
-
-Answer:
