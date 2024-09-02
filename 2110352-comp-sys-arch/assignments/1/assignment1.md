@@ -339,7 +339,7 @@ printf("fibo of %ld is %ld\n",i,f);
   Answer:
 
   - level 0 : Normal
-  - level 1 :
+  - level 1 : Simplifies comparation logics, stores value more efficiently in registers
 
 #### Assembly Code (fibo level 0)
 
