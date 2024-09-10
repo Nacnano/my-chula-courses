@@ -54,7 +54,7 @@ This is a personal repository for storing codes and learning materials from all 
 - [raviporna's CP46-archive](https://github.com/raviporna/CP46-archive)
 - [JomnoiZ's Ultimate Algorithm Solutions](https://github.com/JomnoiZ/AlgorithmDesign)
 - [ADNCRICH's CU_submission](https://github.com/ADNCRICH/CU_submission)
-- [](https://github.com/phumipatc/CU_Submissions)
+- [phumipatc's CU_Submissions](https://github.com/phumipatc/CU_Submissions)
 - and many more (There are so many to be added)
 
 ## Author
