@@ -40,6 +40,7 @@ This is a personal repository for storing codes and learning materials from all 
 
 1. [2110573 - Pattern Recognition](https://github.com/Nacnano/my-chula-courses/tree/main/2110573-patt-recog) : Solution for homeworks and projects
    - Final Project : [Stock Return Prediction](https://github.com/Nacnano/stock-machine-learning-project/)
+1. [2110431 - Introduction to Digital Imaging](https://github.com/Nacnano/my-chula-courses/tree/main/2110431-intro-dig-imaging)
 
 ### General Electives (see the files in [Onedrive](https://chula-my.sharepoint.com/:f:/g/personal/6531313221_student_chula_ac_th/Eh6t27fwE_VBky4hGBT67ygBo3h8n7EWyle22TjCA94aaQ?e=sDsXLV))
 
