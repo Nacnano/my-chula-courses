@@ -58,23 +58,23 @@ module system(
     // LAB04_01 : RAM
         
     // Single Pulser
-    wire push,pop,reset;
-    singlePulser(push, btnU, targetClk); // push stack
-    singlePulser(pop, btnC, targetClk); // pop stack -> display top value in num3,num2 and stack size in num1,num0
-    singlePulser(reset, btnD, targetClk); // reset
+//    wire push,pop,reset;
+//    singlePulser(push, btnU, targetClk); // push stack
+//    singlePulser(pop, btnC, targetClk); // pop stack -> display top value in num3,num2 and stack size in num1,num0
+//    singlePulser(reset, btnD, targetClk); // reset
     
-    wire [3:0] num3,num2,num1,num0; // left to right
-    SinglePortRAM stack({num1,num0},{num3,num2},sw[7:0],pop,targetClk,push,reset);
+//    wire [3:0] num3,num2,num1,num0; // left to right
+//    SinglePortRAM stack({num1,num0},{num3,num2},sw[7:0],pop,targetClk,push,reset);
     
     
     ////////////////////////////////////////
     // LAB04_02: ROM and control
-    reg [3:0] num3,num2,num1,num0; // left to right
-    reg [7:0] rom[2**5-1:0];
-    initial $readmemb("rom2.mem", rom);
+//    reg [3:0] num3,num2,num1,num0; // left to right
+//    reg [7:0] rom[2**5-1:0];
+//    initial $readmemb("rom2.mem", rom);
     
-    always @(posedge targetClk)
-        {num3,num2,num1,num0} = {8'b00000000, rom[sw[4:0]] };
+//    always @(posedge targetClk)
+//        {num3,num2,num1,num0} = {8'b00000000, rom[sw[4:0]] };
     
     
     ////////////////////////////////////////
