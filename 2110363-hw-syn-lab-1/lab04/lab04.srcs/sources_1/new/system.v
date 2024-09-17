@@ -30,7 +30,6 @@ module system(
     input clk
     );
     
-
     wire an0,an1,an2,an3;
     assign an={an3,an2,an1,an0};
     
@@ -52,17 +51,18 @@ module system(
     // Display
     quadSevenSeg q7seg(seg,dp,an0,an1,an2,an3,num0,num1,num2,num3,targetClk);
     
+    
     ////////////////////////////////////////
+    // LAB04_01 : RAM
+        
     // Single Pulser
     wire push,pop,reset;
     singlePulser(push, btnU, targetClk);
     singlePulser(pop, btnC, targetClk);
     singlePulser(reset, btnD, targetClk);
     
-    ////////////////////////////////////////
-    // LAB04_01 : RAM
-//    wire [3:0] num3,num2,num1,num0; // left to right
-//    SinglePortRAM stack({num1,num0},{num3,num2},sw[7:0],pop,targetClk,push,reset);
+    wire [3:0] num3,num2,num1,num0; // left to right
+    SinglePortRAM stack({num1,num0},{num3,num2},sw[7:0],pop,targetClk,push,reset);
     
     
     ////////////////////////////////////////
