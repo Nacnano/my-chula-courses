@@ -1,3 +1,4 @@
+-- 4.6 Show the customer ID and customer name with the highest number of orders.
 WITH CustomerOrderCounts AS (
     SELECT C.CUSTOMER_ID, C.CUSTOMER_NAME, COUNT(O.ORDER_ID) AS order_count
     FROM CUSTOMER C

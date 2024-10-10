@@ -1,3 +1,4 @@
+-- 4.11 Show the IDs and names of all customers who have never placed an order.
 SELECT C.CUSTOMER_ID, C.CUSTOMER_NAME
 FROM CUSTOMER C
 LEFT JOIN ORDERT O ON C.CUSTOMER_ID = O.CUSTOMER_ID

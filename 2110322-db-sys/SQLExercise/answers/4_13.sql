@@ -1,3 +1,4 @@
+-- 4.13 Show the total payment for order number 3.
 SELECT SUM(P.STANDARD_PRICE * OL.ORDERED_QUANTITY) AS total_payment
 FROM ORDER_LINE OL
 JOIN PRODUCT P ON OL.PRODUCT_ID = P.PRODUCT_ID

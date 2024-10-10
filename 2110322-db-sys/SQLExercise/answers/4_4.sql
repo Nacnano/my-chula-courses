@@ -1,3 +1,4 @@
+-- 4.4 Show the product ID and product description that have the highest number of orders.
 WITH ProductOrderCounts AS (
     SELECT P.PRODUCT_ID, P.PRODUCT_DESCRIPTION, COUNT(OL.ORDER_ID) AS order_count
     FROM ORDER_LINE OL
