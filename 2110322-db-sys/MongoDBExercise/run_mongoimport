@@ -1,0 +1,23 @@
+## Run the following commands in the system shell
+
+mongoimport \
+   --db='ordersystem' \
+   --collection='customer' \
+   --file=ordersystem_for_mongo/customer.csv \
+   --type=csv \
+   --fields="customer_id","customer_name","customer_ampur","customer_province","customer_zipcode"
+
+mongoimport \
+   --db='ordersystem' \
+   --collection='product' \
+   --file=ordersystem_for_mongo/product.csv \
+   --type=csv \
+   --fields="product_id","product_name","product_color","product_price"
+
+
+mongoimport \
+   --db='ordersystem' \
+   --collection='orders_w_lines' \
+   --jsonArray \
+   --file=ordersystem_for_mongo/orders_w_lines.json
+
