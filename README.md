@@ -8,6 +8,8 @@ This is a personal repository for storing codes and learning materials from all 
 
 1. พี่แนะแนวน้อง CP49: [Slide](<https://github.com/Nacnano/my-chula-courses/blob/main/guidance/WIP%20(%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B9%80%E0%B8%A1%E0%B8%A5%E0%B8%88%E0%B8%B8%E0%B8%AC%E0%B8%B2)%20%E0%B9%81%E0%B8%99%E0%B8%B0%E0%B9%81%E0%B8%99%E0%B8%A7%20CP48%2B%2B.pdf>), [Video](https://youtu.be/tEwQvjD-tuU)
 
+2. CP48 Review Internship: [Slide](https://docs.google.com/presentation/d/1gdvf9dJOKoCz7fogMiVtNSCoBfEy3R08cB-kLzR2Ml4/edit#slide=id.g2f05475da01_0_67) Please use @student.chula.ac.th email. Sorry, not available for public (Some content is confidential)
+
 ## Courses
 
 ### You can view the all courses' slides, lectures, exercises, quizzes, exams in the [Onedrive](https://chula-my.sharepoint.com/:f:/g/personal/6531313221_student_chula_ac_th/Eh6t27fwE_VBky4hGBT67ygBo3h8n7EWyle22TjCA94aaQ?e=sDsXLV) here. The rest is the codes.
