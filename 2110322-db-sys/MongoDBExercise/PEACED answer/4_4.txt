@@ -1,0 +1,56 @@
+db.getCollection('Order').aggregate(
+  [
+    { $unwind: { path: '$order_lines' } },
+    {
+      $group: {
+        _id: '$order_lines.product_id',
+        count: { $sum: 1 }
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        maxCount: { $max: '$count' },
+        tmp: {
+          $push: {
+            product_id: '$_id',
+            count: '$count'
+          }
+        }
+      }
+    },
+    { $unwind: { path: '$tmp' } },
+    {
+      $set: {
+        isMax: {
+          $cond: {
+            if: {
+              $eq: ['$maxCount', '$tmp.count']
+            },
+            then: true,
+            else: false
+          }
+        }
+      }
+    },
+    { $match: { isMax: true } },
+    {
+      $lookup: {
+        from: 'Product',
+        localField: 'tmp.product_id',
+        foreignField: 'product_id',
+        as: 'yes'
+      }
+    },
+    { $unwind: { path: '$yes' } },
+    {
+      $project: {
+        product_id: '$yes.product_id',
+        product_description: '$yes.product_name',
+        _id: 0
+      }
+    },
+    { $sort: { product_id: 1 } }
+  ],
+  { maxTimeMS: 60000, allowDiskUse: true }
+);

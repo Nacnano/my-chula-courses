@@ -1,0 +1,38 @@
+db.orders_w_lines.aggregate([
+  { 
+    $unwind: { path: '$order_lines' }  // Breaks down each order into individual order lines
+  },
+  {
+    $group: {
+      _id: '$order_lines.product_id',  // Groups the data by product_id
+      count: { 
+        $sum: '$order_lines.ordered_quantity'  // Sums up the total quantity ordered for each product
+      }
+    }
+  },
+  {
+    $lookup: {  // Joins the data with the 'Product' collection to get product details
+      from: 'product',  // Collection to join (Product)
+      localField: '_id',  // Match product_id from the 'orders_w_lines' collection
+      foreignField: 'product_id',  // Match it with the 'product_id' in the 'Product' collection
+      as: 'yes'  // Store the result as an array named 'yes'
+    }
+  },
+  { 
+    $unwind: { path: '$yes' }  // Unwinds the 'yes' array so that each document has one product
+  },
+  {
+    $project: {  // Select the fields to return
+      product_id: '$yes.product_id',  // Return the product_id from the joined 'Product' collection
+      product_name: '$yes.product_name',  // Return the product_name from the joined 'Product' collection
+      ordered_quantity: '$count',  // Return the total ordered quantity calculated earlier
+      _id: 0  // Exclude the default _id field
+    }
+  },
+  { 
+    $sort: { ordered_quantity: -1 }  // Sort the results in descending order of ordered quantity
+  },
+  { 
+    $limit: 1  // Limit the result to only the top product with the highest ordered quantity
+  }
+])

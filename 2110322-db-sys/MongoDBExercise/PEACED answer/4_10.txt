@@ -1,0 +1,14 @@
+db.getCollection('Product').aggregate(
+  [
+    {
+      $match: {
+        product_color: {
+          $regex: 'White',
+          $options: 'i'
+        }
+      }
+    },
+    { $project: { product_price: 0, _id: 0 } }
+  ],
+  { maxTimeMS: 60000, allowDiskUse: true }
+);

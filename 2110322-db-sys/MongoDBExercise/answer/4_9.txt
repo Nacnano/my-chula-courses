@@ -1,0 +1,40 @@
+db.orders_w_lines.aggregate([
+  {
+    $match: {
+      order_date: {
+        $gte: '2020-01-10',  // Matches orders with a date greater than or equal to 2020-01-10
+        $lte: '2020-01-15'   // and less than or equal to 2020-01-15
+      }
+    }
+  },
+  {
+    $group: {
+      _id: null,  // Grouping by null to accumulate the set across all orders
+      yes: { $addToSet: '$customer_id' }  // Collect unique customer_ids from the matched orders into a set
+    }
+  },
+  { 
+    $unwind: { path: '$yes' }  // Unwind the set of customer_ids to process each customer individually
+  },
+  {
+    $lookup: {  // Lookup customer details from the 'customer' collection
+      from: 'customer',  // The collection to join with
+      localField: 'yes',  // Use the customer_id from the 'yes' field
+      foreignField: 'customer_id',  // Match with customer_id in the customer collection
+      as: 'result'  // Store the joined customer document in the 'result' field
+    }
+  },
+  { 
+    $unwind: { path: '$result' }  // Unwind the 'result' array to handle each joined customer separately
+  },
+  {
+    $project: {  // Project the output to include only customer_id and customer_name
+      customer_id: '$result.customer_id',  // Display customer_id from the joined 'result'
+      customer_name: '$result.customer_name',  // Display customer_name from the joined 'result'
+      _id: 0  // Exclude the default _id field
+    }
+  },
+  { 
+    $sort: { customer_id: 1 }  // Sort the customers by their customer_id in ascending order
+  }
+])

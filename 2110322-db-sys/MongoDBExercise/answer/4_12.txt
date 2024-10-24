@@ -1,0 +1,24 @@
+db.orders_w_lines.aggregate(
+  [
+    {
+      $match: {
+        order_date: {
+          $gte: '2020-01-09',  // Start date for filtering orders
+          $lte: '2020-01-16'   // End date for filtering orders
+        }
+      }
+    },
+    {
+      $group: {
+        _id: '$product_id',  // Group by product_id
+        yes: { $sum: 1 }  // Count the number of orders for each product
+      }
+    },
+    { 
+      $project: { 
+        total_order: '$yes',  // Rename the count to total_order
+        _id: 0  // Exclude the default _id field from the output
+      } 
+    }
+  ]
+);

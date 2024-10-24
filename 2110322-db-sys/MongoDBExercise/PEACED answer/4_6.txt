@@ -1,0 +1,38 @@
+db.getCollection('Order').aggregate(
+  [
+    {
+      $group: {
+        _id: '$customer_id',
+        num_orders: { $sum: 1 }
+      }
+    },
+    {
+      $lookup: {
+        from: 'Customer',
+        localField: '_id',
+        foreignField: 'customer_id',
+        as: 'customer_obj'
+      }
+    },
+    {
+      $project: {
+        customer_id: '$_id',
+        customer_name:
+          '$customer_obj.customer_name',
+        num_orders: 1,
+        _id: 0
+      }
+    },
+    {
+      $unwind: {
+        path: '$customer_name',
+        preserveNullAndEmptyArrays: true
+      }
+    },
+    {
+      $sort: { num_orders: -1, customer_name: 1 }
+    },
+    { $limit: 1 }
+  ],
+  { maxTimeMS: 60000, allowDiskUse: true }
+);

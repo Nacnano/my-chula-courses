@@ -1,0 +1,37 @@
+db.getCollection('Order').aggregate(
+  [
+    {
+      $match: {
+        order_date: {
+          $gte: '2020-01-10',
+          $lte: '2020-01-15'
+        }
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        yes: { $addToSet: '$customer_id' }
+      }
+    },
+    { $unwind: { path: '$yes' } },
+    {
+      $lookup: {
+        from: 'Customer',
+        localField: 'yes',
+        foreignField: 'customer_id',
+        as: 'result'
+      }
+    },
+    { $unwind: { path: '$result' } },
+    {
+      $project: {
+        customer_id: '$result.customer_id',
+        customer_name: '$result.customer_name',
+        _id: 0
+      }
+    },
+    { $sort: { customer_id: 1 } }
+  ],
+  { maxTimeMS: 60000, allowDiskUse: true }
+);

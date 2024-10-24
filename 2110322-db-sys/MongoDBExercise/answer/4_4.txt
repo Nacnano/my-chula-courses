@@ -1,0 +1,61 @@
+db.orders_w_lines.aggregate([
+  { 
+    $unwind: { path: '$order_lines' }  // Break down each document with the 'order_lines' array into multiple documents, one for each item in 'order_lines'
+  },
+  {
+    $group: {
+      _id: '$order_lines.product_id',  // Group by the product_id in 'order_lines'
+      count: { $sum: 1 }  // Count how many times each product_id appears in the orders
+    }
+  },
+  {
+    $group: {
+      _id: null,  // Group everything into one document to calculate the maximum count
+      maxCount: { $max: '$count' },  // Find the maximum order count
+      tmp: {
+        $push: {  // Collect the product_id and its corresponding count in an array
+          product_id: '$_id',
+          count: '$count'
+        }
+      }
+    }
+  },
+  { 
+    $unwind: { path: '$tmp' }  // Break down the array in 'tmp' to one document per element
+  },
+  {
+    $set: {  // Create a new field 'isMax' to check if the count of the product matches the maximum count
+      isMax: {
+        $cond: {
+          if: { $eq: ['$maxCount', '$tmp.count'] },  // If the count is equal to maxCount, set 'isMax' to true
+          then: true,
+          else: false
+        }
+      }
+    }
+  },
+  { 
+    $match: { isMax: true }  // Only keep the products that have the maximum count
+  },
+  {
+    $lookup: {  // Perform a lookup to get product details from the 'Product' collection
+      from: 'product',  // Replace 'Product' with 'product' for consistency
+      localField: 'tmp.product_id',  // Match the 'product_id' from the orders with the 'product_id' in the 'product' collection
+      foreignField: 'product_id',
+      as: 'yes'  // The result of the lookup will be stored in the 'yes' field
+    }
+  },
+  { 
+    $unwind: { path: '$yes' }  // Unwind the 'yes' array to get individual product details
+  },
+  {
+    $project: {  // Specify the fields to display in the final result
+      product_id: '$yes.product_id',  // Display the product_id from the 'product' collection
+      product_description: '$yes.product_name',  // Display the product_name (description) from the 'product' collection
+      _id: 0  // Do not include the '_id' field in the output
+    }
+  },
+  { 
+    $sort: { product_id: 1 }  // Sort the results by product_id in ascending order
+  }
+])

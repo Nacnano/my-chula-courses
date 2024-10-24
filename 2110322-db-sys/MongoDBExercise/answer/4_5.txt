@@ -1,0 +1,33 @@
+db.orders_w_lines.aggregate([
+  {
+    $group: {
+      _id: '$customer_id',  // Group by customer_id
+      num_orders: { $sum: 1 }  // Count the number of orders for each customer
+    }
+  },
+  {
+    $lookup: {  // Perform a lookup to get customer details from the 'customer' collection
+      from: 'customer',  // Specify the 'customer' collection
+      localField: '_id',  // Match the _id (which is customer_id) with the customer_id in the 'customer' collection
+      foreignField: 'customer_id',
+      as: 'customer_obj'  // Store the matched customer object in the 'customer_obj' field
+    }
+  },
+  {
+    $project: {  // Define which fields to return in the result
+      customer_id: '$_id',  // Include the customer_id
+      customer_name: '$customer_obj.customer_name',  // Extract customer_name from the 'customer_obj' array
+      num_orders: 1,  // Include the number of orders
+      _id: 0  // Exclude the _id field from the output
+    }
+  },
+  {
+    $unwind: {  // Unwind the 'customer_name' array (because 'lookup' results in an array)
+      path: '$customer_name',  // Unwind the 'customer_name' field
+      preserveNullAndEmptyArrays: true  // Keep the documents even if they don't have a matching customer name
+    }
+  },
+  {
+    $sort: { num_orders: -1 }  // Sort the result by the number of orders in descending order
+  }
+])

@@ -1,0 +1,20 @@
+db.getCollection('Order').aggregate(
+  [
+    {
+      $match: {
+        order_date: {
+          $gte: '2020-01-09',
+          $lte: '2020-01-16'
+        }
+      }
+    },
+    {
+      $group: {
+        _id: '$product_id',
+        yes: { $sum: 1 }
+      }
+    },
+    { $project: { total_order: '$yes', _id: 0 } }
+  ],
+  { maxTimeMS: 60000, allowDiskUse: true }
+);

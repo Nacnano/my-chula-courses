@@ -1,0 +1,12 @@
+db.orders_w_lines.aggregate(
+  [
+    // Step 1: Filter the documents where customer_id equals 10001
+    { $match: { customer_id: 10001 } },
+
+    // Step 2: Sort the result by order_id in ascending order
+    { $sort: { order_id: 1 } },
+
+    // Step 3: Remove the _id field from the output
+    { $project: { _id: 0 } }
+  ]
+);

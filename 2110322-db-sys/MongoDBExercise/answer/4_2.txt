@@ -1,0 +1,19 @@
+db.customer.aggregate([
+  {
+    $group: {
+      _id: "$customer_zipcode",  // Group by zipcode
+      customer_count: { $sum: 1 }  // Count customers in each zipcode
+    }
+  },
+  {
+    $match: {
+      customer_count: { $gt: 1 }  // Filter only zipcodes with more than 1 customer
+    }
+  },
+  {
+    $sort: { 
+      customer_count: -1,  // Sort by customer count in descending order
+      _id: 1  // Sort by zipcode in ascending order if counts are the same
+    }
+  }
+])

@@ -1,0 +1,39 @@
+db.orders_w_lines.aggregate([
+  {
+    $group: {
+      _id: '$customer_id',  // Group by customer_id to calculate the total number of orders per customer
+      num_orders: { $sum: 1 }  // Sum up the number of orders per customer
+    }
+  },
+  {
+    $lookup: {  // Perform a lookup from the 'customer' collection to get customer details
+      from: 'customer',  // The collection to join (i.e., 'customer')
+      localField: '_id',  // Match the '_id' from the current document with 'customer_id' in 'customer'
+      foreignField: 'customer_id',
+      as: 'customer_obj'  // Store the resulting documents in an array named 'customer_obj'
+    }
+  },
+  {
+    $project: {  // Specify which fields to include in the output
+      customer_id: '$_id',  // Include the customer_id (this is the _id from the group stage)
+      customer_name: '$customer_obj.customer_name',  // Retrieve customer_name from the joined 'customer_obj'
+      num_orders: 1,  // Include the number of orders
+      _id: 0  // Exclude the default _id field from the output
+    }
+  },
+  {
+    $unwind: {  // Unwind the 'customer_name' array so each document has a single customer name
+      path: '$customer_name',  // The array field to unwind
+      preserveNullAndEmptyArrays: true  // Ensure customers without names are still included
+    }
+  },
+  {
+    $sort: {  // Sort the results by 'num_orders' in descending order, and if tied, by 'customer_name' in ascending order
+      num_orders: -1,  
+      customer_name: 1  
+    }
+  },
+  {
+    $limit: 1  // Limit the result to only the customer with the most orders
+  }
+])

@@ -1,0 +1,18 @@
+db.product.aggregate(
+  [
+    {
+      $match: {  // Stage to filter documents
+        product_color: {  // Filtering based on product_color field
+          $regex: 'White',  // Using a regular expression to match colors containing "White"
+          $options: 'i'     // 'i' makes the regex case-insensitive
+        }
+      }
+    },
+    {
+      $project: {  // Stage to reshape the output documents
+        product_price: 0,  // Exclude the product_price field from the output
+        _id: 0             // Exclude the default _id field from the output
+      }
+    }
+  ]
+);

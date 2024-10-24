@@ -1,0 +1,21 @@
+db.customer.aggregate(
+  [
+    {
+      $lookup: {  // Stage to join the 'orders_w_lines' collection
+        from: 'orders_w_lines',  // The collection to join
+        localField: 'customer_id',  // Field from 'customer'
+        foreignField: 'customer_id',  // Field from 'orders_w_lines'
+        as: 'result'  // Name for the joined array
+      }
+    },
+    { $match: { result: { $size: 0 } } },  // Match customers with no orders
+    {
+      $project: {  // Reshape the output
+        customer_id: 1,  // Include customer_id in the output
+        customer_name: 1,  // Include customer_name in the output
+        _id: 0  // Exclude the default _id field
+      }
+    },
+    { $sort: { customer_id: 1 } }  // Sort by customer_id in ascending order
+  ]
+);

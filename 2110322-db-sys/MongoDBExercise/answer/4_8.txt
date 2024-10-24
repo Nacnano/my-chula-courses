@@ -1,0 +1,32 @@
+db.orders_w_lines.aggregate([
+  {
+    $group: {
+      _id: '$customer_id',  // Group the data by customer_id
+      count: { $sum: 1 }  // Count the number of orders per customer
+    }
+  },
+  {
+    $lookup: {  // Join with the 'Customer' collection to get customer details
+      from: 'customer',  // Collection to join with
+      localField: '_id',  // Use customer_id from the orders collection
+      foreignField: 'customer_id',  // Match with customer_id in the customer collection
+      as: 'yes'  // Output the result as an array named 'yes'
+    }
+  },
+  { 
+    $unwind: { path: '$yes' }  // Unwind the 'yes' array so each document has one customer object
+  },
+  {
+    $project: {  // Select which fields to include in the output
+      customer_name: '$yes.customer_name',  // Return the customer_name from the joined 'customer' document
+      order_count: '$count',  // Return the count of orders for that customer
+      _id: 0  // Exclude the default _id field
+    }
+  },
+  { 
+    $sort: { order_count: -1 }  // Sort the customers by order_count in descending order (most orders first)
+  },
+  { 
+    $limit: 3  // Limit the output to only the top 3 customers
+  }
+])

@@ -1,0 +1,8 @@
+db.getCollection('Order').aggregate(
+  [
+    { $match: { customer_id: 10001 } },
+    { $sort: { order_id: 1 } },
+    { $project: { _id: 0 } }
+  ],
+  { maxTimeMS: 60000, allowDiskUse: true }
+);

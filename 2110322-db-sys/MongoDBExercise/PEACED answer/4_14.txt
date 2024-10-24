@@ -1,0 +1,1 @@
+db.Product.insertMany([{product_id:7,product_name:"kitchen cabinet", product_color:"Cherry", produce_price:1500.00},{product_id:8,product_name:"table", product_color:"Red Oak", produce_price:550.00}])
