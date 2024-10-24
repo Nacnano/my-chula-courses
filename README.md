@@ -6,9 +6,11 @@ This is a personal repository for storing codes and learning materials from all 
 
 ## Guidance
 
-1. พี่แนะแนวน้อง CP49: [Slide](<https://github.com/Nacnano/my-chula-courses/blob/main/guidance/WIP%20(%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B9%80%E0%B8%A1%E0%B8%A5%E0%B8%88%E0%B8%B8%E0%B8%AC%E0%B8%B2)%20%E0%B9%81%E0%B8%99%E0%B8%B0%E0%B9%81%E0%B8%99%E0%B8%A7%20CP48%2B%2B.pdf>), [Video](https://youtu.be/tEwQvjD-tuU)
+### Note : Please use @student.chula.ac.th email. Sorry, not available for public (Some content is confidential)
 
-2. CP48 Review Internship: [Slide](https://docs.google.com/presentation/d/1gdvf9dJOKoCz7fogMiVtNSCoBfEy3R08cB-kLzR2Ml4/edit#slide=id.g2f05475da01_0_67) Please use @student.chula.ac.th email. Sorry, not available for public (Some content is confidential)
+1. พี่แนะแนวน้อง CP49: [Slide](https://docs.google.com/presentation/d/11nw6GtNE3KuS1G5MS36VHqcSHQJjzFVEvZQR1mBpWEk/edit), The video recording is not available for public. (Contact for more info)
+
+2. CP48 Review Internship: [Slide](https://docs.google.com/presentation/d/1gdvf9dJOKoCz7fogMiVtNSCoBfEy3R08cB-kLzR2Ml4/edit#slide=id.g2f05475da01_0_67)
 
 ## Courses
 
