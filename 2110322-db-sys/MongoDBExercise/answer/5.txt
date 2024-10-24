@@ -1,0 +1,11 @@
+1. Embed Customer Info in `orders_w_lines`:
+   - Easier to access both order and customer details together.
+   - Good if customer info rarely changes.
+   
+2. Embed Product Info in `orders_w_lines`:
+
+   - Simplifies queries and keeps historical prices correct.
+   - Ideal if product details don’t change often.
+
+3. Embed Delivery Status in `orders_w_lines`:
+   - Makes tracking orders easier in one query.
