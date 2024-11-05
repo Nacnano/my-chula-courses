@@ -41,7 +41,7 @@ module system(
     uart_rx rx(clkDiv2,RsRx,received,num0);
     
     siekoo_rom siekoo_rom_inst(num0, num1);
-    //assign RsTx = RsRx;
+    assign RsTx = RsRx;
     quadSevenSeg display (
         .seg(seg),
         .dp(dp),
