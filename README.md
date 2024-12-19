@@ -48,7 +48,7 @@ This is a personal repository for storing codes and learning materials from all 
 1. [2110573 - Pattern Recognition](https://github.com/Nacnano/my-chula-courses/tree/main/2110573-patt-recog) : Solution for homeworks and projects
    - Final Project : [Stock Return Prediction](https://github.com/Nacnano/stock-machine-learning-project/)
 2. [2110431 - Introduction to Digital Imaging](https://github.com/Nacnano/my-chula-courses/tree/main/2110431-intro-dig-imaging)
-   - Final Project : [Chess Move Detection](athens)
+   - Final Project : [Chess Move Detection](https://github.com/athensclub/chess-video-move-detection)
 
 ### Individual Studies
 
