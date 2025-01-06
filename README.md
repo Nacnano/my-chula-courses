@@ -49,7 +49,7 @@ This is a personal repository for storing codes and learning materials from all 
    - Final Project : [Stock Return Prediction](https://github.com/Nacnano/stock-machine-learning-project/)
 2. [2110431 - Introduction to Digital Imaging](https://github.com/Nacnano/my-chula-courses/tree/main/2110431-intro-dig-imaging): Solutions for homeworks
    - Final Project : [Chess Move Detection](https://github.com/athensclub/chess-video-move-detection)
-3. [2110572 - Natural Language Processing Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110572-nlp-sys)
+3. [2110572 - Natural Language Processing Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110572-nlp-sys): Solutions for homeworks
 
 ### Individual Studies
 
