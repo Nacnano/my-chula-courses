@@ -2,7 +2,9 @@ import pandas as pd
 import json
 
 # Q1: Number of rows after removing duplicates
-def Q1(gb_videos):
+def Q1(gb_videos='/data/GBvideos.csv'):
+    if not isinstance(gb_videos, pd.DataFrame):
+        gb_videos = pd.read_csv("/data/GBvideos.csv")
     unique_rows = gb_videos.drop_duplicates()
     return len(unique_rows)
 
@@ -27,7 +29,7 @@ def Q4(gb_videos):
     return min_avg_date
 
 # Q5: Days with more total daily views in "Sports" than in "Comedy"
-def Q5(gb_videos, gb_category_path):
+def Q5(gb_videos, gb_category_path="/data/GB_category_id.json"):
     with open(gb_category_path, 'r') as file:
         categories = json.load(file)
     
