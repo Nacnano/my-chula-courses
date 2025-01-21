@@ -13,11 +13,11 @@ int main()
     {
         childpid = fork();
 
-        // if (childpid > 0)
-        // {
-        //     // wait(0);
-        //     break;
-        // }
+        if (childpid > 0)
+        {
+            wait(0);
+            break;
+        }
     }
 
     printf("This is process %ld with parent %ld\n", (long)getpid(), (long)getppid());
