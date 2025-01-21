@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
-main()
+#include <sys/wait.h>
+
+int main()
 {
     int i;
     int n;
@@ -11,6 +13,7 @@ main()
     for (i = 0; i < n; ++i)
     {
         childpid = fork();
+
         if (childpid > 0)
             break;
     }
