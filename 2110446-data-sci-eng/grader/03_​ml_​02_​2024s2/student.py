@@ -5,7 +5,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score
-from sklearn.metrics import classification_report
 
 import warnings
 from sklearn.exceptions import ConvergenceWarning
@@ -53,7 +52,7 @@ class BankLogistic:
         X = self.df
         
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
-            X, y, test_size=0.3, random_state=0, stratify=y
+            X, y, test_size=0.3, random_state=0
         )
         
         self.X_train.reset_index(drop=True, inplace=True)
@@ -65,17 +64,15 @@ class BankLogistic:
 
     def onehot_encode(self, X: pd.DataFrame, nominal_cols: list):
         """One-hot encodes the given categorical columns in X."""
-        enc = OneHotEncoder(handle_unknown="ignore", sparse=False)
-        encoded = enc.fit_transform(X[nominal_cols])
+        enc = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
+        encoded_array = enc.fit_transform(X[nominal_cols])
 
-        # Generate new column names
         new_col_names = [
             f"{col}_{val}" for col, vals in zip(nominal_cols, enc.categories_) for val in vals
         ]
 
-        # Convert to DataFrame and merge
-        enc_df = pd.DataFrame(encoded, columns=new_col_names, index=X.index)
-        X = pd.concat([X.drop(columns=nominal_cols), enc_df], axis=1)
+        encoded_df = pd.DataFrame(encoded_array, columns=new_col_names, index=X.index)
+        X = pd.concat([X.drop(columns=nominal_cols), encoded_df], axis=1)
 
         return X
 
@@ -93,10 +90,10 @@ class BankLogistic:
         self.X_test[num_cols] = pd.DataFrame(
             num_impute.transform(self.X_test[num_cols])
         )
+        
         self.X_train[cat_cols] = pd.DataFrame(
             cat_impute.fit_transform(self.X_train[cat_cols])
         )
-
         self.X_test[cat_cols] = pd.DataFrame(
             cat_impute.transform(self.X_test[cat_cols])
         )
@@ -114,16 +111,20 @@ class BankLogistic:
 
     def Q6(self):
         """Processes data by imputing missing values, encoding categorical features, and returns training set shape."""
-        self.Q5()  # Ensure preprocessing steps are applied
+        self.Q5()  
 
-        # Impute missing values
         self.impute_missing()
 
-        # Ordinal encoding for 'education'
         education_order = {
-            "illiterate": 1, "basic.4y": 2, "basic.6y": 3, "basic.9y": 4,
-            "high.school": 5, "professional.course": 6, "university.degree": 7
+            "illiterate": 1,
+            "basic.4y": 2,
+            "basic.6y": 3,
+            "basic.9y": 4,
+            "high.school": 5,
+            "professional.course": 6,
+            "university.degree": 7,
         }
+        
         self.X_train["education"] = self.X_train["education"].map(education_order)
         self.X_test["education"] = self.X_test["education"].map(education_order)
 
@@ -147,8 +148,5 @@ class BankLogistic:
         model.fit(self.X_train, self.y_train)
         
         y_pred = model.predict(self.X_test)
-        report = classification_report(
-            self.y_test, y_pred, output_dict=True, digits=2
-        )
         
-        return  round(report["macro avg"]["f1-score"], 2)
+        return  round(f1_score(self.y_test, y_pred, average='macro'), 2)
