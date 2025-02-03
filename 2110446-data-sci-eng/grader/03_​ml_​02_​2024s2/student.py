@@ -41,27 +41,18 @@ class BankLogistic:
     
     def Q5(self):
         """ Process unknown values, remove nearly constant features, and split the data. """
-        self.df.drop_duplicates(inplace=True)
+        self.Q4()
+        self.df.replace('unknown', None, inplace=True)
         
-        flat_cols = self.df.apply(
-            lambda col: col.value_counts(normalize=True).max() >= 0.90
-        )
-        self.df.drop(columns=flat_cols[flat_cols].index, inplace=True)
+        flat_cols = [col for col in self.df.columns if self.df[col].value_counts(normalize=True).max() > 0.99]
+        self.df.drop(columns=flat_cols, inplace=True)
         
-        y = self.df.pop("y")
-        X = self.df
-        
+        X, y = self.df.drop(columns='y'), self.df['y']
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
-            X, y, test_size=0.3, random_state=0
+            X, y, test_size=0.3, random_state=0, stratify=y
         )
-        
-        self.X_train.reset_index(drop=True, inplace=True)
-        self.X_test.reset_index(drop=True, inplace=True)
-        self.y_train.reset_index(drop=True, inplace=True)
-        self.y_test.reset_index(drop=True, inplace=True)
-        
         return self.X_train.shape, self.X_test.shape
-
+    
     def onehot_encode(self, X: pd.DataFrame, nominal_cols: list):
         """One-hot encodes the given categorical columns in X."""
         enc = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
@@ -81,8 +72,8 @@ class BankLogistic:
         num_impute = SimpleImputer(missing_values=np.nan, strategy="mean")
         cat_impute = SimpleImputer(missing_values="unknown", strategy="most_frequent")
         
-        num_cols = self.df.select_dtypes(include=["number"]).columns
-        cat_cols = self.df.select_dtypes(include=["object"]).columns
+        num_cols = self.X_train.select_dtypes(include=["number"]).columns
+        cat_cols = self.X_train.select_dtypes(include=["object"]).columns
         
         self.X_train[num_cols] = pd.DataFrame(
             num_impute.fit_transform(self.X_train[num_cols])
@@ -96,17 +87,6 @@ class BankLogistic:
         )
         self.X_test[cat_cols] = pd.DataFrame(
             cat_impute.transform(self.X_test[cat_cols])
-        )
-
-        poutcome_imput = SimpleImputer(
-            missing_values="nonexistent", strategy="most_frequent"
-        )
-        
-        self.X_train["poutcome"] = pd.DataFrame(
-            poutcome_imput.fit_transform(self.X_train[["poutcome"]])
-        )
-        self.X_test["poutcome"] = pd.DataFrame(
-            poutcome_imput.transform(self.X_test[["poutcome"]])
         )
 
     def Q6(self):
@@ -128,7 +108,7 @@ class BankLogistic:
         self.X_train["education"] = self.X_train["education"].map(education_order)
         self.X_test["education"] = self.X_test["education"].map(education_order)
 
-        nominal_cols = [col for col in self.df.select_dtypes(include=["object"]).columns if col != "education"]
+        nominal_cols = [col for col in self.X_train.select_dtypes(include=["object"]).columns if col != "education"]
         self.X_train = self.onehot_encode(self.X_train, nominal_cols)
         self.X_test = self.onehot_encode(self.X_test, nominal_cols)
 
