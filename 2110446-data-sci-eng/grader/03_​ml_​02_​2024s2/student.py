@@ -128,12 +128,10 @@ class BankLogistic:
         self.X_train["education"] = self.X_train["education"].map(education_order)
         self.X_test["education"] = self.X_test["education"].map(education_order)
 
-        # One-hot encode nominal categorical features (excluding education)
         nominal_cols = [col for col in self.df.select_dtypes(include=["object"]).columns if col != "education"]
         self.X_train = self.onehot_encode(self.X_train, nominal_cols)
         self.X_test = self.onehot_encode(self.X_test, nominal_cols)
 
-        # Convert target labels to binary
         self.y_train = self.y_train.map({"yes": 1, "no": 0})
         self.y_test = self.y_test.map({"yes": 1, "no": 0})
 
