@@ -1,0 +1,13 @@
+mode: set
+Golang-Unit-Test/tax/tax.go:5.57,6.17 1 1
+Golang-Unit-Test/tax/tax.go:6.17,8.3 1 1
+Golang-Unit-Test/tax/tax.go:10.2,11.9 2 1
+Golang-Unit-Test/tax/tax.go:12.25,13.10 1 1
+Golang-Unit-Test/tax/tax.go:14.25,15.34 1 1
+Golang-Unit-Test/tax/tax.go:16.25,17.53 1 1
+Golang-Unit-Test/tax/tax.go:18.25,19.76 1 1
+Golang-Unit-Test/tax/tax.go:20.26,21.99 1 1
+Golang-Unit-Test/tax/tax.go:22.26,23.124 1 1
+Golang-Unit-Test/tax/tax.go:24.26,25.149 1 1
+Golang-Unit-Test/tax/tax.go:26.10,27.174 1 1
+Golang-Unit-Test/tax/tax.go:30.2,30.17 1 1
