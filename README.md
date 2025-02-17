@@ -42,8 +42,9 @@ This is a personal repository for storing codes and learning materials from all 
 3. [2110352 - Computer System Architectures](https://github.com/Nacnano/my-chula-courses/tree/main/2110352-comp-sys-arch) : Assignments
 4. [2110203 - Computer Engineering Mathematics II](https://github.com/Nacnano/my-chula-courses/tree/main/2110203-comp-eng-math-ii) : Assignments
 5. [2110233 - Computer Engineering Mathematics Lab](https://github.com/Nacnano/my-chula-courses/tree/main/2110233-comp-eng-math-lab) : Quizzes
-6. [2110313 - Operating Systems And System Programs](https://github.com/Nacnano/my-chula-courses/tree/main/2110313-os-sys-prog)
-7. [2110336 - Software Engineering II](https://github.com/Nacnano/my-chula-courses/tree/main/2110336-software-eng-ii)
+6. [2110313 - Operating Systems And System Programs](https://github.com/Nacnano/my-chula-courses/tree/main/2110313-os-sys-prog) : Activities
+7. [2110336 - Software Engineering II](https://github.com/Nacnano/my-chula-courses/tree/main/2110336-software-eng-ii): Homeworks
+8. [2110471 - Computer Network](https://github.com/Nacnano/my-chula-courses/tree/main/2110471-comp-network) : Labs
 
 ### Electives
 
