@@ -65,6 +65,86 @@
 
 ---
 
-### Scenario-Based Questions (and others...)
+### Scenario-Based Questions
 
-<!-- Continue this pattern for the remaining questions -->
+<details>
+  <summary>12. ถ้า OS ไม่มีระบบจัดการหน่วยความจำ (Memory Management) จะส่งผลต่อประสิทธิภาพของระบบอย่างไร</summary>
+  หน่วยความจำใช้ไม่เต็มที่ ระบบล่มบ่อย
+</details>
+
+<details>
+  <summary>13. ถ้า Time Quantum ใน Round Robin Scheduling มีค่าน้อยมาก (เช่น 1 ms) จะเกิดผลดีและผลเสียอย่างไร</summary>
+  ดี: กระจายงานยุติธรรม | เสีย: โอเวอร์เฮดสวิงสูง
+</details>
+
+<details>
+  <summary>14. หากระบบไม่มี Interrupts จะส่งผลต่อการทำงานของ OS อย่างไร</summary>
+  ระบบตอบสนองช้า จัดการงานเร่งด่วนไม่ได้
+</details>
+
+<details>
+  <summary>15. ถ้า Process หนึ่งใช้ CPU 100% ตลอดเวลา (CPU-bound) จะส่งผลต่อกระบวนการอื่นในระบบแบบ Time-Sharing อย่างไร</summary>
+  โปรเซสอื่นได้ CPU น้อยลง ประสิทธิภาพลด
+</details>
+
+---
+
+### Conceptual Definitions
+
+<details>
+  <summary>16. อธิบายความแตกต่างระหว่าง Process และ Thread</summary>
+  Process: ทำงานแยกหน่วยความจำ | Thread: แชร์หน่วยความจำใน Process เดียวกัน
+</details>
+
+<details>
+  <summary>17. Race Condition คืออะไร? ยกตัวอย่างสถานการณ์ในชีวิตจริงที่อาจเกิดปัญหาแบบนี้</summary>
+  การแข่งขันแก้ไขข้อมูลพร้อมกัน เช่น แก้ไฟล์เดียวกันพร้อมกัน
+</details>
+
+<details>
+  <summary>18. Semaphore และ Mutex Lock แตกต่างกันอย่างไร</summary>
+  Semaphore ควบคุมหลายเธรดด้วยตัวนับ | Mutex ควบคุมทีละเธรด
+</details>
+
+<details>
+  <summary>19. อธิบายหลักการทำงานของ CPU Scheduling แบบ Shortest-Job-First (SJF)</summary>
+  เลือกงานที่ใช้เวลา CPU สั้นที่สุดก่อน เพื่อลดเวลารอคอย
+</details>
+
+---
+
+### Advanced Analysis
+
+<details>
+  <summary>20. หากระบบมี CPU หลายตัว (Multi-core) การออกแบบ OS ต้องปรับตัวอย่างไรเพื่อให้ใช้ทรัพยากรได้เต็มที่</summary>
+  ต้องกระจายงานและสมดุลโหลดระหว่างคอร์
+</details>
+
+<details>
+  <summary>21. เหตุใดการเลือก Scheduling Algorithm จึงขึ้นอยู่กับประเภทของ workload (เช่น I/O-bound หรือ CPU-bound)</summary>
+  เพื่อเพิ่มประสิทธิภาพตามลักษณะงาน (I/O-bound เน้นตอบสนอง | CPU-bound เน้นประมวลผล)
+</details>
+
+<details>
+  <summary>22. อธิบายสาเหตุที่ทำให้ Priority Scheduling อาจนำไปสู่ปัญหา Starvation</summary>
+  งานความสำคัญต่ำอาจไม่มีโอกาสทำงานถ้างานสำคัญสูงรันตลอด
+</details>
+
+---
+
+### Real-World Examples
+
+<details>
+  <summary>23. ยกตัวอย่างสถานการณ์ที่ต้องใช้ Semaphore ในการแก้ปัญหา</summary>
+  ควบคุมการเข้าถึงฐานข้อมูลเพื่อป้องกันข้อมูลซ้ำซ้อน
+</details>
+
+<details>
+  <summary>24. อธิบายว่าทำไมโปรแกรมประเภท Web Server ถึงเหมาะกับการใช้ Multi-threading</summary>
+  รองรับผู้ใช้หลายคนพร้อมกันโดยไม่ดีเลย์
+</details>
+
+<details>
+  <summary>25. เหตุใดระบบปฏิบัติการแบบ Real-Time (เช่นในรถยนต์หรือหุ่นยนต์) จึงต้องมี Scheduling ที่รวดเร็วและแม่นยำ</summary>
+  ต้องตอบสนองทันเวลาเพื่อความปลอดภัย (เช่น หยุดรถฉุกเฉิน)
+</details>
