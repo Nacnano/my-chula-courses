@@ -1,0 +1,28 @@
+{
+  "name": "cucumber-playwright-workshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cucumber-ts": "cucumber-js test",
+    "tags": "cucumber-js test --tags @login"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PunnNopdanai7/cucumber-playwright-workshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PunnNopdanai7/cucumber-playwright-workshop/issues"
+  },
+  "homepage": "https://github.com/PunnNopdanai7/cucumber-playwright-workshop#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "@playwright/test": "^1.51.0",
+    "@types/node": "^22.13.10",
+    "dotenv": "^16.4.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
