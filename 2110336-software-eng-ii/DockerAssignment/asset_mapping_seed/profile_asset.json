@@ -1,0 +1,68 @@
+[
+    {
+        "user_id": "5C66F17A-534E-48C2-8352-2631EBC61094",
+        "uname": "trudy",
+        "profile_image": "https://picsum.photos/900?random",
+        "last_update": 1508821332
+    },
+    {
+        "user_id": "610982C8-226A-483B-B597-22B0768C82AF",
+        "uname": "carol",
+        "profile_image": "https://picsum.photos/1001",
+        "last_update": 1508821332
+    },
+    {
+        "user_id": "D4660FDE-180D-4535-8D97-B94BA226B72C",
+        "uname": "eve",
+        "profile_image": "https://picsum.photos/1002",
+        "last_update": 1508821332
+    },
+    {
+        "user_id": "C916EA7C-C9C7-4564-AA38-46F0B1CFB915",
+        "uname": "bob",
+        "profile_image": "https://picsum.photos/1003",
+        "last_update": 1508821332
+    },
+    {
+        "user_id": "0888D506-108D-44BF-B75B-F8406CD9C4D4",
+        "uname": "alice",
+        "profile_image": "https://picsum.photos/1000",
+        "last_update": 1508821332
+    },
+    {
+        "user_id": "BCE16C91-69BD-4FB4-9066-CFE01CEBC8B2",
+        "uname": "frank",
+        "profile_image": "https://picsum.photos/g/1000?random",
+        "last_update": 1508821332
+    },
+    {
+        "user_id": "FE640501-C0AC-489C-85FC-A8F1F32D38F1",
+        "uname": "sybil",
+        "profile_image": "https://picsum.photos/800?random",
+        "last_update": 1508821332
+    },
+    {
+        "user_id": "C6347A77-41ED-446C-BDD1-318904436209",
+        "uname": "arthur",
+        "profile_image": "http://placebeard.it/g/1005",
+        "last_update": 1508821332
+    },
+    {
+        "user_id": "94F7BD72-8BB4-4E9A-9A77-35A4B079AF90",
+        "uname": "oscar",
+        "profile_image": "https://picsum.photos/g/1500",
+        "last_update": 1508821332
+    },
+    {
+        "user_id": "A47CC1B8-0B92-48D0-B681-5BAA346008C2",
+        "uname": "victor",
+        "profile_image": "https://picsum.photos/g/1200?randome",
+        "last_update": 1508821332
+    },
+    {
+        "user_id": "A5C99AF6-A200-4CA7-AC5B-FA06B9AE2CFA",
+        "uname": "walter",
+        "profile_image": "http://placebeard.it/1009",
+        "last_update": 1508821332
+    }
+]

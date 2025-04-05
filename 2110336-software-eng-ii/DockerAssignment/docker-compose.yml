@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+    asset_mapping:
+        build: asset_mapping
+        ports:
+            - "27017:27017"
+
+    asset_mapping_seed:
+        build: asset_mapping_seed
+        links:
+            - asset_mapping
+    
+    asset_service:
+        build: asset_service
+        ports:
+            - "8008:8008"
+        depends_on:
+            - asset_mapping
+        links:
+            - asset_mapping
+        environment:
+            - MONGO_HOST=asset_mapping
+            - PORT=8008
+    
+    users_service:
+        build: user_account_service
+        container_name: users_service
+        ports:
+        - "80:80"
+        links:
+        - db:db
+        - asset_service:asset_service
+        depends_on:
+        - db
+        environment:
+        - DATABASE_HOST=db
+        - PORT=80
+
+    db:
+        build: user_data
