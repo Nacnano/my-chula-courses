@@ -46,11 +46,12 @@ class MyFS(Fuse):
         elif path in containers:
             st.st_mode = stat.S_IFREG | 0o444
             st.st_nlink = 1
-	    if path == "/participation":
-	        req = requests.get('https://mis.cp.eng.chula.ac.th/krerk/teaching/2022s2-os/status.php')
-		    content = req.text.encode('utf-8')
-	    else:
-           	content=containers[path]
+        if path == "/participation":
+            req = requests.get('https://mis.cp.eng.chula.ac.th/krerk/teaching/2022s2-os/status.php')
+            content = req.text.encode('utf-8')
+            st.st_size = len(content)
+        elif path in containers:
+            content = containers[path]
             st.st_size = len(content)
         else:
             return -errno.ENOENT
@@ -81,10 +82,9 @@ class MyFS(Fuse):
             return -errno.ENOENT
         
         if path == "/participation":
-	        req = requests.get('https://mis.cp.eng.chula.ac.th/krerk/teaching/2022s2-os/status.php')
-            content = req.text.encode('utf-8')
+            content = requests.get('https://mis.cp.eng.chula.ac.th/krerk/teaching/2022s2-os/status.php').text.encode('utf-8')
         else:
-	        content = containers[path]
+            content = containers[path]
 
         slen = len(content)
         if offset < slen:
