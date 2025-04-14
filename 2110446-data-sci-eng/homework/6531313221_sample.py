@@ -27,7 +27,11 @@ X_scaled = scaler.fit_transform(X)
 
 # Sidebar controls
 st.sidebar.header('Analysis Controls')
-st.sidebar.write("Create a slider here")
+n_clusters = st.sidebar.slider('Number of Clusters for KMeans:', 
+                             min_value=2, 
+                             max_value=6, 
+                             value=3,
+                             step=1)
 
 # 1. Feature Distribution Analysis
 st.header('1. Feature Distributions by Species')
@@ -65,8 +69,25 @@ with col:
 # 2. Feature Relationships
 st.header('2. Feature Relationships')
 
-st.write("Draw a scatter matrix plot here")
+# Create scatter matrix
+fig_scatter = px.scatter_matrix(
+    df,
+    dimensions=feature_names,
+    color='Species',
+    color_discrete_map=colors,
+    title='Feature Relationships by Species',
+    height=800
+)
 
+fig_scatter.update_traces(diagonal_visible=False)
+fig_scatter.update_layout(
+    showlegend=True,
+    dragmode='select'
+)
+
+_, col, _ = st.columns([1,3,1])
+with col:
+    st.plotly_chart(fig_scatter)
 
 # 3. Feature Correlations
 st.header('3. Feature Correlations')
@@ -106,14 +127,35 @@ def perform_elbow_analysis(X, max_clusters=10):
 
 inertias = perform_elbow_analysis(X_scaled)
 
-st.write("Draw a line chart here")
+# Create elbow plot
+fig_elbow = go.Figure()
+fig_elbow.add_trace(
+    go.Scatter(
+        x=list(range(1, 11)),
+        y=inertias,
+        mode='lines+markers',
+        marker=dict(size=8),
+        line=dict(width=2)
+    )
+)
 
+fig_elbow.update_layout(
+    title='Elbow Method for Optimal K',
+    xaxis_title='Number of Clusters (k)',
+    yaxis_title='Inertia',
+    showlegend=False,
+    xaxis=dict(tickmode='linear', tick0=1, dtick=1)
+)
+
+_, col, _ = st.columns([1,2,1])
+with col:
+    st.plotly_chart(fig_elbow)
+    
 # 5. Clustering Analysis
 st.header('5. Clustering Analysis')
 
-# Perform clustering
-clusters = 3
-kmeans = KMeans(n_clusters=clusters, random_state=42)
+# Perform clustering with selected number of clusters
+kmeans = KMeans(n_clusters=n_clusters, random_state=42)
 cluster_labels = kmeans.fit_predict(X_scaled)
 df['Cluster'] = cluster_labels.astype(str)
 
@@ -122,13 +164,29 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader('Clustering Result')
-    st.write("Draw a scatter plot here")
-
+    fig_cluster = px.scatter(
+        df,
+        x=feature_names[0],
+        y=feature_names[1],
+        color='Cluster',
+        title='KMeans Clustering Results',
+        color_discrete_sequence=px.colors.qualitative.Plotly,
+        height=400
+    )
+    st.plotly_chart(fig_cluster)
 
 with col2:
     st.subheader('Actual Species')
-    st.write("Draw a scatter plot here")
-
+    fig_species = px.scatter(
+        df,
+        x=feature_names[0],
+        y=feature_names[1],
+        color='Species',
+        title='Actual Species Classification',
+        color_discrete_map=colors,
+        height=400
+    )
+    st.plotly_chart(fig_species)
 
 # 6. Clustering Performance Analysis
 st.header('6. Clustering Performance')
