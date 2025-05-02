@@ -1,10 +1,11 @@
-import streamlit as st
-import pandas as pd
-import pydeck as pdk
-import plotly.express as px
-from sklearn.cluster import DBSCAN
-import matplotlib.pyplot as plt
 from datetime import datetime
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import plotly.express as px
+import pydeck as pdk
+import streamlit as st
+from sklearn.cluster import DBSCAN
 
 st.set_page_config(page_title="Bangkok Airbnb Analysis", layout="wide")
 st.title('Bangkok Airbnb Listings Analysis')
@@ -123,26 +124,75 @@ try:
     viz_data = filtered_data[filtered_data['cluster'].isin(top_clusters.index)].copy()
     viz_data['color'] = viz_data['cluster'].map(cluster_colors)
     
-    st.write("Draw a scatter map for clusters here")
-    
     # Create cluster layer
+    scatter_layer = pdk.Layer(
+    "ScatterplotLayer",
+    viz_data,
+    get_position=["longitude", "latitude"],
+    get_radius=40,
+    get_fill_color="color",
+    opacity=0.8,
+    pickable=True
+    )
 
+    view_state = pdk.ViewState(
+    latitude=viz_data["latitude"].mean(),
+    longitude=viz_data["longitude"].mean(),
+    zoom=11,
+    pitch=0,
+    )
+
+    # Render
+    st.pydeck_chart(pdk.Deck(
+    layers=[scatter_layer],
+    initial_view_state=view_state,
+    map_style=MAP_STYLES[map_style]
+))
+ 
+    heatmap_layer = pdk.Layer(
+        "HeatmapLayer",
+        viz_data,
+        get_position="[longitude, latitude]",
+        opacity=0.5,
+        pickable=True
+    )
+
+    view_state = pdk.ViewState(
+        latitude=viz_data['latitude'].mean(),
+        longitude=viz_data['longitude'].mean(),
+        zoom=10
+    )
     
-    # Create and display the map
-
-    st.write("Draw a heatmap for clusters here")
+    st.pydeck_chart(pdk.Deck(
+        layers=[heatmap_layer],
+        initial_view_state=view_state,
+        map_style=MAP_STYLES[map_style]
+    ))
     
-    # Create heatmap layer    
+    hexagon_layer = pdk.Layer(
+        "HexagonLayer",
+        data=viz_data,
+        get_position=["longitude", "latitude"],
+        auto_highlight=True,
+        elevation_scale=0,
+        pickable=True,
+        extruded=False,
+        coverage=1,
+        opacity=0.6,
+    )
 
-    
-    # Create and display the map
+    hex_view_state = pdk.ViewState(
+        latitude=viz_data['latitude'].mean(),
+        longitude=viz_data['longitude'].mean(),
+        zoom=10,
+        pitch=0,
+    )
 
-    st.write("Draw a hexagon map for clusters here")
-    
-    # Create hexagon layer    
-
-
-    # Create and display the map
+    st.pydeck_chart(pdk.Deck(
+        layers=[hexagon_layer],
+        initial_view_state=hex_view_state,
+        map_style=MAP_STYLES[map_style]
+    ))
 
     
     # Cluster Analysis
@@ -166,4 +216,3 @@ fig_scatter = px.scatter(price_by_neighborhood,
                                'avg_price': 'Average Price (THB)'})
 fig_scatter.update_traces(textposition='top center')
 st.plotly_chart(fig_scatter)
-

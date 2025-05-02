@@ -1,15 +1,17 @@
 ## Network Analysis Tools
 ## Veera Muangsin
 
-import streamlit as st
-import networkx as nx
-import pandas as pd
-import numpy as np
-from pyvis.network import Network
-import matplotlib.pyplot as plt
-import tempfile
 import os
+import tempfile
 from typing import Dict, Optional, Tuple
+
+import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
+import pandas as pd
+import streamlit as st
+from pyvis.network import Network
+
 
 @st.cache_data
 def load_network_from_file(uploaded_file, file_format):
@@ -324,6 +326,23 @@ def main():
                     "Node Size By", 
                     ["degree", "betweenness", "closeness", "pagerank"]
                 )
+
+                try:
+                    if centrality_option == "degree":
+                        centrality = nx.degree_centrality(G)
+                    elif centrality_option == "betweenness":
+                        centrality = nx.betweenness_centrality(G)
+                    elif centrality_option == "closeness":
+                        centrality = nx.closeness_centrality(G)
+                    else:  # pagerank
+                        centrality = nx.pagerank(G)
+                    
+                    top_nodes = sorted(centrality.items(), key=lambda x: x[1], reverse=True)[:3]
+                    st.sidebar.markdown("### 🔝 Top 3 Nodes by " + centrality_option.capitalize())
+                    for node, value in top_nodes:
+                        st.sidebar.write(f"{node}: {value:.4f}")
+                except Exception as e:
+                    st.sidebar.warning(f"Could not compute top nodes: {str(e)}")
                 
                 # Size controls 
                 scale_factor = st.slider(
