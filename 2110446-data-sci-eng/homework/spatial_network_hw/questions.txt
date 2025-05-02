@@ -1,0 +1,11 @@
+เครือข่าย ingredient มี network model แบบใด รู้ได้อย่างไร
+scale-free network เพราะ node ส่วนใหญ่เป็นแบบ lowly-linked จากการดู graph ของ node degree
+
+ส่วนประกอบอาหารใดมี centrality สูงที่สุด 3 อันดับแรก เมื่อใช้ centrality measure ต่างๆ
+degree : salt, union, egg
+betweenness : salt, union, olive oil
+closeness : salt, union, egg
+pagerank : salt, union, olive oil
+
+เครือข่าย ingredients มีกี่ community แต่ละ community มีความสอดคล้องกับประเภทอาหารหรือไม่ อย่างไร 
+อาหารคาว อาหารหวาน อื่นๆ
