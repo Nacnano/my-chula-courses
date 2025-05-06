@@ -28,8 +28,12 @@ SEED = 42
 # USER CONFIGURABLE: Total expected raw data points (for informational purposes)
 TOTAL_RAW_DATA_POINTS_INFO = 787026
 
-# USER CONFIGURABLE: Desired sample size for training from the filtered data.
+# USER CONFIGURABLE: Desired sample size for training from the filtered data *after* outlier removal.
+# Set to None to use all available data (after filtering and outlier removal).
 DATA_SAMPLE_SIZE = 50000
+
+# USER CONFIGURABLE: Percentile threshold for outlier removal (e.g., 80 means keep 0-80%)
+OUTLIER_PERCENTILE = 80
 
 np.random.seed(SEED)
 torch.manual_seed(SEED)
@@ -41,6 +45,8 @@ print(f"Is CUDA available: {torch.cuda.is_available()}")
 if torch.cuda.is_available():
     print(f"CUDA device name: {torch.cuda.get_device_name(0)}")
 print(f"Configured DATA_SAMPLE_SIZE: {DATA_SAMPLE_SIZE if DATA_SAMPLE_SIZE is not None else 'All Available'}")
+print(f"Configured OUTLIER_PERCENTILE for trimming: {OUTLIER_PERCENTILE}%")
+
 
 # --- 1. Data Loading and Initial Preprocessing ---
 print("\n--- Loading Data ---")
@@ -84,11 +90,24 @@ else:
     df_filtered['duration_hours'] = pd.Series(dtype='float64') # Ensure column exists even if empty
 
 
+# --- Outlier Removal ---
+if 'duration_hours' in df_filtered.columns and not df_filtered['duration_hours'].empty and len(df_filtered) > 1:
+    print(f"\n--- Applying Outlier Trimming (keeping {OUTLIER_PERCENTILE}%) ---")
+    percentile_value = df_filtered['duration_hours'].quantile(OUTLIER_PERCENTILE / 100.0)
+    original_shape_before_trim = df_filtered.shape[0]
+    df_filtered = df_filtered[df_filtered['duration_hours'] <= percentile_value].copy()
+    print(f"Calculated {OUTLIER_PERCENTILE}th percentile for 'duration_hours': {percentile_value:.2f} hours")
+    print(f"Shape after removing top {100 - OUTLIER_PERCENTILE}% outliers: {df_filtered.shape}")
+    print(f"Removed {original_shape_before_trim - df_filtered.shape[0]} data points as outliers.")
+else:
+    print("\nWarning: 'duration_hours' column is not suitable for outlier trimming (missing, empty, or insufficient data). Skipping trimming.")
+
+
 num_available_filtered_samples = len(df_filtered)
-print(f"Number of available samples after initial filtering & duration calculation: {num_available_filtered_samples}")
+print(f"\nNumber of available samples after filtering & outlier removal: {num_available_filtered_samples}")
 
 if df_filtered.empty:
-    print("CRITICAL WARNING: No data left after initial filtering and duration calculation.")
+    print("CRITICAL WARNING: No data left after filtering and outlier calculation.")
     print("Model cannot be trained. Creating dummy data to allow script structure to run.")
     dummy_data_dict = {
         'ticket_id': ['dummy_001'], 'type': ['dummy_type'], 'organization': ['dummy_org'],
@@ -106,17 +125,22 @@ if df_filtered.empty:
 
 if DATA_SAMPLE_SIZE is not None and num_available_filtered_samples > 0 and DATA_SAMPLE_SIZE < num_available_filtered_samples:
     print(f"\n--- Down-sampling data from {num_available_filtered_samples} to {DATA_SAMPLE_SIZE} samples ---")
-    
+
     if 'duration_hours' not in df_filtered.columns or df_filtered['duration_hours'].empty:
-        print("Warning: 'duration_hours' column is missing or empty. Performing simple random sampling.")
+        print("Warning: 'duration_hours' column is missing or empty after filtering/trimming. Performing simple random sampling.")
         df_filtered = df_filtered.sample(n=min(DATA_SAMPLE_SIZE, num_available_filtered_samples), random_state=SEED, replace=False)
     else:
-        num_bins = 10 
+        # Attempt stratified sampling based on duration_hours bins
+        num_bins = 10
         can_stratify = False
         if df_filtered['duration_hours'].nunique() >= num_bins and len(df_filtered) >= num_bins:
             try:
                 df_filtered['duration_bin'] = pd.qcut(df_filtered['duration_hours'], q=num_bins, labels=False, duplicates='drop')
-                can_stratify = True
+                # Check if stratification is possible (at least one sample in each bin after dropping duplicates)
+                if df_filtered['duration_bin'].nunique() > 1:
+                    can_stratify = True
+                else:
+                    print(f"Warning: Only one unique bin created after qcut. Will use simple random sampling.")
             except ValueError as e:
                 print(f"Warning: pd.qcut failed for creating stratification bins ({e}). Will use simple random sampling.")
         else:
@@ -124,38 +148,53 @@ if DATA_SAMPLE_SIZE is not None and num_available_filtered_samples > 0 and DATA_
 
         if can_stratify:
             try:
-                sampled_df, _ = train_test_split(
-                    df_filtered,
-                    train_size=min(DATA_SAMPLE_SIZE, len(df_filtered)), 
-                    stratify=df_filtered['duration_bin'],
-                    random_state=SEED
-                )
-                df_filtered = sampled_df
-                print(f"Successfully performed stratified sampling. New shape: {df_filtered.shape}")
+                # Ensure requested sample size is possible with stratification
+                min_samples_per_bin = df_filtered['duration_bin'].value_counts().min()
+                if min_samples_per_bin < 2 and DATA_SAMPLE_SIZE > df_filtered['duration_bin'].nunique():
+                     print(f"Warning: Some bins have only {min_samples_per_bin} sample(s). Stratified sampling with replacement may be needed for target size. Using simple random sampling instead for safety.")
+                     df_filtered = df_filtered.sample(n=min(DATA_SAMPLE_SIZE, num_available_filtered_samples), random_state=SEED, replace=False)
+                     can_stratify = False # Fallback confirmed
+                elif DATA_SAMPLE_SIZE < df_filtered['duration_bin'].nunique():
+                     print(f"Warning: Requested sample size ({DATA_SAMPLE_SIZE}) is less than the number of stratification bins ({df_filtered['duration_bin'].nunique()}). Will result in fewer than requested samples or errors. Using simple random sampling.")
+                     df_filtered = df_filtered.sample(n=min(DATA_SAMPLE_SIZE, num_available_filtered_samples), random_state=SEED, replace=False)
+                     can_stratify = False # Fallback confirmed
+
+                if can_stratify:
+                    sampled_df, _ = train_test_split(
+                        df_filtered,
+                        train_size=min(DATA_SAMPLE_SIZE, len(df_filtered)),
+                        stratify=df_filtered['duration_bin'],
+                        random_state=SEED
+                    )
+                    df_filtered = sampled_df
+                    print(f"Successfully performed stratified sampling. New shape: {df_filtered.shape}")
+
             except ValueError as e:
                 print(f"Warning: Stratified sampling failed ({e}). Falling back to simple random sampling.")
                 df_filtered = df_filtered.sample(n=min(DATA_SAMPLE_SIZE, num_available_filtered_samples), random_state=SEED, replace=False)
-        else: 
-            print("Performing simple random sampling.")
-            df_filtered = df_filtered.sample(n=min(DATA_SAMPLE_SIZE, num_available_filtered_samples), random_state=SEED, replace=False)
-        
+
+        if not can_stratify: # If stratification wasn't possible or failed
+             print("Performing simple random sampling.")
+             df_filtered = df_filtered.sample(n=min(DATA_SAMPLE_SIZE, num_available_filtered_samples), random_state=SEED, replace=False)
+
+
         if 'duration_bin' in df_filtered.columns:
             df_filtered = df_filtered.drop(columns=['duration_bin'])
 
     print(f"Shape after down-sampling: {df_filtered.shape}")
 
 elif DATA_SAMPLE_SIZE is not None and num_available_filtered_samples > 0 and DATA_SAMPLE_SIZE >= num_available_filtered_samples:
-    print(f"\nRequested sample size ({DATA_SAMPLE_SIZE}) is >= available filtered samples ({num_available_filtered_samples}). Using all available {num_available_filtered_samples} filtered samples.")
+    print(f"\nRequested sample size ({DATA_SAMPLE_SIZE}) is >= available filtered and trimmed samples ({num_available_filtered_samples}). Using all available {num_available_filtered_samples} samples.")
 elif num_available_filtered_samples == 0:
-    print(f"\nNo samples available after filtering. Down-sampling step skipped (using dummy data if created).")
-else: 
-    print(f"\nUsing all {num_available_filtered_samples} available filtered samples (DATA_SAMPLE_SIZE not set for down-sampling).")
+    print(f"\nNo samples available after filtering and trimming. Down-sampling step skipped (using dummy data if created).")
+else:
+    print(f"\nUsing all {num_available_filtered_samples} available filtered and trimmed samples (DATA_SAMPLE_SIZE not set for down-sampling).")
 
 
 text_feature_cols = ['type', 'organization', 'comment', 'address', 'subdistrict', 'district', 'province']
 for col in text_feature_cols:
     if col not in df_filtered.columns:
-        df_filtered[col] = '' 
+        df_filtered[col] = ''
     else:
         df_filtered[col] = df_filtered[col].fillna('').astype(str)
 
@@ -174,25 +213,31 @@ df_filtered['combined_text'] = (
     " | เขต: " + df_filtered['district'].apply(clean_text)
 )
 
-print("\nSample of combined text and duration_hours (first 5 rows of potentially sampled data):")
+print("\nSample of combined text and duration_hours (first 5 rows of potentially sampled and trimmed data):")
 print(df_filtered[['combined_text', 'duration_hours']].head())
 
+# --- Scaling after Outlier Removal ---
 scaler = MinMaxScaler()
 if 'duration_hours' in df_filtered.columns and not df_filtered['duration_hours'].empty and df_filtered['duration_hours'].notna().all() and len(df_filtered['duration_hours']) > 1 :
     df_filtered['duration_scaled'] = scaler.fit_transform(df_filtered[['duration_hours']])
     print("\nDuration scaled (sample):")
     print(df_filtered[['duration_hours', 'duration_scaled']].head())
 else:
-    print("Warning: 'duration_hours' column is problematic, empty, or has insufficient data for scaling.")
+    print("Warning: 'duration_hours' column is problematic, empty, or has insufficient data for scaling after filtering/trimming.")
     if 'duration_hours' in df_filtered.columns and not df_filtered['duration_hours'].empty:
-        df_filtered['duration_scaled'] = df_filtered['duration_hours'] 
-    else: 
-        df_filtered['duration_scaled'] = 0.0 
+        df_filtered['duration_scaled'] = df_filtered['duration_hours']
+    else:
+        df_filtered['duration_scaled'] = 0.0
         if 'duration_hours' not in df_filtered.columns: df_filtered['duration_hours'] = 0.0
 
-    class DummyScaler: 
+    class DummyScaler:
         def fit_transform(self, data): return data
         def inverse_transform(self, data): return data
+        # Add scale_ attribute for compatibility checks
+        @property
+        def scale_(self):
+            return np.array([1.0]) # Indicate a trivial scale
+
     scaler = DummyScaler()
     print("Using a dummy/passthrough scaler as scaling could not be properly performed.")
 
@@ -202,11 +247,17 @@ if df_filtered.empty or 'combined_text' not in df_filtered.columns or 'duration_
     exit()
 
 if len(df_filtered) > 1:
+    # It's generally better to split *after* all preprocessing, but given the
+    # request is specifically about training data, applying outlier removal
+    # before the split ensures the validation set also reflects this distribution.
+    # If you only wanted to remove outliers from the training set, you'd split first,
+    # then apply trimming only to the training portion. Sticking to the implied
+    # request of trimming the overall dataset used for training/validation here.
     train_df, val_df = train_test_split(
         df_filtered, test_size=0.15, random_state=SEED
     )
 else:
-    print("Warning: Very few samples (<2) for train/val split. Using all for training and duplicating for validation.")
+    print("Warning: Very few samples (<2) for train/val split after filtering/trimming. Using all for training and duplicating for validation.")
     train_df = df_filtered.copy()
     val_df = df_filtered.copy()
 
@@ -223,6 +274,7 @@ except Exception as e:
         MODEL_NAME_FALLBACK = 'bert-base-multilingual-cased'
         tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME_FALLBACK)
         MODEL_NAME = MODEL_NAME_FALLBACK
+        print(f"Successfully loaded fallback tokenizer: {MODEL_NAME_FALLBACK}")
     except Exception as e_fallback:
         print(f"CRITICAL ERROR: Fallback tokenizer also failed: {e_fallback}")
         exit()
@@ -230,9 +282,12 @@ except Exception as e:
 class TraffyDataset(Dataset):
     def __init__(self, dataframe, tokenizer, max_len):
         self.tokenizer = tokenizer
-        self.texts = dataframe['combined_text'].values if 'combined_text' in dataframe else np.array(['dummy text'] * len(dataframe))
-        self.targets = dataframe['duration_scaled'].values if 'duration_scaled' in dataframe else np.array([0.0] * len(dataframe))
+        self.texts = dataframe['combined_text'].values if 'combined_text' in dataframe and not dataframe.empty else np.array(['dummy text'] * len(dataframe) if not dataframe.empty else ['dummy text'])
+        self.targets = dataframe['duration_scaled'].values if 'duration_scaled' in dataframe and not dataframe.empty else np.array([0.0] * len(dataframe) if not dataframe.empty else [0.0])
         self.max_len = max_len
+        # Ensure targets are float32
+        self.targets = self.targets.astype(np.float32)
+
 
     def __len__(self):
         return len(self.texts)
@@ -248,21 +303,22 @@ class TraffyDataset(Dataset):
         return {
             'input_ids': encoding['input_ids'].flatten(),
             'attention_mask': encoding['attention_mask'].flatten(),
-            'targets': torch.tensor(target, dtype=torch.float)
+            'targets': torch.tensor(target, dtype=torch.float) # Use float here as well
         }
 
+# Check dataframes again before creating datasets
 if not train_df.empty:
     train_dataset = TraffyDataset(train_df, tokenizer, MAX_LEN)
     train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=2 if DEVICE.type == 'cuda' else 0)
 else:
-    print("Warning: Train dataframe is empty. Creating a dummy train_loader.")
+    print("Warning: Train dataframe is empty after split/trimming. Creating a dummy train_loader.")
     train_loader = DataLoader(TraffyDataset(pd.DataFrame({'combined_text': ['empty train'], 'duration_scaled': [0.0]}), tokenizer, MAX_LEN), batch_size=1)
 
 if not val_df.empty:
     val_dataset = TraffyDataset(val_df, tokenizer, MAX_LEN)
     val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=2 if DEVICE.type == 'cuda' else 0)
 else:
-    print("Warning: Validation dataframe is empty. Creating a dummy val_loader.")
+    print("Warning: Validation dataframe is empty after split/trimming. Creating a dummy val_loader.")
     val_loader = DataLoader(TraffyDataset(pd.DataFrame({'combined_text': ['empty val'], 'duration_scaled': [0.0]}), tokenizer, MAX_LEN), batch_size=1)
 
 class TraffyBertRegressor(nn.Module):
@@ -283,26 +339,34 @@ class TraffyBertRegressor(nn.Module):
         return self.regressor(pooled_output)
 
 print("\n--- Initializing Model ---")
-model = TraffyBertRegressor(MODEL_NAME)
-model.to(DEVICE)
+try:
+    model = TraffyBertRegressor(MODEL_NAME)
+    model.to(DEVICE)
+except Exception as e:
+    print(f"CRITICAL ERROR: Failed to initialize model: {e}")
+    exit()
+
 
 optimizer = AdamW(model.parameters(), lr=LEARNING_RATE, eps=1e-8)
-if len(train_loader.dataset) > 1 or (hasattr(train_loader.dataset, 'texts') and train_loader.dataset.texts[0] != 'empty train'):
+# Calculate total steps correctly, handling potential dummy datasets
+if len(train_loader.dataset) > 0 and (hasattr(train_loader.dataset, 'texts') and train_loader.dataset.texts[0] not in ['empty train', 'empty val']):
     total_steps = len(train_loader) * EPOCHS
+    print(f"Calculated total training steps: {total_steps}")
 else:
-    total_steps = 1 * EPOCHS 
-    print("Warning: train_loader seems to be dummy or empty, total_steps for scheduler set to minimal.")
+    total_steps = 1 # Minimum steps to avoid division by zero, though training will be skipped
+    print("Warning: train_loader is likely dummy or empty, total_steps for scheduler set to minimal.")
 
 
 scheduler = get_linear_schedule_with_warmup(
     optimizer, num_warmup_steps=int(0.1 * total_steps) if total_steps > 0 else 0,
-    num_training_steps=total_steps if total_steps > 0 else 1 
+    num_training_steps=total_steps if total_steps > 0 else 1
 )
 criterion = nn.MSELoss()
 
 def train_epoch_fn(model, data_loader, loss_fn, optimizer, device, scheduler):
     model.train()
     total_loss = 0
+    # Check for dummy/empty dataloader explicitly
     if len(data_loader.dataset) == 0 or (hasattr(data_loader.dataset, 'texts') and len(data_loader.dataset.texts) > 0 and data_loader.dataset.texts[0] in ['empty train', 'empty val']):
         print("Skipping training epoch due to dummy/empty dataloader.")
         return 0.0
@@ -327,9 +391,10 @@ def eval_model_fn(model, data_loader, loss_fn, device, current_scaler):
     total_loss = 0
     all_targets_orig, all_predictions_orig = [], []
 
+    # Check for dummy/empty dataloader explicitly
     if len(data_loader.dataset) == 0 or (hasattr(data_loader.dataset, 'texts') and len(data_loader.dataset.texts) > 0 and data_loader.dataset.texts[0] in ['empty train', 'empty val']):
         print("Skipping evaluation due to dummy/empty dataloader.")
-        return 0.0, 0.0, 0.0 
+        return 0.0, 0.0, 0.0
 
     with torch.no_grad():
         for batch in tqdm(data_loader, desc="Evaluating Epoch", leave=False):
@@ -340,16 +405,20 @@ def eval_model_fn(model, data_loader, loss_fn, device, current_scaler):
             loss = loss_fn(outputs_scaled, targets_scaled)
             total_loss += loss.item()
             targets_s_cpu, outputs_s_cpu = targets_scaled.cpu().numpy(), outputs_scaled.cpu().numpy()
-            if hasattr(current_scaler, 'inverse_transform') and hasattr(current_scaler, 'scale_'):
+
+            # Use the scaler to inverse transform if it's a real scaler
+            if hasattr(current_scaler, 'inverse_transform') and not isinstance(current_scaler, DummyScaler):
                 try:
                     all_targets_orig.extend(current_scaler.inverse_transform(targets_s_cpu).flatten())
                     all_predictions_orig.extend(current_scaler.inverse_transform(outputs_s_cpu).flatten())
-                except: 
-                    all_targets_orig.extend(targets_s_cpu.flatten())
-                    all_predictions_orig.extend(outputs_s_cpu.flatten())
-            else:
-                all_targets_orig.extend(targets_s_cpu.flatten())
-                all_predictions_orig.extend(outputs_s_cpu.flatten())
+                except Exception as e:
+                     print(f"Warning during inverse transform: {e}. Appending scaled values instead.")
+                     all_targets_orig.extend(targets_s_cpu.flatten())
+                     all_predictions_orig.extend(outputs_s_cpu.flatten())
+            else: # Append scaled values if using DummyScaler or inverse transform fails
+                 all_targets_orig.extend(targets_s_cpu.flatten())
+                 all_predictions_orig.extend(outputs_s_cpu.flatten())
+
     avg_loss = total_loss / len(data_loader) if len(data_loader) > 0 else 0.0
     if not all_targets_orig or not all_predictions_orig: return avg_loss, 0, 0
     mae = mean_absolute_error(all_targets_orig, all_predictions_orig)
@@ -360,9 +429,8 @@ print("\n--- Starting Training ---")
 best_val_mae = float('inf')
 history = {'train_loss': [], 'val_loss': [], 'val_mae': [], 'val_rmse': []}
 
-if len(train_loader.dataset) <= 1 and (hasattr(train_loader.dataset, 'texts') and train_loader.dataset.texts[0] == 'empty train'):
-    print("CRITICAL: Training data is effectively empty or dummy. Actual training loop will be skipped.")
-else:
+# Check again if actual training should proceed
+if len(train_loader.dataset) > 0 and (hasattr(train_loader.dataset, 'texts') and train_loader.dataset.texts[0] not in ['empty train', 'empty val']):
     for epoch in range(EPOCHS):
         print(f'\nEpoch {epoch + 1}/{EPOCHS}')
         train_loss = train_epoch_fn(model, train_loader, criterion, optimizer, DEVICE, scheduler)
@@ -372,16 +440,18 @@ else:
         history['train_loss'].append(train_loss); history['val_loss'].append(val_loss)
         history['val_mae'].append(val_mae); history['val_rmse'].append(val_rmse)
         if val_mae < best_val_mae :
-            if val_mae == 0.0 and val_loss == 0.0 : 
+            if val_mae == 0.0 and val_loss == 0.0 :
                  print("Skipping model save due to MAE of 0.0 (likely dummy data evaluation).")
             else:
                 print(f"Validation MAE improved ({best_val_mae:.2f} ---> {val_mae:.2f}). Saving model...")
                 try: torch.save(model.state_dict(), 'best_model_state.bin'); best_val_mae = val_mae
                 except Exception as e: print(f"Error saving model: {e}")
+else:
+    print("CRITICAL: Training data is effectively empty or dummy after filtering/trimming. Actual training loop will be skipped.")
 
 
 print("\n--- Training Finished ---")
-if best_val_mae != float('inf') and best_val_mae > 0 : 
+if best_val_mae != float('inf') and best_val_mae > 0 :
     print(f"Best Validation MAE: {best_val_mae:.2f} hours")
 else:
     print("Model did not improve, training was skipped, or evaluation resulted in zero MAE (check data).")
@@ -400,12 +470,17 @@ if best_val_mae != float('inf') and best_val_mae > 0:
         input_ids, attention_mask = encoded_sample['input_ids'].to(DEVICE), encoded_sample['attention_mask'].to(DEVICE)
         with torch.no_grad():
             pred_scaled = model(input_ids, attention_mask).cpu().numpy()
-        if hasattr(scaler, 'inverse_transform') and hasattr(scaler, 'scale_'):
-            try:
-                pred_hours = scaler.inverse_transform(pred_scaled).flatten()[0]
-                print(f"Sample Prediction for: '{sample_text}'\nPredicted duration: {pred_hours:.2f} hours (scaled: {pred_scaled.flatten()[0]:.4f})")
-            except: print(f"Sample prediction (scaled only, inverse failed): {pred_scaled.flatten()[0]:.4f}")
-        else: print(f"Sample prediction (scaled, no valid scaler for inverse): {pred_scaled.flatten()[0]:.4f}")
+
+        # Use the scaler to inverse transform if it's a real scaler
+        if hasattr(scaler, 'inverse_transform') and not isinstance(scaler, DummyScaler):
+             try:
+                 pred_hours = scaler.inverse_transform(pred_scaled).flatten()[0]
+                 print(f"Sample Prediction for: '{sample_text}'\nPredicted duration: {pred_hours:.2f} hours (scaled: {pred_scaled.flatten()[0]:.4f})")
+             except Exception as e:
+                 print(f"Sample prediction (scaled only, inverse failed: {e}): {pred_scaled.flatten()[0]:.4f}")
+        else:
+            print(f"Sample prediction (scaled, no valid scaler for inverse): {pred_scaled.flatten()[0]:.4f}")
+
     except FileNotFoundError: print(f"\nBest model file '{model_path}' not found. Skipping prediction.")
     except Exception as e: print(f"\nError during sample prediction: {e}")
 else: print("\nSkipping sample prediction: No best model saved or MAE indicates issues.")
