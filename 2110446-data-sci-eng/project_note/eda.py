@@ -4,19 +4,9 @@ import seaborn as sns
 import numpy as np
 
 # For demonstration, we'll assume the dataset has columns like 'text', 'duration_hours', and other relevant features
-try:
-    DATA_PATH = '/kaggle/input/traffy-fondue-dsde-chula-dataset/bangkok_traffy.csv'
-    df = pd.read_csv(DATA_PATH)  # Update with actual file path or data loading method
-except FileNotFoundError:
-    print("Dataset file not found. Please provide the correct path to the dataset.")
-    # Creating a dummy dataset for demonstration if actual data isn't provided
-    np.random.seed(42)
-    df = pd.DataFrame({
-        'text': [f'sample_text_{i}' for i in range(1000)],
-        'duration_hours': np.random.lognormal(mean=2, sigma=0.5, size=1000),
-        'feature1': np.random.normal(10, 2, 1000),
-        'feature2': np.random.choice(['A', 'B', 'C'], 1000)
-    })
+DATA_PATH = '/kaggle/input/traffy-fondue-dsde-chula-dataset/bangkok_traffy.csv'
+df = pd.read_csv(DATA_PATH)  # Update with actual file path or data loading method
+
 
 print("\n--- Processing Data ---")
 
