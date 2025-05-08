@@ -15,8 +15,8 @@ import seaborn as sns
 
 # --- Configuration ---
 DATA_PATH = '/kaggle/input/traffy-fondue-dsde-chula-dataset/bangkok_traffy.csv'
-MODEL_NAME = 'distilbert-base-multilingual-cased'  # Lighter model
-MAX_LEN = 128  # Reduced for faster training
+MODEL_NAME = 'airesearch/wangchanberta-base-att-spm-uncased'
+MAX_LEN = 256  # Reduced for faster training
 BATCH_SIZE = 32  # Increased for stability
 EPOCHS = 5  # More epochs with early stopping
 LEARNING_RATE = 2e-5  # Slightly higher
@@ -52,10 +52,11 @@ df['duration_days'] = (df['last_activity'] - df['timestamp']).dt.total_seconds()
 df = df[df['duration_days'] > 0]
 print(f"Shape after filtering for 2025 and calculating positive durations: {df.shape}")
 
-# Cap outliers at 95th percentile
-upper_bound = df['duration_days'].quantile(0.95)
-df = df[df['duration_days'] <= upper_bound]
-print(f"Shape after capping durations at 95th percentile (~{upper_bound:.2f} days): {df.shape}")
+# Cap outliers at 5th-95th percentile
+lower_bound = df['duration_days'].quantile(0.10)
+upper_bound = df['duration_days'].quantile(0.90)
+df = df[(lower_bound <= df['duration_days']) & (df['duration_days'] <= upper_bound)]
+print(f"Shape after capping durations at (~{lower_bound:.2f} days) and (~{upper_bound:.2f} days): {df.shape}")
 
 # Text feature engineering
 text_cols = ['type', 'organization', 'comment', 'address', 'subdistrict', 'district', 'province']
@@ -71,10 +72,11 @@ df['combined_text'] = (
     "ประเภท: " + df['type'].apply(clean_text) +
     " | หน่วยงาน: " + df['organization'].apply(clean_text) +
     " | ปัญหา: " + df['comment'].apply(clean_text) +
-    " | ที่อยู่: " + df['address'].apply(clean_text) +
     " | แขวง: " + df['subdistrict'].apply(clean_text) +
     " | เขต: " + df['district'].apply(clean_text)
 )
+
+print(df.head(10)['combined_text'])
 
 # Additional features
 df['issue_specificity'] = df['type'].apply(lambda x: 1 if x != '{}' else 0)
