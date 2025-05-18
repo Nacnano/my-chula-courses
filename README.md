@@ -20,9 +20,9 @@ This is a personal repository for storing codes and learning materials from all 
 
 1.  [2110101 - Computer Programming](https://github.com/Nacnano/my-chula-courses/tree/main/2110101-com-prog) : Solutions for the grader, homeworks, and finalized workshops
 2.  [2110215 - Programming Methodology](https://github.com/Nacnano/my-chula-courses/tree/main/2110215-prog-meth) : Lectures, labs, and final project
-    - Final Project : [Veeliw vs Nac](https://github.com/Nacnano/veeliwvsnac)
+    - Project : [Veeliw vs Nac](https://github.com/Nacnano/veeliwvsnac)
 3.  [2110221 - Computer Engineering Essential](https://github.com/Nacnano/my-chula-courses/tree/main/2110221-com-eng-ess) : Mainly courses material and its solutions
-    - Final Project : [Mycourseville Calendar](https://github.com/Nacnano/cee-34-final-project)
+    - Project : [Mycourseville Calendar](https://github.com/Nacnano/cee-34-final-project)
 
 ### Year 2
 
@@ -32,13 +32,13 @@ This is a personal repository for storing codes and learning materials from all 
 4.  [2110316 - Programming Languages Principles](https://github.com/Nacnano/my-chula-courses/tree/main/2110316-prog-lang-prin) : Learning materials and exercises
 5.  [2110356 - Embedded System](https://github.com/Nacnano/my-chula-courses/tree/main/2110356-embedded-sys) : Laboratories and Skill Tests
 6.  [2110366 - Embedded System Laboratory](https://github.com/Nacnano/my-chula-courses/tree/main/2110366-embedded-sys-lab) : Laboratories and Skill Tests
-    - Final Project : [Let There Be Light](https://github.com/nacnano/embbed-lab-final-project)
+    - Project : [Let There Be Light](https://github.com/nacnano/embbed-lab-final-project)
 
 ### Year 3
 
 1. [2110322 - Database Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110211-db-sys) : Exercises
 2. [2110363 - Hardware Synthesis Laboratory I](https://github.com/Nacnano/my-chula-courses/tree/main/2110363-hw-syn-lab-1) : Laboratories and Skill Tests
-   - Final Project : [VGA Monitor Connection](https://github.com/Nacnano/hw-syn-lab-project)
+   - Project : [VGA Monitor Connection](https://github.com/Nacnano/hw-syn-lab-project)
 3. [2110352 - Computer System Architectures](https://github.com/Nacnano/my-chula-courses/tree/main/2110352-comp-sys-arch) : Assignments
 4. [2110203 - Computer Engineering Mathematics II](https://github.com/Nacnano/my-chula-courses/tree/main/2110203-comp-eng-math-ii) : Assignments
 5. [2110233 - Computer Engineering Mathematics Lab](https://github.com/Nacnano/my-chula-courses/tree/main/2110233-comp-eng-math-lab) : Quizzes
@@ -49,10 +49,11 @@ This is a personal repository for storing codes and learning materials from all 
 ### Electives
 
 1. [2110573 - Pattern Recognition](https://github.com/Nacnano/my-chula-courses/tree/main/2110573-patt-recog) : Solution for homeworks and projects
-   - Final Project : [Stock Return Prediction](https://github.com/Nacnano/stock-machine-learning-project/)
+   - Project : [Stock Return Prediction](https://github.com/Nacnano/stock-machine-learning-project/)
 2. [2110431 - Introduction to Digital Imaging](https://github.com/Nacnano/my-chula-courses/tree/main/2110431-intro-dig-imaging): Solutions for homeworks
-   - Final Project : [Chess Move Detection](https://github.com/athensclub/chess-video-move-detection)
+   - Project : [Chess Move Detection](https://github.com/athensclub/chess-video-move-detection)
 3. [2110572 - Natural Language Processing Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110572-nlp-sys): Solutions for homeworks
+   - Project : [Large Language Diffusion models](https://github.com/pupipatsk/NanoLLaDA)
 4. [2110446 - Data Science and Data Engineering](https://github.com/Nacnano/my-chula-courses/tree/main/2110446-data-sci-eng)
 
 ### Individual Studies
