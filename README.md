@@ -44,7 +44,9 @@ This is a personal repository for storing codes and learning materials from all 
 5. [2110233 - Computer Engineering Mathematics Lab](https://github.com/Nacnano/my-chula-courses/tree/main/2110233-comp-eng-math-lab) : Quizzes
 6. [2110313 - Operating Systems And System Programs](https://github.com/Nacnano/my-chula-courses/tree/main/2110313-os-sys-prog) : Activities
 7. [2110336 - Software Engineering II](https://github.com/Nacnano/my-chula-courses/tree/main/2110336-software-eng-ii): Homeworks
+   - Project : [BookBook (Second-handed Book Marketplace)](https://github.com/seg-org/bookbook)
 8. [2110471 - Computer Network](https://github.com/Nacnano/my-chula-courses/tree/main/2110471-comp-network) : Labs
+   - Project :[Go Websocket Chat Website](https://github.com/JomnoiZ/network-backend-group-13)
 
 ### Electives
 
