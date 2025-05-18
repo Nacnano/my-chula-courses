@@ -53,8 +53,9 @@ This is a personal repository for storing codes and learning materials from all 
 2. [2110431 - Introduction to Digital Imaging](https://github.com/Nacnano/my-chula-courses/tree/main/2110431-intro-dig-imaging): Solutions for homeworks
    - Project : [Chess Move Detection](https://github.com/athensclub/chess-video-move-detection)
 3. [2110572 - Natural Language Processing Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110572-nlp-sys): Solutions for homeworks
-   - Project : [Large Language Diffusion models](https://github.com/pupipatsk/NanoLLaDA)
+   - Project : [Full-Finetuning LLaDA (Large Language Diffusion model)](https://github.com/pupipatsk/NanoLLaDA)
 4. [2110446 - Data Science and Data Engineering](https://github.com/Nacnano/my-chula-courses/tree/main/2110446-data-sci-eng)
+   - Project : [Traffy Fondue Duration Prediction](https://github.com/Nacnano/traffy-fondue-duration-prediction)
 
 ### Individual Studies
 
