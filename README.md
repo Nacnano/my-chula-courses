@@ -63,9 +63,9 @@ This is a personal repository for storing codes and learning materials from all 
 
 ### Individual Studies
 
-1. [Thai Context LLM Benchmark (with Assoc Prof. Ekapol)](https://github.com/Nacnano/thai-context-llm-benchmark): notebooks, updates, codes, data
+1. [Thai Context LLM Benchmark (with Assoc Prof. Ekapol)](https://github.com/Nacnano/thai-context-llm-benchmark): Notebooks, Progress, Codes, Data, Documentation
 
-### General Electives
+### General Electives (GenEd)
 
 #### See the files in [Onedrive](https://chula-my.sharepoint.com/:f:/g/personal/6531313221_student_chula_ac_th/Eh6t27fwE_VBky4hGBT67ygBo3h8n7EWyle22TjCA94aaQ?e=sDsXLV)
 
@@ -83,7 +83,7 @@ This is a personal repository for storing codes and learning materials from all 
 - [phumipatc's CU_Submissions](https://github.com/phumipatc/CU_Submissions)
 - [kyrov's Hardware_Synthesis_Lab](https://github.com/kyrov/Hardware_Synthesis_Lab)
 - [Bookpanda's Ourcourseville](https://ourcourseville.vercel.app/)
-- and many more (There are so many to be added)
+- and many more (Many more to be added)
 
 ## Author
 
