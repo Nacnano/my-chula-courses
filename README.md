@@ -57,7 +57,7 @@ This is a personal repository for storing codes and learning materials from all 
 
 ### Individual Studies
 
-1. [LLM Thai Context Understanding Evaluation (with Aj.Ekapol)](https://github.com/nacnano/indiv): Notes, updates, codes, mock data
+1. [Thai Context LLM Benchmark (with Assoc Prof. Ekapol)](https://github.com/Nacnano/thai-context-llm-benchmark): notebooks, updates, codes, data
 
 ### General Electives
 
