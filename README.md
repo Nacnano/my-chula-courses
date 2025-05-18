@@ -6,11 +6,13 @@ This is a personal repository for storing codes and learning materials from all 
 
 ## Guidance
 
-### Note : Please use @student.chula.ac.th email. Sorry, not available for public (Some content is confidential)
+### Note : Sorry, Some are not available for public (confidential data)
 
-1. พี่แนะแนวน้อง CP49: [Slide](https://docs.google.com/presentation/d/11nw6GtNE3KuS1G5MS36VHqcSHQJjzFVEvZQR1mBpWEk/edit), The video recording is not available for public. (Contact for more info)
+1. พี่แนะแนวน้อง CP49: [Slide (use Chula email)](https://docs.google.com/presentation/d/11nw6GtNE3KuS1G5MS36VHqcSHQJjzFVEvZQR1mBpWEk/edit), The video recording is not available for public. (Contact for more info)
 
-2. CP48 Review Internship: [Slide](https://docs.google.com/presentation/d/1gdvf9dJOKoCz7fogMiVtNSCoBfEy3R08cB-kLzR2Ml4/edit#slide=id.g2f05475da01_0_67)
+2. CP48 Review Internship: [Slide (use Chula email)](https://docs.google.com/presentation/d/1gdvf9dJOKoCz7fogMiVtNSCoBfEy3R08cB-kLzR2Ml4/edit#slide=id.g2f05475da01_0_67)
+
+3. Nac's Internship Lists : [Spreadsheet (public)](https://docs.google.com/spreadsheets/d/1vz_dsmOjUQX20f_P-ge9xdT5Umhq1NU3AElfW27vvaM/edit?gid=1208803729#gid=1208803729)
 
 ## Courses
 
@@ -44,7 +46,7 @@ This is a personal repository for storing codes and learning materials from all 
 5. [2110233 - Computer Engineering Mathematics Lab](https://github.com/Nacnano/my-chula-courses/tree/main/2110233-comp-eng-math-lab) : Quizzes
 6. [2110313 - Operating Systems And System Programs](https://github.com/Nacnano/my-chula-courses/tree/main/2110313-os-sys-prog) : Activities
 7. [2110336 - Software Engineering II](https://github.com/Nacnano/my-chula-courses/tree/main/2110336-software-eng-ii): Homeworks
-   - Project : [BookBook (Second-handed Book Marketplace)](https://github.com/seg-org/bookbook)
+   - Project : [BookBook (Second-handed Book Martplace)](https://github.com/seg-org/bookbook)
 8. [2110471 - Computer Network](https://github.com/Nacnano/my-chula-courses/tree/main/2110471-comp-network) : Labs
    - Project :[Go Websocket Chat Website](https://github.com/JomnoiZ/network-backend-group-13)
 
