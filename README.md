@@ -60,6 +60,8 @@ This is a personal repository for storing codes and learning materials from all 
    - Project : [Full-Finetuning LLaDA (Large Language Diffusion model)](https://github.com/pupipatsk/NanoLLaDA)
 4. [2110446 - Data Science and Data Engineering](https://github.com/Nacnano/my-chula-courses/tree/main/2110446-data-sci-eng)
    - Project : [Traffy Fondue Duration Prediction](https://github.com/Nacnano/traffy-fondue-duration-prediction)
+5. [2110413 - Computer Security](https://github.com/Nacnano/my-chula-courses/tree/main/2110413-comp-security)
+   - Activities
 
 ### Individual Studies
 
