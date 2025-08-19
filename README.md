@@ -62,6 +62,8 @@ This is a personal repository for storing codes and learning materials from all 
    - Project : [Traffy Fondue Duration Prediction](https://github.com/Nacnano/traffy-fondue-duration-prediction)
 5. [2110413 - Computer Security](https://github.com/Nacnano/my-chula-courses/tree/main/2110413-comp-security)
    - Activities
+6. [2110503 - Software Development Practice]
+   - Project : [Backend project](https://github.com/Nacnano/sw-dev-prac-project)
 
 ### Individual Studies
 
