@@ -5,6 +5,7 @@ The provided script successfully cracked the SHA-1 hash.
 The password is **'ThaiLanD'**.
 
 The script found this by testing words from a dictionary. It applied common variations like different capitalization and character substitutions (e.g., 'a' for '4'). This process is known as a dictionary attack.
+![alt text](image.png)
 
 ---
 
@@ -12,11 +13,12 @@ The script found this by testing words from a dictionary. It applied common vari
 
 The goal was to measure how many hashes different algorithms can compute in a set time. The results show a major difference in speed.
 
-- **MD5**: ~1.95 million hashes/second
-- **SHA1**: ~2.02 million hashes/second
+- **MD5**: ~1.7 million hashes/second
+- **SHA1**: ~1.8 million hashes/second
 - **BCRYPT**: 6 hashes/second
 
 This experiment shows why modern algorithms like **bcrypt** are more secure. They are intentionally slow. Fast algorithms like MD5 and SHA-1 allow attackers to guess billions of passwords very quickly.
+![alt text](image-1.png)
 
 ---
 
@@ -29,6 +31,7 @@ This exercise estimated the time to brute-force a password based on its length. 
 - **Length 12**: ~75.4 million years
 
 This shows that **password length** is critical for security. A password should be long enough to take more than a year to crack. Based on these results, a password of at least **10 to 12 characters** is recommended.
+![alt text](image-2.png)
 
 ---
 
@@ -49,8 +52,6 @@ Bcrypt automatically incorporates a random value called a **salt** into each has
 ---
 
 ### ## Question 6: Secure Password Storage Design 🛡️
-
-Here is a secure strategy for storing passwords in a database.
 
 - **Use a Proper Hash Function**: Always use a modern, slow algorithm designed for passwords, such as **bcrypt**, scrypt, or Argon2. Avoid MD5 and SHA-1.
 - **Use Salting**: A unique, random salt must be generated for each password and stored with the hash. This is a core feature of bcrypt and defends against rainbow table attacks.
