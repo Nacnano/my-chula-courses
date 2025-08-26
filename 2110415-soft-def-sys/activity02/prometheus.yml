@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: "node_exporters"
+    static_configs:
+      - targets:
+          - monitoring-node-exporter-1:9100
+          - monitoring-node-exporter-2:9100
+          - monitoring-node-exporter-3:9100
