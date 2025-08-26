@@ -1,4 +1,4 @@
-### ## Exercise 1: Cracking the SHA-1 Hash 🔑
+### ## Exercise 1: Cracking the SHA-1 Hash
 
 The provided script successfully cracked the SHA-1 hash.
 
@@ -9,7 +9,7 @@ The script found this by testing words from a dictionary. It applied common vari
 
 ---
 
-### ## Exercise 2: Hashing Algorithm Performance 🚀🐢
+### ## Exercise 2: Hashing Algorithm Performance
 
 The goal was to measure how many hashes different algorithms can compute in a set time. The results show a major difference in speed.
 
@@ -22,7 +22,7 @@ This experiment shows why modern algorithms like **bcrypt** are more secure. The
 
 ---
 
-### ## Exercise 3: Brute-Force Time Estimation 🕒
+### ## Exercise 3: Brute-Force Time Estimation
 
 This exercise estimated the time to brute-force a password based on its length. The results assume an attacker can test 200 million hashes per second.
 
@@ -51,7 +51,7 @@ Bcrypt automatically incorporates a random value called a **salt** into each has
 
 ---
 
-### ## Question 6: Secure Password Storage Design 🛡️
+### ## Question 6: Secure Password Storage Design
 
 - **Use a Proper Hash Function**: Always use a modern, slow algorithm designed for passwords, such as **bcrypt**, scrypt, or Argon2. Avoid MD5 and SHA-1.
 - **Use Salting**: A unique, random salt must be generated for each password and stored with the hash. This is a core feature of bcrypt and defends against rainbow table attacks.
