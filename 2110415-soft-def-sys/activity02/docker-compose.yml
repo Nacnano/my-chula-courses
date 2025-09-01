@@ -5,9 +5,14 @@ services:
     image: prom/node-exporter:latest
     container_name: monitoring-node-exporter
     command:
-      - "--path.rootfs=/host"
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($|/)"
     volumes:
-      - "/:/host:ro,rslave"
+      - "/proc:/host/proc:ro"
+      - "/sys:/host/sys:ro"
+      - "/:/rootfs:ro"
     ports:
       - "9100"
     networks:
