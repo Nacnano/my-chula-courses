@@ -47,15 +47,13 @@ source="*secure.log" "Failed password" | timechart span=1h count | where count >
 
 Which server (mailsv, www1, www2, www3) had the most attempts?
 
-**Answer**
+**Answer** www1
 
 **Splunk Search Command:**
 
 ```
 source="*secure.log" "Failed password" | stats count by source
 ```
-
-**Results:** www1
 
 ![alt text](image-1.png)
 
