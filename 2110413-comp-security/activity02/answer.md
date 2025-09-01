@@ -6,40 +6,39 @@
 
 How many hackers are trying to get access to our servers? And how many attempts are there? Explain/define how you count distinct hackers.
 
-**Answer**
+**Answer** 33253 Attempts, 185 Hackers
 
 **Splunk Search Command:**
 
+Attempts
+
 ```
-source="*secure.log" "Failed password" | stats count by src_ip | stats count as distinct_hackers, sum(count) as total_attempts
+source="*secure.log" "Failed password" | stats count
 ```
 
-**Definition of Distinct Hackers:**
-I define distinct hackers as unique source IP addresses that have attempted failed login attempts. This assumes each IP represents a different attacker, though in reality some hackers might use multiple IPs or some IPs might be shared.
+![alt text](image-3.png)
 
-**Results:**
-| Service | Distinct IPs | Attempt Count |
-|---------|-------------|---------------|
-| All | [Your Result] | [Your Result] |
-| mailsv | [Your Result] | [Your Result] |
-| www1 | [Your Result] | [Your Result] |
-| www2 | [Your Result] | [Your Result] |
-| www3 | [Your Result] | [Your Result] |
+Unique Hackers
 
-**Analysis:**
-[Include your analysis of the data and any patterns you notice]
+```
+source="*secure.log" "Failed password" | rex "from (?<src_ip>\S+) port" | stats dc(src_ip)
+```
+
+![alt text](image-2.png)
 
 ### Q2
 
 What time do hackers appear to try to hack our servers?
 
-**Answer**
+**Answer** 2025-08-17 to 2025-08-24 at 18:00
 
 **Splunk Search Command:**
 
 ```
-source="*secure.log" "Failed password" | eval hour=strftime(_time, "%H") | stats count by hour | sort hour
+source="*secure.log" "Failed password" | timechart span=1h count | where count > 0
 ```
+
+![alt text](image-4.png)
 
 **Results:**
 [Describe the time patterns you observe - peak hours, consistent timing, etc.]
@@ -64,7 +63,7 @@ source="*secure.log" "Failed password" | stats count by source
 
 What is the most popular account that hackers use to try to break in?
 
-**Answer**
+**Answer** Root
 
 **Splunk Search Command:**
 
@@ -72,15 +71,7 @@ What is the most popular account that hackers use to try to break in?
 source="*secure.log" "Failed password" | rex field=_raw "user (?<username>\w+)" | stats count by username | sort -count | head 20
 ```
 
-**Results:**
-| Username | Attempt Count |
-|----------|---------------|
-| [Username] | [Count] |
-| [Username] | [Count] |
-| ... | ... |
-
-**Analysis:**
-[Discuss why certain accounts might be targeted more frequently]
+![alt text](image-5.png)
 
 ---
 
@@ -90,31 +81,32 @@ source="*secure.log" "Failed password" | rex field=_raw "user (?<username>\w+)" 
 
 Can you find attempts to get access to sensitive information from our web servers? How many attempts were there?
 
-**Answer**
+**Answer** 742 Attempts with 404 Status,
 
 **Splunk Search Commands:**
 
+Attempts
+
 ```
-source="*access.log" (uri_path="*/admin*" OR uri_path="*/config*" OR uri_path="*/password*" OR uri_path="*/hidden*" OR uri_path="*/private*" OR uri_path="*/secret*")
+source="tutorialdata.zip:*/access.log" "404" | stats count
 ```
 
-**Results:**
-[List the sensitive files/paths found and attempt counts]
+![alt text](image-6.png)
 
 ### Q6
 
 What resource/file are hackers looking for?
 
-**Answer**
+**Answer** password.pdf, /hidden/anna_nicole.html
 
 **Splunk Search Command:**
 
 ```
-source="*access.log" (uri_path="*/admin*" OR uri_path="*/config*" OR uri_path="*/password*" OR uri_path="*/hidden*") | stats count by uri_path | sort -count
+source="tutorialdata.zip:*/access.log" "404" | stats count
 ```
 
-**Results:**
-[List the specific files/resources being targeted]
+Sensitive Information (find using uri_path)
+![alt text](image-7.png)
 
 ---
 
@@ -124,22 +116,21 @@ source="*access.log" (uri_path="*/admin*" OR uri_path="*/config*" OR uri_path="*
 
 Can you find any bots crawling our websites?
 
-**Answer**
+**Answer** Googlebot/2.1 ( http://www.googlebot.com/bot.html)
 
 **Splunk Search Command:**
 
 ```
-source="*access.log" | rex field=useragent "(?<bot_name>bot|crawler|spider)" | search bot_name=* | stats count by useragent
+source="*access.log" | search useragent="*bot*" | table _time, useragent, file_name
 ```
 
-**Results:**
-[List the bots you found]
+![alt text](image-8.png)
 
 ### Q8
 
 What are they doing on the site? (Hint: Look for User-Agent in the web access.logs.)
 
-**Answer**
+**Answer** Indexing for Google search
 
 **Splunk Search Command:**
 
@@ -147,42 +138,4 @@ What are they doing on the site? (Hint: Look for User-Agent in the web access.lo
 source="*access.log" useragent="*bot*" | stats count by uri_path, useragent | sort -count
 ```
 
-**Results:**
-[Describe what the bots are accessing and their behavior patterns]
-
 ---
-
-## Key Splunk Commands Used
-
-1. **Basic Search:** `source="*secure.log" "Failed password"`
-2. **Field Extraction:** `| rex field=_raw "pattern"`
-3. **Statistics:** `| stats count by field_name`
-4. **Sorting:** `| sort -count` (descending) or `| sort count` (ascending)
-5. **Time Analysis:** `| eval hour=strftime(_time, "%H")`
-6. **Filtering:** `| search condition`
-
-## Tips for Your Analysis
-
-1. **Start Simple:** Begin with basic searches like `source="*secure.log"` to see what data you have
-2. **Use Wildcards:** `*` helps find patterns across different log formats
-3. **Field Extraction:** Use regex to extract usernames, IPs, and other relevant fields
-4. **Time Analysis:** Convert timestamps to readable formats for pattern analysis
-5. **Documentation:** Take screenshots of your Splunk searches and results as evidence
-
-## Common Patterns to Look For
-
-**In secure.log:**
-
-- "Failed password"
-- "Invalid user"
-- "Connection closed"
-- Multiple attempts from same IP
-
-**In access.log:**
-
-- HTTP status codes (404, 403, 200)
-- Suspicious file requests
-- Bot user agents
-- Unusual request patterns
-
-Remember to replace the placeholder content with your actual findings from the Splunk analysis!
