@@ -1,14 +1,14 @@
-version: "3.8"
+# Docker Compose
 
+```
 services:
   node-exporter:
     image: prom/node-exporter:latest
-    container_name: monitoring-node-exporter
     command:
       - "--path.procfs=/host/proc"
       - "--path.rootfs=/rootfs"
       - "--path.sysfs=/host/sys"
-      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($|/)"
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
     volumes:
       - "/proc:/host/proc:ro"
       - "/sys:/host/sys:ro"
@@ -56,3 +56,28 @@ networks:
 volumes:
   prometheus_data:
   grafana_data:
+```
+
+# Prometheus
+
+```
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "node-exporter"
+    static_configs:
+      - targets:
+          - monitoring-node-exporter-1:9100
+          - monitoring-node-exporter-2:9100
+          - monitoring-node-exporter-3:9100
+```
+
+![alt text](docker-stats.png)
+
+![alt text](metrics.png)
