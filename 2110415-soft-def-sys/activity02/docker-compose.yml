@@ -1,46 +1,53 @@
-version: "3.9"
-
-networks:
-  monitoring:
-    driver: bridge
+version: "3.8"
 
 services:
   node-exporter:
     image: prom/node-exporter:latest
     container_name: monitoring-node-exporter
+    command:
+      - "--path.rootfs=/host"
+    volumes:
+      - "/:/host:ro,rslave"
+    ports:
+      - "9100"
+    networks:
+      - monitoring
     deploy:
       resources:
         limits:
           cpus: "0.25"
-    networks:
-      - monitoring
-    ports:
-      - "9100"
-    restart: always
+    restart: unless-stopped
 
   prometheus:
     image: prom/prometheus:latest
     container_name: monitoring-prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
-    networks:
-      - monitoring
     ports:
       - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitoring
     depends_on:
       - node-exporter
-    restart: always
+    restart: unless-stopped
 
   grafana:
     image: grafana/grafana:latest
     container_name: monitoring-grafana
+    ports:
+      - "3000:3000"
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     networks:
       - monitoring
-    ports:
-      - "3000:3000"
     depends_on:
       - prometheus
-    restart: always
+    restart: unless-stopped
+
+networks:
+  monitoring:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+  grafana_data:
