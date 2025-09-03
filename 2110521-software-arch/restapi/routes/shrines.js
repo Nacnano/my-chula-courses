@@ -19,10 +19,6 @@ router
   .get(getShrines)
   .post(shrineValidationRules(), validate, createShrine);
 
-router
-  .route("/:id")
-  .get(getShrine)
-  .put(shrineValidationRules(), validate, updateShrine)
-  .delete(deleteShrine);
+router.route("/:id").get(getShrine).put(updateShrine).delete(deleteShrine);
 
 module.exports = router;
