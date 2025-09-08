@@ -1,1 +1,61 @@
-![alt text](image.png)
+Dockerfile
+
+```
+networks:
+  todo-net:
+
+services:
+  webapp:
+    build: ./todo-webapp
+    image: "todo-webapp:release-3.1"
+    container_name: todo-webapp
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - todo-net
+
+  service:
+    build: ./todo
+    image: "todo-service:release-3"
+    container_name: todo-service
+    networks:
+      - todo-net
+    environment:
+      NOTIFICATION_HOST: notification
+      REDIS_HOST: redis
+
+  notification:
+    build: ./todo-notification
+    image: "todo-notification:release-1.1"
+    container_name: notification-service
+    expose:
+      - "9000"
+    networks:
+      - todo-net
+    environment:
+      REDIS_HOST: redis
+
+  redis:
+    image: "redis"
+    container_name: redis
+    networks:
+      - todo-net
+
+  api-gateway:
+    build: .nginx
+    container_name: api-gateway
+    networks:
+      - todo-net
+    ports:
+      - "8000:8000"
+```
+
+Docker compose up -d
+![alt text](image-2.png)
+
+Docker ps -a
+![alt text](image-1.png)
+
+Todo App
+![alt text](image-3.png)

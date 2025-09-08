@@ -1,10 +1,8 @@
-networks:
-  todo-net:
+name: todo
 
 services:
   webapp:
     build: ./todo-webapp
-    image: "todo-webapp:release-3.1"
     container_name: todo-webapp
     stdin_open: true
     ports:
@@ -14,7 +12,6 @@ services:
 
   service:
     build: ./todo
-    image: "todo-service:release-3"
     container_name: todo-service
     networks:
       - todo-net
@@ -24,7 +21,6 @@ services:
 
   notification:
     build: ./todo-notification
-    image: "todo-notification:release-1.1"
     container_name: notification-service
     expose:
       - "9000"
@@ -46,3 +42,6 @@ services:
       - todo-net
     ports:
       - "8000:8000"
+
+networks:
+  todo-net:
