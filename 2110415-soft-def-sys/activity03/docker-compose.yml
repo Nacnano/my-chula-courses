@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  # Todo Web Application
+  todo-webapp:
+    build: https://github.com/natawutn/todo-webapp.git#release-3.1
+    image: todo-webapp:release-3.1
+    container_name: todo-webapp
+    ports:
+      - "3000:3000"
+    networks:
+      - todo-net
+    depends_on:
+      - todo-service
+      - api-gateway
+
+  # Todo Service
+  todo-service:
+    build: https://github.com/natawutn/todo.git#release-3
+    image: todo:release-3
+    container_name: todo-service
+    ports:
+      - "8000"
+    networks:
+      - todo-net
+
+  # Todo Notification Service
+  notification-service:
+    build: https://github.com/natawutn/todo-notification.git#release-1.1
+    image: todo-notification:release-1.1
+    container_name: notification-service
+    environment:
+      REDIS_HOST: redis
+    ports:
+      - "9000"
+    networks:
+      - todo-net
+
+  # API Gateway using NGINX
+  api-gateway:
+    image: nginx:alpine
+    container_name: api-gateway
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - todo-net
+    depends_on:
+      - todo-service
+      - notification-service
+
+# Networks
+networks:
+  todo-net:
+    driver: bridge
