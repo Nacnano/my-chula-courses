@@ -1,54 +1,37 @@
+networks:
+  todo-net:
+
 services:
   webapp:
-    # build: https://github.com/natawutn/todo-webapp.git#release-3.1
     build: ./todo-webapp
-    image: todo-webapp:release-3.1
+    image: "todo-webapp:release-3.1"
     container_name: todo-webapp
     stdin_open: true
     ports:
       - "3000:3000"
     networks:
       - todo-net
-    depends_on:
-      - service
 
   service:
-    # build: https://github.com/natawutn/todo.git#release-3
     build: ./todo
-    image: todo:release-3
+    image: "todo-service:release-3"
     container_name: todo-service
+    networks:
+      - todo-net
     environment:
       NOTIFICATION_HOST: notification
       REDIS_HOST: redis
-    ports:
-      - "8000"
-    networks:
-      - todo-net
 
   notification:
-    # build: https://github.com/natawutn/todo-notification.git#release-1.1
     build: ./todo-notification
-    image: todo-notification:release-1.1
+    image: "todo-notification:release-1.1"
     container_name: notification-service
-    environment:
-      REDIS_HOST: redis
-    ports:
+    expose:
       - "9000"
     networks:
       - todo-net
-
-  api-gateway:
-    build: ./api-gateway
-    container_name: api-gateway
-    ports:
-      - "8000:8000"
-    networks:
-      - todo-net
-    depends_on:
-      - webapp
-      - service
-      - notification
-      - redis
+    environment:
+      REDIS_HOST: redis
 
   redis:
     image: "redis"
@@ -56,7 +39,10 @@ services:
     networks:
       - todo-net
 
-# Networks
-networks:
-  todo-net:
-    driver: bridge
+  api-gateway:
+    build: .nginx
+    container_name: api-gateway
+    networks:
+      - todo-net
+    ports:
+      - "8000:8000"
