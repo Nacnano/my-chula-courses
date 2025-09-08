@@ -1,30 +1,33 @@
 services:
-  # Todo Web Application
-  todo-webapp:
-    build: https://github.com/natawutn/todo-webapp.git#release-3.1
+  webapp:
+    # build: https://github.com/natawutn/todo-webapp.git#release-3.1
+    build: ./todo-webapp
     image: todo-webapp:release-3.1
     container_name: todo-webapp
+    stdin_open: true
     ports:
       - "3000:3000"
     networks:
       - todo-net
     depends_on:
-      - todo-service
-      - api-gateway
+      - service
 
-  # Todo Service
-  todo-service:
-    build: https://github.com/natawutn/todo.git#release-3
+  service:
+    # build: https://github.com/natawutn/todo.git#release-3
+    build: ./todo
     image: todo:release-3
     container_name: todo-service
+    environment:
+      NOTIFICATION_HOST: notification
+      REDIS_HOST: redis
     ports:
       - "8000"
     networks:
       - todo-net
 
-  # Todo Notification Service
-  notification-service:
-    build: https://github.com/natawutn/todo-notification.git#release-1.1
+  notification:
+    # build: https://github.com/natawutn/todo-notification.git#release-1.1
+    build: ./todo-notification
     image: todo-notification:release-1.1
     container_name: notification-service
     environment:
@@ -34,20 +37,19 @@ services:
     networks:
       - todo-net
 
-  # API Gateway using NGINX
   api-gateway:
-    image: nginx:alpine
+    build: ./api-gateway
     container_name: api-gateway
     ports:
       - "8000:8000"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
       - todo-net
     depends_on:
-      - todo-service
-      - notification-service
-      
+      - webapp
+      - service
+      - notification
+      - redis
+
   redis:
     image: "redis"
     container_name: redis

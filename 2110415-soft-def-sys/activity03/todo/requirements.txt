@@ -1,0 +1,6 @@
+# Required packages
+requests >= 2.22.0
+fastapi == 0.61.1
+uvicorn == 0.11.8
+redis
+pytest >= 5.3.5
