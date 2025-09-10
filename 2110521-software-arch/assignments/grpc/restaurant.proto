@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+service RestaurantService {
+  rpc GetAllMenu(Empty) returns (MenuList) {}
+  rpc Get(MenuId) returns (MenuItem) {}
+  rpc Insert(MenuItem) returns (MenuItem) {}
+  rpc Update(MenuItem) returns (MenuItem) {}
+  rpc Remove(MenuId) returns (Empty) {}
+}
+
+message Empty {}
+
+message MenuItem {
+  string id = 1;
+  string name = 2;
+  int32 price = 3;
+}
+
+message MenuList {
+  repeated MenuItem menu = 1;
+}
+
+message MenuId {
+  string id = 1;
+}

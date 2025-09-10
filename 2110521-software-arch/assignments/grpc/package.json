@@ -1,0 +1,22 @@
+{
+  "name": "restaurant-grpc-project",
+  "version": "1.0.0",
+  "description": "A full-stack web app with a gRPC backend based on the presentation.",
+  "main": "server/server.js",
+  "scripts": {
+    "start:grpc": "node server/server.js",
+    "start:web": "node client/index.js"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.10.1",
+    "@grpc/proto-loader": "^0.7.10",
+    "body-parser": "^1.19.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.17.1",
+    "hbs": "^4.2.0",
+    "mongoose": "^7.0.3",
+    "uuid": "^8.3.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
