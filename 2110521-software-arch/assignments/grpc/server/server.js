@@ -1,63 +1,102 @@
+require("dotenv").config();
 const PROTO_PATH = "./restaurant.proto";
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const mongoose = require("mongoose");
-const Menu = require("./models/Menu"); // Import the Menu model
-require("dotenv").config(); // Load environment variables from .env file
 
-// Connect to MongoDB
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => console.log("Successfully connected to MongoDB."))
-  .catch((err) => console.error("MongoDB connection error:", err));
+// Import the Menu model
+const Menu = require("../models/Menu");
 
-const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
+var packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
   longs: String,
   enums: String,
   arrays: true,
 });
 
-const restaurantProto = grpc.loadPackageDefinition(packageDefinition);
+var restaurantProto = grpc.loadPackageDefinition(packageDefinition);
 const server = new grpc.Server();
 
-// Implement the gRPC service methods to interact with MongoDB
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+mongoose.connection.on("connected", () => {
+  console.log("Connected to MongoDB");
+});
+
+mongoose.connection.on("error", (err) => {
+  console.error("MongoDB connection error:", err);
+});
+
+mongoose.connection.on("disconnected", () => {
+  console.log("Disconnected from MongoDB");
+});
+
+// gRPC service implementations
 server.addService(restaurantProto.RestaurantService.service, {
+  // Get all menu items
   getAllMenu: async (_, callback) => {
     try {
-      const menu = await Menu.find({});
-      callback(null, { menu });
-    } catch (err) {
-      callback({ code: grpc.status.INTERNAL, details: "Error fetching menu" });
+      const menuItems = await Menu.find({});
+      const formattedMenu = menuItems.map((item) => ({
+        id: item._id.toString(),
+        name: item.name,
+        price: item.price,
+      }));
+      callback(null, { menu: formattedMenu });
+    } catch (error) {
+      console.error("Error fetching all menu items:", error);
+      callback({
+        code: grpc.status.INTERNAL,
+        details: "Error fetching menu items",
+      });
     }
   },
 
+  // Get single menu item by ID
   get: async (call, callback) => {
     try {
       const menuItem = await Menu.findById(call.request.id);
       if (menuItem) {
-        callback(null, menuItem);
+        callback(null, {
+          id: menuItem._id.toString(),
+          name: menuItem.name,
+          price: menuItem.price,
+        });
       } else {
         callback({
           code: grpc.status.NOT_FOUND,
           details: "Menu item not found",
         });
       }
-    } catch (err) {
+    } catch (error) {
+      console.error("Error fetching menu item:", error);
       callback({
         code: grpc.status.INTERNAL,
-        details: "Error finding menu item",
+        details: "Error fetching menu item",
       });
     }
   },
 
+  // Insert new menu item
   insert: async (call, callback) => {
     try {
-      const { name, price } = call.request;
-      const newMenuItem = new Menu({ name, price });
-      const savedItem = await newMenuItem.save();
-      callback(null, savedItem);
-    } catch (err) {
+      const newMenuItem = new Menu({
+        name: call.request.name,
+        price: call.request.price,
+      });
+
+      const savedMenuItem = await newMenuItem.save();
+      callback(null, {
+        id: savedMenuItem._id.toString(),
+        name: savedMenuItem.name,
+        price: savedMenuItem.price,
+      });
+    } catch (error) {
+      console.error("Error inserting menu item:", error);
       callback({
         code: grpc.status.INTERNAL,
         details: "Error creating menu item",
@@ -65,23 +104,32 @@ server.addService(restaurantProto.RestaurantService.service, {
     }
   },
 
+  // Update existing menu item
   update: async (call, callback) => {
     try {
-      const { id, name, price } = call.request;
-      const updatedItem = await Menu.findByIdAndUpdate(
-        id,
-        { name, price },
+      const updatedMenuItem = await Menu.findByIdAndUpdate(
+        call.request.id,
+        {
+          name: call.request.name,
+          price: call.request.price,
+        },
         { new: true }
       );
-      if (updatedItem) {
-        callback(null, updatedItem);
+
+      if (updatedMenuItem) {
+        callback(null, {
+          id: updatedMenuItem._id.toString(),
+          name: updatedMenuItem.name,
+          price: updatedMenuItem.price,
+        });
       } else {
         callback({
           code: grpc.status.NOT_FOUND,
           details: "Menu item not found",
         });
       }
-    } catch (err) {
+    } catch (error) {
+      console.error("Error updating menu item:", error);
       callback({
         code: grpc.status.INTERNAL,
         details: "Error updating menu item",
@@ -89,10 +137,11 @@ server.addService(restaurantProto.RestaurantService.service, {
     }
   },
 
+  // Remove menu item
   remove: async (call, callback) => {
     try {
-      const removedItem = await Menu.findByIdAndDelete(call.request.id);
-      if (removedItem) {
+      const deletedMenuItem = await Menu.findByIdAndDelete(call.request.id);
+      if (deletedMenuItem) {
         callback(null, {});
       } else {
         callback({
@@ -100,7 +149,8 @@ server.addService(restaurantProto.RestaurantService.service, {
           details: "Menu item not found",
         });
       }
-    } catch (err) {
+    } catch (error) {
+      console.error("Error removing menu item:", error);
       callback({
         code: grpc.status.INTERNAL,
         details: "Error removing menu item",
@@ -109,15 +159,16 @@ server.addService(restaurantProto.RestaurantService.service, {
   },
 });
 
+const PORT = process.env.PORT || 30043;
 server.bindAsync(
-  "127.0.0.1:30043",
+  `127.0.0.1:${PORT}`,
   grpc.ServerCredentials.createInsecure(),
-  (err, port) => {
-    if (err) {
-      console.error("Server bind error:", err);
+  (error, port) => {
+    if (error) {
+      console.error("Server failed to bind:", error);
       return;
     }
-    console.log(`gRPC Server running at http://127.0.0.1:${port}`);
+    console.log(`gRPC Server running at http://127.0.0.1:${PORT}`);
     server.start();
   }
 );

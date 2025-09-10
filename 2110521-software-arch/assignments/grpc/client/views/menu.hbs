@@ -1,0 +1,244 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Restaurant CRUD with gRPC and MongoDB</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      .restaurant { background-color: #764abc; color: white; } .alert {
+      margin-top: 20px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="py-5 text-center">
+        <img
+          class="d-block mx-auto mb-4"
+          src="https://www.cp.eng.chula.ac.th/wp-content/uploads/2014/08/ChulaEngineeringComputer-formal.png"
+          alt="Logo"
+          height="72"
+        />
+        <h2>Restaurant Menu Management</h2>
+        <p class="lead">
+          CRUD Operations with Node.js, Express, Handlebars, gRPC and MongoDB
+        </p>
+      </div>
+
+      {{#if error}}
+        <div class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+      {{/if}}
+
+      <table class="table table-striped" id="Menus_table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Menu ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each results}}
+            <tr>
+              <td>
+                <small>{{id}}</small>
+              </td>
+              <td>{{name}}</td>
+              <td>{{price}} THB</td>
+              <td>
+                <button
+                  class="btn btn-sm btn-primary edit restaurant"
+                  data-id="{{id}}"
+                  data-name="{{name}}"
+                  data-price="{{price}}"
+                >
+                  Edit
+                </button>
+                <button class="btn btn-sm btn-danger remove" data-id="{{id}}">
+                  Remove
+                </button>
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan="4" class="text-center">
+                No menu items found. Add some items to get started!
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <div class="text-right mb-4">
+        <button
+          class="btn btn-success"
+          data-toggle="modal"
+          data-target="#newMenuModal"
+        >
+          Add New Menu Item
+        </button>
+      </div>
+    </div>
+
+    <!-- New Menu Modal -->
+    <form action="/save" method="post">
+      <div class="modal fade" id="newMenuModal" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">New Menu Item</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="name">Menu Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  placeholder="Menu Name"
+                  required="required"
+                />
+              </div>
+              <div class="form-group">
+                <label for="price">Price (THB)</label>
+                <input
+                  type="number"
+                  name="price"
+                  class="form-control"
+                  placeholder="Price"
+                  required="required"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn restaurant">Create</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Edit Menu Modal -->
+    <form action="/update" method="post">
+      <div class="modal fade" id="editMenuModal" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Menu Item</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="name">Menu Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control name"
+                  placeholder="Menu Name"
+                  required="required"
+                />
+              </div>
+              <div class="form-group">
+                <label for="price">Price (THB)</label>
+                <input
+                  type="number"
+                  name="price"
+                  class="form-control price"
+                  placeholder="Price"
+                  required="required"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" name="id" class="menu_id" />
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn restaurant">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Remove Menu Modal -->
+    <form action="/remove" method="post">
+      <div class="modal fade" id="removeMenuModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Remove Menu Item</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to remove this menu item?</p>
+            </div>
+            <div class="modal-footer">
+              <input
+                type="hidden"
+                name="menuItem_id"
+                class="form-control Menu_id_removal"
+                required="required"
+              />
+              <button
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-danger">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $(document).ready(function () { $("#Menus_table") .on("click", ".edit",
+      function () { $("#editMenuModal").modal("show");
+      $(".menu_id").val($(this).data("id"));
+      $(".name").val($(this).data("name"));
+      $(".price").val($(this).data("price")); }) .on("click", ".remove",
+      function () { $("#removeMenuModal").modal("show");
+      $(".Menu_id_removal").val($(this).data("id")); }); });
+    </script>
+  </body>
+</html>
