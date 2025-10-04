@@ -1,7 +1,5 @@
-# producer_round_robin.py
 from kafka import KafkaProducer
-import json
-import time
+import json, time, sys
 
 producer = KafkaProducer(
     bootstrap_servers=['localhost:9092'],
@@ -9,23 +7,24 @@ producer = KafkaProducer(
 )
 
 topic_name = 'my-topic'
-num_messages = 20
+num_messages = 100000  # 100K messages
 
-print(f"Sending {num_messages} messages to topic '{topic_name}'...")
-print("The producer will automatically distribute these across all available partitions.")
+# Argument for message size in KB (default = 0.1KB)
+msg_size_kb = float(sys.argv[1]) if len(sys.argv) > 1 else 0.1
+payload = "X" * int(msg_size_kb * 1024)  # fill with dummy characters
+
+print(f"Sending {num_messages} messages of size {msg_size_kb} KB to topic '{topic_name}'...")
+
+start = time.time()
 
 for i in range(num_messages):
-    message = {'message_id': i, 'distribution_method': 'default_round_robin'}
-    
-    # By NOT specifying a 'key' or 'partition', kafka-python automatically
-    # cycles through the partitions for us. This is the key to load balancing.
+    message = {'id': i, 'payload': payload}
     producer.send(topic_name, value=message)
-    
-    print(f"Sent message #{i}")
-    time.sleep(0.1)
 
-# .flush() ensures all buffered messages are sent before the script exits
 producer.flush()
-producer.close()
+end = time.time()
 
-print("Finished sending all messages.")
+print(f"Finished sending {num_messages} messages in {end - start:.2f} sec")
+print(f"Throughput: {num_messages / (end - start):.2f} msg/sec")
+
+producer.close()
