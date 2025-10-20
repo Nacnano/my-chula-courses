@@ -155,8 +155,8 @@ python3 test_fs.py random_large.txt 10
 python3 test_fs.py random_tiny.txt 500000 /mnt/eph
 python3 test_fs.py random_large.txt 10 /mnt/eph
 
-python3 test_s3.py random_tiny.txt 500 my-sds-bucket-2024
-python3 test_s3.py random_large.txt 10 my-sds-bucket-2024
+python3 test_s3.py random_tiny.txt 500 sds-bucket
+python3 test_s3.py random_large.txt 10 sds-bucket
 ```
 
 ---
@@ -257,13 +257,13 @@ ubuntu@ip-172-31-22-45:~/activity07$ python3 test_fs.py random_large.txt 10 /mnt
 Time taken: 1.13 s
 Write throughput: 88503.98 KB/s
 
-ubuntu@ip-172-31-22-45:~/activity07$ python3 test_s3.py random_tiny.txt 500 my-sds-bucket-2024
-Uploaded 500 files to S3 bucket: my-sds-bucket-2024
+ubuntu@ip-172-31-22-45:~/activity07$ python3 test_s3.py random_tiny.txt 500 sds-bucket
+Uploaded 500 files to S3 bucket: sds-bucket
 Time taken: 38.60 s
 Write throughput: 52.03 KB/s
 
-ubuntu@ip-172-31-22-45:~/activity07$ python3 test_s3.py random_large.txt 10 my-sds-bucket-2024
-Uploaded 10 files to S3 bucket: my-sds-bucket-2024
+ubuntu@ip-172-31-22-45:~/activity07$ python3 test_s3.py random_large.txt 10 sds-bucket
+Uploaded 10 files to S3 bucket: sds-bucket
 Time taken: 1.88 s
 Write throughput: 53191.45 KB/s
 ```
