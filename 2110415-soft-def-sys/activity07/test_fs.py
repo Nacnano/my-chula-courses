@@ -22,9 +22,10 @@ def write_files(source_file, n, target_dir="."):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python3 test_fs.py <source_data> <n>")
+        print("Usage: python3 test_fs.py <source_data> <n> [target_dir]")
         sys.exit(1)
 
     source_data = sys.argv[1]
     n = sys.argv[2]
-    write_files(source_data, n)
+    target_dir = sys.argv[3] if len(sys.argv) > 3 else "."
+    write_files(source_data, n, target_dir)

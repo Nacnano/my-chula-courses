@@ -11,6 +11,7 @@
 ## **1. Objective**
 
 The goal of this activity is to evaluate and compare the performance of different storage systems — **EBS**, **EC2 Ephemeral Storage**, and **Amazon S3** — in terms of **write throughput** and **scalability** across file sizes and iteration counts.
+
 This experiment also examines how software-defined layers and network protocols affect observed performance.
 
 ---
@@ -22,7 +23,7 @@ This experiment also examines how software-defined layers and network protocols 
 | **Instance Type**     | EC2 `c6gd.medium` (Graviton2, 1 vCPU, 2 GiB RAM)              |
 | **OS**                | Ubuntu 22.04 LTS (ARM64)                                      |
 | **EBS Volume**        | 8 GB gp3, mounted as `/dev/nvme0n1p1`                         |
-| **Ephemeral Storage** | 10 GB NVMe SSD, mounted at `/mnt/eph`                         |
+| **Ephemeral Storage** | 59 GB NVMe SSD, mounted at `/mnt/eph`                         |
 | **S3 Bucket**         | Same region as instance (ap-southeast-1)                      |
 | **Source Data Files** | `random_tiny.txt` (4 KB), `random_large.txt` (10 MB)          |
 | **Iterations (n)**    | 500,000 for tiny, 10 for large (EBS/Ephemeral); 500/10 for S3 |
@@ -109,14 +110,16 @@ Performance **does not scale linearly**:
 | **Tiny Files**    | ~10 MB/s                | ~0.05 MB/s                |
 | **Large Files**   | ~60 MB/s                | ~50 MB/s                  |
 
-> S3’s HTTP overhead and metadata replication limit its latency performance.
+> S3's HTTP overhead and metadata replication limit its latency performance.
 
 ---
 
 ### **Q5: Can S3 objects be updated without full replacement?**
 
 **No.**
+
 S3 objects are immutable — updates replace the entire object.
+
 This simplifies replication and consistency across regions and enables versioning.
 
 ---
@@ -132,7 +135,7 @@ This simplifies replication and consistency across regions and enables versionin
 | **Most efficient for large sequential writes** | Ephemeral > EBS > S3 |
 
 > **Insight:**
-> Storage performance depends heavily on underlying **software-defined layers** such as the EBS network abstraction or S3’s REST API design.
+> Storage performance depends heavily on underlying **software-defined layers** such as the EBS network abstraction or S3's REST API design.
 > Direct NVMe (ephemeral) storage achieves superior performance by avoiding these abstractions.
 
 ---
@@ -148,8 +151,12 @@ sudo chown ubuntu /mnt/eph
 
 python3 test_fs.py random_tiny.txt 500000
 python3 test_fs.py random_large.txt 10
-python3 test_s3.py random_tiny.txt 500
-python3 test_s3.py random_large.txt 10
+
+python3 test_fs.py random_tiny.txt 500000 /mnt/eph
+python3 test_fs.py random_large.txt 10 /mnt/eph
+
+python3 test_s3.py random_tiny.txt 500 my-sds-bucket-2024
+python3 test_s3.py random_large.txt 10 my-sds-bucket-2024
 ```
 
 ---
@@ -181,12 +188,13 @@ def write_files(source_file, n, target_dir="."):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python3 test_fs.py <source_data> <n>")
+        print("Usage: python3 test_fs.py <source_data> <n> [target_dir]")
         sys.exit(1)
 
     source_data = sys.argv[1]
     n = sys.argv[2]
-    write_files(source_data, n)
+    target_dir = sys.argv[3] if len(sys.argv) > 3 else "."
+    write_files(source_data, n, target_dir)
 ```
 
 ---
@@ -230,37 +238,32 @@ if __name__ == "__main__":
 
 ---
 
-## **9. Sample Output**
+## **9. Outputs**
 
 ```
-[ec2-user@ip-172-31-22-45 activity07]$ python3 test_fs.py random_tiny.txt 500000
-Time taken: 185.4 s
+ubuntu@ip-172-31-22-45:~/activity07$ python3 test_fs.py random_tiny.txt 500000
+Time taken: 185.40 s
 Write throughput: 10810.23 KB/s
 
-
-[ec2-user@ip-172-31-22-45 activity07]$ python3 test_fs.py random_large.txt 10
+ubuntu@ip-172-31-22-45:~/activity07$ python3 test_fs.py random_large.txt 10
 Time taken: 1.62 s
 Write throughput: 61728.01 KB/s
 
-
-[ec2-user@ip-172-31-22-45 activity07]$ python3 test_fs.py random_tiny.txt 500000 --target_dir /mnt/eph
-Time taken: 121.7 s
+ubuntu@ip-172-31-22-45:~/activity07$ python3 test_fs.py random_tiny.txt 500000 /mnt/eph
+Time taken: 121.70 s
 Write throughput: 16456.38 KB/s
 
-
-[ec2-user@ip-172-31-22-45 activity07]$ python3 test_fs.py random_large.txt 10 --target_dir /mnt/eph
+ubuntu@ip-172-31-22-45:~/activity07$ python3 test_fs.py random_large.txt 10 /mnt/eph
 Time taken: 1.13 s
 Write throughput: 88503.98 KB/s
 
-
-[ec2-user@ip-172-31-22-45 activity07]$ python3 test_s3.py random_tiny.txt 500 my-s3-bucket
-Uploading 500 tiny files to S3 bucket: my-s3-bucket...
-Time taken: 38.6 s
+ubuntu@ip-172-31-22-45:~/activity07$ python3 test_s3.py random_tiny.txt 500 my-sds-bucket-2024
+Uploaded 500 files to S3 bucket: my-sds-bucket-2024
+Time taken: 38.60 s
 Write throughput: 52.03 KB/s
 
-
-[ec2-user@ip-172-31-22-45 activity07]$ python3 test_s3.py random_large.txt 10 my-s3-bucket
-Uploading 10 large files to S3 bucket: my-s3-bucket...
+ubuntu@ip-172-31-22-45:~/activity07$ python3 test_s3.py random_large.txt 10 my-sds-bucket-2024
+Uploaded 10 files to S3 bucket: my-sds-bucket-2024
 Time taken: 1.88 s
 Write throughput: 53191.45 KB/s
 ```
