@@ -6,14 +6,11 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
-const cors = require("cors");
 const connectDB = require("./config/mongodb");
 const cors = require("cors");
 
 //Route files
-const hospitals = require("./routes/hospitals");
 const auth = require("./routes/auth");
-const appointments = require("./routes/appointments");
 
 //Load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -49,9 +46,7 @@ app.use(limiter);
 app.use(cors());
 
 //Mount routers
-app.use("/api/v1/hospitals", hospitals);
 app.use("/api/v1/auth", auth);
-app.use("/api/v1/appointments", appointments);
 
 const PORT = process.env.PORT || 5000;
 const server = app.listen(
