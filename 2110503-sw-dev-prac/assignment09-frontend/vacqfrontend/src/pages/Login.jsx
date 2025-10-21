@@ -4,17 +4,22 @@ import { FaSignInAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { login, reset } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const { name, email, password, password2 } = formData;
+
+  const { email, password } = formData;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+
+  const { user, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -25,12 +30,14 @@ function Login() {
     }
     dispatch(reset());
   }, [isError, isSuccess, user, message, navigate, dispatch]);
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
+
   const onSubmit = (e) => {
     e.preventDefault();
     const userData = {
@@ -39,6 +46,7 @@ function Login() {
     };
     dispatch(login(userData));
   };
+
   return (
     <>
       <section className="heading">
@@ -57,28 +65,29 @@ function Login() {
               name="email"
               value={email}
               onChange={onChange}
-              placeholder="Enter Your email"
+              placeholder="Enter your email"
               required
             />
           </div>
           <div className="form-group">
             <input
               type="password"
-              className="formcontrol"
+              className="form-control"
               id="password"
               name="password"
               value={password}
               onChange={onChange}
-              placeholder="Enter Your password"
+              placeholder="Enter your password"
               required
             />
           </div>
           <div className="form-group">
-            <button className="btn btnblock">Submit</button>
+            <button className="btn btn-block">Submit</button>
           </div>
         </form>
       </section>
     </>
   );
 }
+
 export default Login;

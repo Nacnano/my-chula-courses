@@ -8,6 +8,7 @@ const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 const cors = require("cors");
 const connectDB = require("./config/mongodb");
+const cors = require("cors");
 
 //Route files
 const hospitals = require("./routes/hospitals");
@@ -23,6 +24,7 @@ const app = express();
 
 //Body parser
 app.use(express.json());
+app.use(cors());
 
 //Cookie parser
 app.use(cookieParser());
