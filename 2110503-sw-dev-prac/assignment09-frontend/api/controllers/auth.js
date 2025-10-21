@@ -73,7 +73,7 @@ exports.login = async (req, res, next) => {
 
 //Get token from model, create cookie and send response
 const sendTokenResponse = (user, statusCode, res) => {
-  //Create token
+  // Create token
   const token = user.getSignedJwtToken();
 
   const options = {
@@ -87,10 +87,19 @@ const sendTokenResponse = (user, statusCode, res) => {
     options.secure = true;
   }
 
-  res.status(statusCode).cookie("token", token, options).json({
-    success: true,
-    token,
-  });
+  res
+    .status(statusCode)
+    // Uncomment the line below if you want to use cookies
+    // .cookie('token', token, options)
+    .json({
+      success: true,
+      // Add for frontend
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      // End for frontend
+      token,
+    });
 };
 
 //@desc     Get current Logged in user
