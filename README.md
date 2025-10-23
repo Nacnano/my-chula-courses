@@ -50,6 +50,10 @@ This is a personal repository for storing codes and learning materials from all 
 8. [2110471 - Computer Network](https://github.com/Nacnano/my-chula-courses/tree/main/2110471-comp-network) : Labs
    - Project :[Go Websocket Chat Website](https://github.com/JomnoiZ/network-backend-group-13)
 
+### Year 4
+
+- Nothing here. (No mandatory class)
+
 ### Electives
 
 1. [2110573 - Pattern Recognition](https://github.com/Nacnano/my-chula-courses/tree/main/2110573-patt-recog) : Solution for homeworks and projects
@@ -69,6 +73,10 @@ This is a personal repository for storing codes and learning materials from all 
 ### Individual Studies
 
 1. [Thai Context LLM Benchmark (with Assoc Prof. Ekapol)](https://github.com/Nacnano/thai-context-llm-benchmark): Notebooks, Progress, Codes, Data, Documentation
+
+### Capstone Projec
+
+1. [Digital Human (with Assoc Prof. Ekapol)](https://github.com/Nacnano/digital-human): Codes, Progress, Data, Reports
 
 ### General Electives (GenEd)
 
