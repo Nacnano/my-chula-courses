@@ -74,7 +74,7 @@ This is a personal repository for storing codes and learning materials from all 
 
 1. [Thai Context LLM Benchmark (with Assoc Prof. Ekapol)](https://github.com/Nacnano/thai-context-llm-benchmark): Notebooks, Progress, Codes, Data, Documentation
 
-### Capstone Projec
+### Capstone Project
 
 1. [Digital Human (with Assoc Prof. Ekapol)](https://github.com/Nacnano/digital-human): Codes, Progress, Data, Reports
 
