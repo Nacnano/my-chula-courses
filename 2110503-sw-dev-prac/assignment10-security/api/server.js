@@ -1,13 +1,16 @@
 const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config({ path: "./config/config.env" });
 const cookieParser = require("cookie-parser");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
-const xss = require("xss-clean");
+const { xss } = require("express-xss-sanitizer");
 const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 const connectDB = require("./config/mongodb");
 const cors = require("cors");
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUI = require("swagger-ui-express");
 
 //Route files
 const auth = require("./routes/auth");
@@ -16,37 +19,55 @@ const appointments = require("./routes/appointments");
 const hospitals = require("./routes/hospitals");
 
 //Load env vars
-dotenv.config({ path: "./config/config.env" });
 //Connect to DB
 connectDB();
 
 const app = express();
 
-//Body parser
+// 1) Body parser FIRST
 app.use(express.json());
-app.use(cors());
 
-//Cookie parser
+// Cookie parser
 app.use(cookieParser());
 
-//Sanitize data
+// 2) NoSQL injection sanitizer
 app.use(mongoSanitize());
 
-//Set security headers
+// 3) Security headers
 app.use(helmet());
 
-//Prevent XSS attacks
+// 4) XSS sanitizer
 app.use(xss());
 
-//Rate Limiting
+// 5) Rate limiting
 const limiter = rateLimit({
-  windowsMs: 10 * 60 * 1000, //10 mins
-  max: 5,
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 1, // Set to 1 for testing rate limit
 });
 app.use(limiter);
 
-//Enable CORS
+// 6) Prevent HTTP Parameter Pollution
+app.use(hpp());
+
+// 7) CORS
 app.use(cors());
+
+// --- Swagger (OpenAPI) setup ---
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Hospital API",
+      version: "1.0.0",
+      description: "API for hospitals (demo)",
+    },
+    servers: [{ url: "http://localhost:5000/api/v1" }],
+  },
+  apis: ["./routes/*.js"],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 //Mount routers
 app.use("/api/v1/auth", auth);
