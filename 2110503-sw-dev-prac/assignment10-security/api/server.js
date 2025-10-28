@@ -40,11 +40,11 @@ app.use(helmet());
 app.use(xss());
 
 // 5) Rate limiting
-const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 minutes
-  max: 1, // Set to 1 for testing rate limit
-});
-app.use(limiter);
+// const limiter = rateLimit({
+//   windowMs: 10 * 60 * 1000, // 10 minutes
+//   max: 1000, // Set to 1 for testing rate limit
+// });
+// app.use(limiter);
 
 // 6) Prevent HTTP Parameter Pollution
 app.use(hpp());
