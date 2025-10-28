@@ -49,9 +49,8 @@ exports.login = async (req, res, next) => {
         .status(401)
         .json({ success: false, message: "Invalid credentials" });
     }
-
-    //Check if password matches
-    const isMatch = await user.matchPassword(password);
+    //Check if password matches (please use encryption)
+    const isMatch = user.password === password;
 
     if (!isMatch) {
       return res
