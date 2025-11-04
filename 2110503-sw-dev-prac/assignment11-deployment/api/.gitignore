@@ -1,0 +1,11 @@
+node_modules
+.env
+config/config.env
+npm-debug.log*
+.nyc_output
+.cache
+dist
+.DS_Store
+*.log
+node_modules
+config/config.env
