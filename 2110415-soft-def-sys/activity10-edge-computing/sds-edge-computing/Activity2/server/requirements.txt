@@ -1,0 +1,7 @@
+ultralytics==8.3.70
+torch==2.5.0
+torchvision==0.20
+flask
+flask_cors
+boto3
+python-dotenv

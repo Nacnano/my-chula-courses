@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - "5173:5173"
+    depends_on:
+      - edge-server
+      - edge-cloud-server
+    command: ["npm", "run", "dev"]
+    networks:
+      - appnet
+
+  edge-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    env_file: .env
+    command: ["python", "edge-server.py"]
+    ports:
+      - "5001:5001"
+    networks:
+      - appnet
+
+  edge-cloud-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    env_file: .env
+    command: ["python", "edge-cloud-server.py"]
+    ports:
+      - "5002:5002"
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge
