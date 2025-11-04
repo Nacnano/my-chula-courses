@@ -1,11 +1,13 @@
 {
-  "name": "vacq6",
+  "name": "vacq",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "seed:hospitals": "node scripts/seedHospitals.js",
+    "seed:hospitals:clear": "node scripts/seedHospitals.js --clear"
   },
   "author": "",
   "license": "ISC",

@@ -8,4 +8,4 @@ dist
 .DS_Store
 *.log
 node_modules
-config/config.env
+# config/config.env
