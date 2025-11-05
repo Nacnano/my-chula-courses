@@ -86,3 +86,9 @@
 - Microservice ต้อง monitor + log + isolate ให้ดี
 - การใช้ Event Sourcing + CQRS ช่วยให้ระบบสเกลและตรวจสอบย้อนหลังได้
 - แต่ต้องแลกกับความซับซ้อนในการพัฒนาและ debug
+
+## In-class Activity
+
+![alt text](image.png)
+
+![alt text](image-1.png)
