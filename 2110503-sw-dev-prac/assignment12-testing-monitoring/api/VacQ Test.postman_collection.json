@@ -1,0 +1,186 @@
+{
+  "info": {
+    "_postman_id": "b721027f-e9ae-4b0a-a080-a641327be74d",
+    "name": "VacQ Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+    "_exporter_id": "24083044"
+  },
+  "item": [
+    {
+      "name": "get all",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{URL}}/api/v1/hospitals/"
+      },
+      "response": []
+    },
+    {
+      "name": "post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "console.log(response.data._id);\r",
+              "\r",
+              "pm.globals.set(\"global_hospital_id\",response.data._id);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "JSON Type",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\":\"{{$randomFullName}}\",\r\n    \"address\":\"Changwattana Pakkret\",\r\n    \"district\":\"Pakkret\",\r\n    \"province\":\"Nonthaburi\",\r\n    \"postalcode\":\"10110\",\r\n    \"tel\":\"02-8369999\",\r\n    \"region\":\"à¸à¸£à¸¸à¸‡à¹€à¸—à¸žà¸¡à¸«à¸²à¸™à¸„à¸£ (Bangkok)\"\r\n}"
+        },
+        "url": "{{URL}}/api/v1/hospitals/"
+      },
+      "response": []
+    },
+    {
+      "name": "get one",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{URL}}/api/v1/hospitals/:h_id",
+          "host": ["{{URL}}"],
+          "path": ["api", "v1", "hospitals", ":h_id"],
+          "variable": [
+            {
+              "key": "h_id",
+              "value": "{{global_hospital_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "put",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "JSON Type",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\":\"{{$randomFullName}}\"\r\n}"
+        },
+        "url": {
+          "raw": "{{URL}}/api/v1/hospitals/:h_id",
+          "host": ["{{URL}}"],
+          "path": ["api", "v1", "hospitals", ":h_id"],
+          "variable": [
+            {
+              "key": "h_id",
+              "value": "{{global_hospital_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{URL}}/api/v1/hospitals/:h_id",
+          "host": ["{{URL}}"],
+          "path": ["api", "v1", "hospitals", ":h_id"],
+          "variable": [
+            {
+              "key": "h_id",
+              "value": "{{global_hospital_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "URL",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}
