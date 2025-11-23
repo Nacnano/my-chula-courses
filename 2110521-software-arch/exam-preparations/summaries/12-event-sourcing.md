@@ -1,7 +1,3 @@
-Here is a comprehensive documentation summary based on the provided presentation slides on Event Sourcing.
-
----
-
 # Event Sourcing: A Comprehensive Guide
 
 ## 1. Introduction
