@@ -13,7 +13,7 @@ Note
 The service can only be accessed from Chula Network.
 The service is running on a docker container on an old Mac OS X. So, the client IP address might be masked. (I did not set up the reverse proxy.)
 
-## How to
+## Solution
 
 1. Use Computer within Chula network to bypass Chula firewall
 
