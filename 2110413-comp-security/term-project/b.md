@@ -34,3 +34,30 @@ lrFQt0/krmWlgfCf9nsJ
 -----END PGP PUBLIC KEY BLOCK-----
 
 ## Solution
+
+### 1. Save Public Key
+Save the provided public key block to a file named `public_key.asc`.
+
+### 2. Import Public Key
+Import the professor's public key into your GPG keyring:
+```bash
+gpg --import public_key.asc
+```
+
+### 3. Create Student Info File
+Create a file named `student_info.txt` with the following content:
+```text
+COMPUTER SECURITY
+ID: 6531313221
+NAME: Chotpisit Adunsehawat
+```
+
+### 4. Encrypt the File
+Encrypt the file using the recipient's email specified in the public key (`krerk.p@chula.ac.th`). Use the `--armor` flag for ASCII output and `--encrypt` to encrypt without signing.
+
+```bash
+gpg --encrypt --armor --recipient krerk.p@chula.ac.th --output student_info.txt.asc student_info.txt
+```
+
+### 5. Verify Output
+The resulting file `student_info.txt.asc` is the encrypted file to be uploaded. It starts with `-----BEGIN PGP MESSAGE-----`.
