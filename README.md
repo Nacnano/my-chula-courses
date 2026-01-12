@@ -52,7 +52,7 @@ This is a personal repository for storing codes and learning materials from all 
 
 ### Year 4
 
-- Nothing here. (No mandatory class)
+- No mandatory course this year. (Only elective Courses)
 
 ### Electives
 
