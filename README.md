@@ -14,6 +14,8 @@ This is a personal repository for storing codes and learning materials from all 
 
 3. Nac's Internship Lists : [Spreadsheet (public)](https://docs.google.com/spreadsheets/d/1vz_dsmOjUQX20f_P-ge9xdT5Umhq1NU3AElfW27vvaM/edit?gid=1208803729#gid=1208803729)
 
+4. P Tontan's Course Materials (Slides, Notes, Exams, etc.) : [Drive (use Chula email)](https://drive.google.com/drive/folders/12PoOtLwe40Q39kkhgN1C2XqsgYdWR61U?usp=drive_link)
+
 ## Courses
 
 ### [OneDrive for PDF files ](https://chula-my.sharepoint.com/:f:/g/personal/6531313221_student_chula_ac_th/Eh6t27fwE_VBky4hGBT67ygBo3h8n7EWyle22TjCA94aaQ?e=sDsXLV)
