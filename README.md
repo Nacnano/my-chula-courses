@@ -1,20 +1,20 @@
 # My Chula Courses
 
-Why creating a new repository when taking new courses? Just make one for all of them instead
+Why create a new repository when taking new courses? Just make one for all of them instead
 
 This is a personal repository for storing codes and learning materials from all tech-related courses from Computer Programming Class of 2026, Bachelor of Engineering, Chulalongkorn University
 
 ## Guidance
 
-### Note : Sorry, Some are not available for public (confidential data)
+### Note: Sorry, some are not available for public (confidential data)
 
 1. พี่แนะแนวน้อง CP49: [Slide (use Chula email)](https://docs.google.com/presentation/d/11nw6GtNE3KuS1G5MS36VHqcSHQJjzFVEvZQR1mBpWEk/edit), The video recording is not available for public. (Contact for more info)
 
 2. CP48 Review Internship: [Slide (use Chula email)](https://docs.google.com/presentation/d/1gdvf9dJOKoCz7fogMiVtNSCoBfEy3R08cB-kLzR2Ml4/edit#slide=id.g2f05475da01_0_67)
 
-3. Nac's Internship Lists : [Spreadsheet (public)](https://docs.google.com/spreadsheets/d/1vz_dsmOjUQX20f_P-ge9xdT5Umhq1NU3AElfW27vvaM/edit?gid=1208803729#gid=1208803729)
+3. Nac's Internship List : [Spreadsheet (public)](https://docs.google.com/spreadsheets/d/1vz_dsmOjUQX20f_P-ge9xdT5Umhq1NU3AElfW27vvaM/edit?gid=1208803729#gid=1208803729)
 
-4. P Tontan's Course Materials (Slides, Notes, Exams, etc.) : [Drive (use Chula email)](https://drive.google.com/drive/folders/12PoOtLwe40Q39kkhgN1C2XqsgYdWR61U?usp=drive_link)
+4. P'Tontan's Course Materials (Slides, Notes, Exams, etc.) : [Drive (use Chula email)](https://drive.google.com/drive/folders/12PoOtLwe40Q39kkhgN1C2XqsgYdWR61U?usp=drive_link)
 
 ## Courses
 
@@ -25,7 +25,7 @@ This is a personal repository for storing codes and learning materials from all 
 1.  [2110101 - Computer Programming](https://github.com/Nacnano/my-chula-courses/tree/main/2110101-com-prog) : Solutions for the grader, homeworks, and finalized workshops
 2.  [2110215 - Programming Methodology](https://github.com/Nacnano/my-chula-courses/tree/main/2110215-prog-meth) : Lectures, labs, and final project
     - Project : [Veeliw vs Nac](https://github.com/Nacnano/veeliwvsnac)
-3.  [2110221 - Computer Engineering Essential](https://github.com/Nacnano/my-chula-courses/tree/main/2110221-com-eng-ess) : Mainly courses material and its solutions
+3.  [2110221 - Computer Engineering Essentials](https://github.com/Nacnano/my-chula-courses/tree/main/2110221-com-eng-ess) : Mainly course materials and its solutions
     - Project : [Mycourseville Calendar](https://github.com/Nacnano/cee-34-final-project)
 
 ### Year 2
@@ -34,27 +34,27 @@ This is a personal repository for storing codes and learning materials from all 
 2.  [2110263 - Digital Computer Logic Laboratory I](https://github.com/Nacnano/my-chula-courses/tree/main/2110263-dig-logic-lab-1) : Laboratories and exam preparations
 3.  [2110327 - Algorithm Design](https://github.com/Nacnano/my-chula-courses/tree/main/2110327-algorithm-design) : Solution for graders and quizzes
 4.  [2110316 - Programming Languages Principles](https://github.com/Nacnano/my-chula-courses/tree/main/2110316-prog-lang-prin) : Learning materials and exercises
-5.  [2110356 - Embedded System](https://github.com/Nacnano/my-chula-courses/tree/main/2110356-embedded-sys) : Laboratories and Skill Tests
-6.  [2110366 - Embedded System Laboratory](https://github.com/Nacnano/my-chula-courses/tree/main/2110366-embedded-sys-lab) : Laboratories and Skill Tests
+5.  [2110356 - Embedded Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110356-embedded-sys) : Laboratories and Skill Tests
+6.  [2110366 - Embedded Systems Laboratory](https://github.com/Nacnano/my-chula-courses/tree/main/2110366-embedded-sys-lab) : Laboratories and Skill Tests
     - Project : [Let There Be Light](https://github.com/nacnano/embbed-lab-final-project)
 
 ### Year 3
 
-1. [2110322 - Database Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110211-db-sys) : Exercises
+1. [2110322 - Database Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110322-db-sys) : Exercises
 2. [2110363 - Hardware Synthesis Laboratory I](https://github.com/Nacnano/my-chula-courses/tree/main/2110363-hw-syn-lab-1) : Laboratories and Skill Tests
    - Project : [VGA Monitor Connection](https://github.com/Nacnano/hw-syn-lab-project)
 3. [2110352 - Computer System Architectures](https://github.com/Nacnano/my-chula-courses/tree/main/2110352-comp-sys-arch) : Assignments
 4. [2110203 - Computer Engineering Mathematics II](https://github.com/Nacnano/my-chula-courses/tree/main/2110203-comp-eng-math-ii) : Assignments
 5. [2110233 - Computer Engineering Mathematics Lab](https://github.com/Nacnano/my-chula-courses/tree/main/2110233-comp-eng-math-lab) : Quizzes
-6. [2110313 - Operating Systems And System Programs](https://github.com/Nacnano/my-chula-courses/tree/main/2110313-os-sys-prog) : Activities
+6. [2110313 - Operating Systems and System Programs](https://github.com/Nacnano/my-chula-courses/tree/main/2110313-os-sys-prog) : Activities
 7. [2110336 - Software Engineering II](https://github.com/Nacnano/my-chula-courses/tree/main/2110336-software-eng-ii): Homeworks
-   - Project : [BookBook (Second-handed Book Martplace)](https://github.com/seg-org/bookbook)
+   - Project : [BookBook (Second-handed Book Marketplace)](https://github.com/seg-org/bookbook)
 8. [2110471 - Computer Network](https://github.com/Nacnano/my-chula-courses/tree/main/2110471-comp-network) : Labs
-   - Project :[Go Websocket Chat Website](https://github.com/JomnoiZ/network-backend-group-13)
+   - Project :[Go WebSocket Chat Website](https://github.com/JomnoiZ/network-backend-group-13)
 
 ### Year 4
 
-- No mandatory course this year. (Only elective Courses)
+- No mandatory course this year. (Only elective courses)
 
 ### Electives
 
@@ -67,11 +67,11 @@ This is a personal repository for storing codes and learning materials from all 
 4. [2110446 - Data Science and Data Engineering](https://github.com/Nacnano/my-chula-courses/tree/main/2110446-data-sci-eng)
    - Project : [Traffy Fondue Duration Prediction](https://github.com/Nacnano/traffy-fondue-duration-prediction)
 5. [2110413 - Computer Security](https://github.com/Nacnano/my-chula-courses/tree/main/2110413-comp-security) : Activities
-6. [2110415 - Software-Defined Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110415-soft-def-sys): Activites
+6. [2110415 - Software-Defined Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110415-soft-def-sys): Activities
    - Project: [Raspberry PI Kubernetes Cluster](https://github.com/Nacnano/sds-final-project)
 7. [2110521 - Software Architectures](https://github.com/Nacnano/my-chula-courses/tree/main/2110521-software-arch) : Assignments
    - Project: [Sai Mu Microservice](https://github.com/Sai-mu/microservice)
-8. [2110503 - Software Development Practice]
+8. [2110503 - Software Development Practice](https://github.com/Nacnano/my-chula-courses/tree/main/2110503-sw-dev-prac)
    - Project : [Car Renting Backend](https://github.com/Nacnano/sw-dev-prac-project)
 
 ### Individual Studies
@@ -106,6 +106,6 @@ This is a personal repository for storing codes and learning materials from all 
 
 - [Nacnano](https://github.com/Nacnano) : Chotpisit Adunsehawat (CP 49)
 
-### Any contribution to this repository will be appreciated
+### Any contributions to this repository are appreciated
 
-## Good luck in your engineering career with a bright future!
+## Good luck in your engineering career and have a bright future!
