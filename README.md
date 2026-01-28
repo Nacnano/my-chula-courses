@@ -70,8 +70,9 @@ This is a personal repository for storing codes and learning materials from all 
 6. [2110415 - Software-Defined Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110415-soft-def-sys): Activites
    - Project: [Raspberry PI Kubernetes Cluster](https://github.com/Nacnano/sds-final-project)
 7. [2110521 - Software Architectures](https://github.com/Nacnano/my-chula-courses/tree/main/2110521-software-arch) : Assignments
+   - Project: [Sai Mu Microservice](https://github.com/Sai-mu/microservice)
 8. [2110503 - Software Development Practice]
-   - Project : [Backend project](https://github.com/Nacnano/sw-dev-prac-project)
+   - Project : [Car Renting Backend](https://github.com/Nacnano/sw-dev-prac-project)
 
 ### Individual Studies
 
