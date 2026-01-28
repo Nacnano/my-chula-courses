@@ -68,6 +68,7 @@ This is a personal repository for storing codes and learning materials from all 
    - Project : [Traffy Fondue Duration Prediction](https://github.com/Nacnano/traffy-fondue-duration-prediction)
 5. [2110413 - Computer Security](https://github.com/Nacnano/my-chula-courses/tree/main/2110413-comp-security) : Activities
 6. [2110415 - Software-Defined Systems](https://github.com/Nacnano/my-chula-courses/tree/main/2110415-soft-def-sys): Activites
+   - Project: [Raspberry PI Kubernetes Cluster](https://github.com/Nacnano/sds-final-project)
 7. [2110521 - Software Architectures](https://github.com/Nacnano/my-chula-courses/tree/main/2110521-software-arch) : Assignments
 8. [2110503 - Software Development Practice]
    - Project : [Backend project](https://github.com/Nacnano/sw-dev-prac-project)
