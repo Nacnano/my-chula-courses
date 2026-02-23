@@ -2,7 +2,7 @@
 
 Why create a new repository when taking new courses? Just make one for all of them instead
 
-This is a personal repository for storing codes and learning materials from all tech-related courses from Computer Programming Class of 2026, Bachelor of Engineering, Chulalongkorn University
+This is a personal repository for storing codes and learning materials from all tech-related courses from Class of 2026, Bachelor of Engineering, Chulalongkorn University
 
 ## Guidance
 
